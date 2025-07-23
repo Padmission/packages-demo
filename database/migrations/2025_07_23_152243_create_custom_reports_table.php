@@ -18,7 +18,7 @@ return new class extends Migration
 
             if (Utils::isTenantEnabled()) {
                 $tenantForeignKey = config('data-lens.column_names.tenant_foreign_key');
-                $table->foreignId($tenantForeignKey)->constrained()->cascadeOnDelete();
+                $table->foreignId($tenantForeignKey);
             }
 
             $table->string('name');
