@@ -21,7 +21,7 @@ return [
     | register the tenant foreign key.
     |
     */
-    'tenant_aware' => false,
+    'tenant_aware' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     ],
 
     'excluded_models' => [
-        // \App\Models\Tenant::class,
+         App\Models\Team::class,
     ],
 
     /*
