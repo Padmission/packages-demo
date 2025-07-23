@@ -3,16 +3,20 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
+use Illuminate\Contracts\Support\Htmlable;
 
 class OrdersChart extends ChartWidget
 {
-    protected ?string $heading = 'Orders per month';
-
     protected static ?int $sort = 1;
 
     protected function getType(): string
     {
         return 'line';
+    }
+
+    public function getHeading(): string | Htmlable | null
+    {
+        return 'Orders per month';
     }
 
     protected function getData(): array

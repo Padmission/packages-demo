@@ -72,6 +72,60 @@ You're ready to go! Visit the url in your browser, and login with:
 -   **Username:** admin@filamentphp.com
 -   **Password:** password
 
+## Demo Mode Setup
+
+This application includes a demo mode that provides isolated environments for each visitor. To enable it:
+
+### Initial Setup
+
+Pre-populate the demo user pool before launching:
+
+```sh
+# Create 50 demo users (default)
+php artisan demo:populate
+
+# Or create a specific number
+php artisan demo:populate 100
+```
+
+### Queue Worker
+
+Start the queue worker to handle background pool replenishment:
+
+```sh
+php artisan queue:work --queue=demo,default
+```
+
+### Scheduled Tasks
+
+Set up a cron job to run the scheduler for automatic cleanup:
+
+```sh
+# Add to your crontab
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
+
+Or run the scheduler locally for development:
+
+```sh
+php artisan schedule:work
+```
+
+### Demo Management Commands
+
+```sh
+# Manually refresh demo data (cleanup and replenish)
+php artisan demo:refresh
+
+# Add more demo instances
+php artisan demo:add 10
+
+# Force reset all demo data
+php artisan demo:refresh --force
+```
+
+When demo mode is enabled, visitors will be automatically assigned a demo account with isolated data.
+
 ## Features to explore
 
 ### Relations

@@ -34,6 +34,11 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
         'email_verified_at' => 'datetime',
     ];
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class)->withTimestamps()->withPivot('role');
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
@@ -41,7 +46,7 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
 
     public function canAccessTenant(Model $tenant): bool
     {
-        return true;
+        return $this->teams->contains($tenant);
     }
 
     /** @return Collection<int,Team> */
