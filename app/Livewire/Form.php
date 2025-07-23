@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -32,15 +35,15 @@ class Form extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\Builder::make('test')
+            Builder::make('test')
                 ->blocks([
-                    Forms\Components\Builder\Block::make('one')
+                    Block::make('one')
                         ->schema([
-                            Forms\Components\TextInput::make('one'),
+                            TextInput::make('one'),
                         ]),
-                    Forms\Components\Builder\Block::make('two')
+                    Block::make('two')
                         ->schema([
-                            Forms\Components\TextInput::make('two'),
+                            TextInput::make('two'),
                         ]),
                 ]),
         ];

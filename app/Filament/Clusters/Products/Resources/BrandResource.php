@@ -2,6 +2,12 @@
 
 namespace App\Filament\Clusters\Products\Resources;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Placeholder;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
 use App\Filament\Clusters\Products;
 use App\Filament\Clusters\Products\Resources\BrandResource\Pages\CreateBrand;
 use App\Filament\Clusters\Products\Resources\BrandResource\Pages\EditBrand;
@@ -31,7 +37,7 @@ class BrandResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-bookmark-square';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bookmark-square';
 
     protected static ?string $navigationParentItem = 'Products';
 
@@ -45,39 +51,39 @@ class BrandResource extends Resource
                     ->schema([
                         Grid::make()
                             ->schema([
-                                Forms\Components\TextInput::make('name')
+                                TextInput::make('name')
                                     ->required()
                                     ->maxLength(255)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (string $operation, $state, Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
-                                Forms\Components\TextInput::make('slug')
+                                TextInput::make('slug')
                                     ->disabled()
                                     ->dehydrated()
                                     ->required()
                                     ->maxLength(255)
                                     ->unique(Brand::class, 'slug', ignoreRecord: true),
                             ]),
-                        Forms\Components\TextInput::make('website')
+                        TextInput::make('website')
                             ->required()
                             ->maxLength(255)
                             ->url(),
 
-                        Forms\Components\Toggle::make('is_visible')
+                        Toggle::make('is_visible')
                             ->label('Visible to customers.')
                             ->default(true),
 
-                        Forms\Components\MarkdownEditor::make('description')
+                        MarkdownEditor::make('description')
                             ->label('Description'),
                     ])
                     ->columnSpan(['lg' => fn (?Brand $record) => $record === null ? 3 : 2]),
                 Section::make()
                     ->schema([
-                        Forms\Components\Placeholder::make('created_at')
+                        Placeholder::make('created_at')
                             ->label('Created at')
                             ->content(fn (Brand $record): ?string => $record->created_at?->diffForHumans()),
 
-                        Forms\Components\Placeholder::make('updated_at')
+                        Placeholder::make('updated_at')
                             ->label('Last modified at')
                             ->content(fn (Brand $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
@@ -91,18 +97,18 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('website')
+                TextColumn::make('website')
                     ->label('Website')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_visible')
+                IconColumn::make('is_visible')
                     ->label('Visibility')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->label('Updated Date')
                     ->date()
                     ->sortable(),

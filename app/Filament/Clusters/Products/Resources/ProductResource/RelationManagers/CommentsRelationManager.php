@@ -2,6 +2,12 @@
 
 namespace App\Filament\Clusters\Products\Resources\ProductResource\RelationManagers;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
 use App\Models\User;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -28,19 +34,19 @@ class CommentsRelationManager extends RelationManager
         return $schema
             ->columns(1)
             ->components([
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
                     ->required(),
 
-                Forms\Components\Select::make('customer_id')
+                Select::make('customer_id')
                     ->relationship('customer', 'name')
                     ->searchable()
                     ->required(),
 
-                Forms\Components\Toggle::make('is_visible')
+                Toggle::make('is_visible')
                     ->label('Approved for public')
                     ->default(true),
 
-                Forms\Components\MarkdownEditor::make('content')
+                MarkdownEditor::make('content')
                     ->required()
                     ->label('Content'),
             ]);
@@ -64,17 +70,17 @@ class CommentsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('customer.name')
+                TextColumn::make('customer.name')
                     ->label('Customer')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\IconColumn::make('is_visible')
+                IconColumn::make('is_visible')
                     ->label('Visibility')
                     ->sortable(),
             ])

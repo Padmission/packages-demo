@@ -2,6 +2,12 @@
 
 namespace App\Filament\Resources\Blog;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
+use App\Filament\Resources\Blog\AuthorResource\Pages\ManageAuthors;
 use App\Filament\Resources\Blog\AuthorResource\Pages;
 use App\Models\Blog\Author;
 use BackedEnum;
@@ -24,9 +30,9 @@ class AuthorResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-users';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-users';
 
     protected static ?int $navigationSort = 2;
 
@@ -34,25 +40,25 @@ class AuthorResource extends Resource
     {
         return $schema
             ->components([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->label('Email address')
                     ->required()
                     ->maxLength(255)
                     ->email()
                     ->unique(Author::class, 'email', ignoreRecord: true),
 
-                Forms\Components\MarkdownEditor::make('bio')
+                MarkdownEditor::make('bio')
                     ->columnSpan('full'),
 
-                Forms\Components\TextInput::make('github_handle')
+                TextInput::make('github_handle')
                     ->label('GitHub handle')
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('twitter_handle')
+                TextInput::make('twitter_handle')
                     ->label('Twitter handle')
                     ->maxLength(255),
             ]);
@@ -62,15 +68,15 @@ class AuthorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\Layout\Split::make([
-                    Tables\Columns\Layout\Stack::make([
-                        Tables\Columns\TextColumn::make('name')
+                Split::make([
+                    Stack::make([
+                        TextColumn::make('name')
                             ->searchable()
                             ->sortable()
                             ->weight('medium')
                             ->alignLeft(),
 
-                        Tables\Columns\TextColumn::make('email')
+                        TextColumn::make('email')
                             ->label('Email address')
                             ->searchable()
                             ->sortable()
@@ -78,13 +84,13 @@ class AuthorResource extends Resource
                             ->alignLeft(),
                     ])->space(),
 
-                    Tables\Columns\Layout\Stack::make([
-                        Tables\Columns\TextColumn::make('github_handle')
+                    Stack::make([
+                        TextColumn::make('github_handle')
                             ->icon('icon-github')
                             ->label('GitHub')
                             ->alignLeft(),
 
-                        Tables\Columns\TextColumn::make('twitter_handle')
+                        TextColumn::make('twitter_handle')
                             ->icon('icon-twitter')
                             ->label('Twitter')
                             ->alignLeft(),
@@ -119,7 +125,7 @@ class AuthorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageAuthors::route('/'),
+            'index' => ManageAuthors::route('/'),
         ];
     }
 }

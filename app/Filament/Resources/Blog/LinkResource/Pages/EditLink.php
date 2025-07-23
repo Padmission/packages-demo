@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Blog\LinkResource\Pages;
 
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\Blog\LinkResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -17,8 +19,8 @@ class EditLink extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            ViewAction::make(),
+            DeleteAction::make(),
             LocaleSwitcher::make(),
         ];
     }

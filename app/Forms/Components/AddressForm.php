@@ -2,12 +2,15 @@
 
 namespace App\Forms\Components;
 
+use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms;
 use Filament\Schemas\Components\Grid;
 use Illuminate\Database\Eloquent\Model;
 use Squire\Models\Country;
 
-class AddressForm extends Forms\Components\Field
+class AddressForm extends Field
 {
     protected string $view = 'filament-schemas::components.grid';
 
@@ -43,22 +46,22 @@ class AddressForm extends Forms\Components\Field
         return [
             Grid::make()
                 ->schema([
-                    Forms\Components\Select::make('country')
+                    Select::make('country')
                         ->searchable()
                         ->getSearchResultsUsing(fn (string $query) => Country::where('name', 'like', "%{$query}%")->pluck('name', 'id'))
                         ->getOptionLabelUsing(fn ($value): ?string => Country::firstWhere('id', $value)?->getAttribute('name')),
                 ]),
-            Forms\Components\TextInput::make('street')
+            TextInput::make('street')
                 ->label('Street address')
                 ->maxLength(255),
             Grid::make(3)
                 ->schema([
-                    Forms\Components\TextInput::make('city')
+                    TextInput::make('city')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('state')
+                    TextInput::make('state')
                         ->label('State / Province')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('zip')
+                    TextInput::make('zip')
                         ->label('Zip / Postal code')
                         ->maxLength(255),
                 ]),

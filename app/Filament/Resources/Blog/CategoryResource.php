@@ -2,6 +2,12 @@
 
 namespace App\Filament\Resources\Blog;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use App\Filament\Resources\Blog\CategoryResource\Pages\ManageCategories;
 use App\Filament\Resources\Blog\CategoryResource\Pages;
 use App\Models\Blog\Category;
 use BackedEnum;
@@ -29,9 +35,9 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 1;
 
@@ -39,23 +45,23 @@ class CategoryResource extends Resource
     {
         return $schema
             ->components([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn (string $operation, $state, Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
-                Forms\Components\TextInput::make('slug')
+                TextInput::make('slug')
                     ->disabled()
                     ->dehydrated()
                     ->required()
                     ->maxLength(255)
                     ->unique(Category::class, 'slug', ignoreRecord: true),
 
-                Forms\Components\MarkdownEditor::make('description')
+                MarkdownEditor::make('description')
                     ->columnSpan('full'),
 
-                Forms\Components\Toggle::make('is_visible')
+                Toggle::make('is_visible')
                     ->label('Visible to customers.')
                     ->default(true),
             ]);
@@ -65,15 +71,15 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
+                TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('is_visible')
+                IconColumn::make('is_visible')
                     ->label('Visibility'),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->label('Last Updated')
                     ->date(),
             ])
@@ -122,7 +128,7 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageCategories::route('/'),
+            'index' => ManageCategories::route('/'),
         ];
     }
 }

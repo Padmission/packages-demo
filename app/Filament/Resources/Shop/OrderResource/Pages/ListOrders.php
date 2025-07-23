@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Shop\OrderResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\Shop\OrderResource;
 use Filament\Actions;
 use Filament\Pages\Concerns\ExposesTableToWidgets;
@@ -17,7 +18,7 @@ class ListOrders extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 

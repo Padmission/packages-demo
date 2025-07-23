@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Blog\PostResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\Blog\PostResource;
 use App\Models\Blog\Post;
 use Filament\Actions;
@@ -23,7 +24,7 @@ class EditPost extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

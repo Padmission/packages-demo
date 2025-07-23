@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Blog\CategoryResource\Pages;
 
+use Filament\Actions\ImportAction;
+use Filament\Actions\CreateAction;
 use App\Filament\Imports\Blog\CategoryImporter;
 use App\Filament\Resources\Blog\CategoryResource;
 use Filament\Actions;
@@ -14,9 +16,9 @@ class ManageCategories extends ManageRecords
     protected function getActions(): array
     {
         return [
-            Actions\ImportAction::make()
+            ImportAction::make()
                 ->importer(CategoryImporter::class),
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

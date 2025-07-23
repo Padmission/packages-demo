@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Blog\LinkResource\Pages;
 
+use Filament\Actions\EditAction;
 use App\Filament\Resources\Blog\LinkResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
@@ -17,7 +18,7 @@ class ViewLink extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            EditAction::make(),
             LocaleSwitcher::make(),
         ];
     }

@@ -2,6 +2,20 @@
 
 namespace App\Filament\Resources\Blog;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\Layout\Panel;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\ColorColumn;
+use App\Filament\Resources\Blog\LinkResource\Pages\ListLinks;
+use App\Filament\Resources\Blog\LinkResource\Pages\CreateLink;
+use App\Filament\Resources\Blog\LinkResource\Pages\ViewLink;
+use App\Filament\Resources\Blog\LinkResource\Pages\EditLink;
 use App\Filament\Resources\Blog\LinkResource\Pages;
 use App\Models\Blog\Link;
 use BackedEnum;
@@ -28,9 +42,9 @@ class LinkResource extends Resource
 
     protected static ?string $model = Link::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-link';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-link';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 3;
 
@@ -38,23 +52,23 @@ class LinkResource extends Resource
     {
         return $schema
             ->components([
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
                     ->maxLength(255)
                     ->required(),
-                Forms\Components\ColorPicker::make('color')
+                ColorPicker::make('color')
                     ->required()
                     ->hex()
                     ->hexColor(),
-                Forms\Components\Textarea::make('description')
+                Textarea::make('description')
                     ->maxLength(1024)
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('url')
+                TextInput::make('url')
                     ->label('URL')
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('image')
+                FileUpload::make('image')
                     ->image(),
             ]);
     }
@@ -79,24 +93,24 @@ class LinkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\Layout\Stack::make([
-                    Tables\Columns\ImageColumn::make('image')
+                Stack::make([
+                    ImageColumn::make('image')
                         ->height('100%')
                         ->width('100%'),
-                    Tables\Columns\Layout\Stack::make([
-                        Tables\Columns\TextColumn::make('title')
+                    Stack::make([
+                        TextColumn::make('title')
                             ->weight(FontWeight::Bold),
-                        Tables\Columns\TextColumn::make('url')
+                        TextColumn::make('url')
                             ->formatStateUsing(fn (string $state): string => str($state)->after('://')->ltrim('www.')->trim('/'))
                             ->color('gray')
                             ->limit(30),
                     ]),
                 ])->space(3),
-                Tables\Columns\Layout\Panel::make([
-                    Tables\Columns\Layout\Split::make([
-                        Tables\Columns\ColorColumn::make('color')
+                Panel::make([
+                    Split::make([
+                        ColorColumn::make('color')
                             ->grow(false),
-                        Tables\Columns\TextColumn::make('description')
+                        TextColumn::make('description')
                             ->color('gray'),
                     ]),
                 ])->collapsible(),
@@ -145,10 +159,10 @@ class LinkResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLinks::route('/'),
-            'create' => Pages\CreateLink::route('/create'),
-            'view' => Pages\ViewLink::route('/{record}'),
-            'edit' => Pages\EditLink::route('/{record}/edit'),
+            'index' => ListLinks::route('/'),
+            'create' => CreateLink::route('/create'),
+            'view' => ViewLink::route('/{record}'),
+            'edit' => EditLink::route('/{record}/edit'),
         ];
     }
 }

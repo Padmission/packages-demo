@@ -2,6 +2,12 @@
 
 namespace App\Filament\Resources\Blog\PostResource\Pages;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
 use App\Filament\Resources\Blog\PostResource;
 use BackedEnum;
 use Filament\Actions\CreateAction;
@@ -24,7 +30,7 @@ class ManagePostComments extends ManageRelatedRecords
 
     protected static string $relationship = 'comments';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     public function getTitle(): string | Htmlable
     {
@@ -49,19 +55,19 @@ class ManagePostComments extends ManageRelatedRecords
     {
         return $schema
             ->components([
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title')
                     ->required(),
 
-                Forms\Components\Select::make('customer_id')
+                Select::make('customer_id')
                     ->relationship('customer', 'name')
                     ->searchable()
                     ->required(),
 
-                Forms\Components\Toggle::make('is_visible')
+                Toggle::make('is_visible')
                     ->label('Approved for public')
                     ->default(true),
 
-                Forms\Components\MarkdownEditor::make('content')
+                MarkdownEditor::make('content')
                     ->required()
                     ->label('Content'),
             ])
@@ -87,17 +93,17 @@ class ManagePostComments extends ManageRelatedRecords
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('customer.name')
+                TextColumn::make('customer.name')
                     ->label('Customer')
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\IconColumn::make('is_visible')
+                IconColumn::make('is_visible')
                     ->label('Visibility')
                     ->sortable(),
             ])

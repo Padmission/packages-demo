@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Blog\AuthorResource\Pages;
 
+use Filament\Actions\ExportAction;
+use Filament\Actions\CreateAction;
 use App\Filament\Exports\Blog\AuthorExporter;
 use App\Filament\Resources\Blog\AuthorResource;
 use Filament\Actions;
@@ -14,9 +16,9 @@ class ManageAuthors extends ManageRecords
     protected function getActions(): array
     {
         return [
-            Actions\ExportAction::make()
+            ExportAction::make()
                 ->exporter(AuthorExporter::class),
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

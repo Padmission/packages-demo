@@ -2,6 +2,8 @@
 
 namespace App\Filament\Clusters\Products\Resources\BrandResource\Pages;
 
+use Filament\Actions\ExportAction;
+use Filament\Actions\CreateAction;
 use App\Filament\Clusters\Products\Resources\BrandResource;
 use App\Filament\Exports\Shop\BrandExporter;
 use Filament\Actions;
@@ -14,9 +16,9 @@ class ListBrands extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\ExportAction::make()
+            ExportAction::make()
                 ->exporter(BrandExporter::class),
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

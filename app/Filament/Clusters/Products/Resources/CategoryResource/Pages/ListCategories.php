@@ -2,6 +2,8 @@
 
 namespace App\Filament\Clusters\Products\Resources\CategoryResource\Pages;
 
+use Filament\Actions\ImportAction;
+use Filament\Actions\CreateAction;
 use App\Filament\Clusters\Products\Resources\CategoryResource;
 use App\Filament\Imports\Shop\CategoryImporter;
 use Filament\Actions;
@@ -14,9 +16,9 @@ class ListCategories extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\ImportAction::make()
+            ImportAction::make()
                 ->importer(CategoryImporter::class),
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

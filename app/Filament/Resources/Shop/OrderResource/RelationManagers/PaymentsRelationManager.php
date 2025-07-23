@@ -2,6 +2,11 @@
 
 namespace App\Filament\Resources\Shop\OrderResource\RelationManagers;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Columns\ColumnGroup;
+use Filament\Tables\Columns\TextColumn;
 use Akaunting\Money\Currency;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -24,21 +29,21 @@ class PaymentsRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                Forms\Components\TextInput::make('reference')
+                TextInput::make('reference')
                     ->columnSpan('full')
                     ->required(),
 
-                Forms\Components\TextInput::make('amount')
+                TextInput::make('amount')
                     ->numeric()
                     ->rules(['regex:/^\d{1,6}(\.\d{0,2})?$/'])
                     ->required(),
 
-                Forms\Components\Select::make('currency')
+                Select::make('currency')
                     ->options(collect(Currency::getCurrencies())->mapWithKeys(fn ($item, $key) => [$key => data_get($item, 'name')]))
                     ->searchable()
                     ->required(),
 
-                Forms\Components\ToggleButtons::make('provider')
+                ToggleButtons::make('provider')
                     ->inline()
                     ->grouped()
                     ->options([
@@ -47,7 +52,7 @@ class PaymentsRelationManager extends RelationManager
                     ])
                     ->required(),
 
-                Forms\Components\ToggleButtons::make('method')
+                ToggleButtons::make('method')
                     ->inline()
                     ->options([
                         'credit_card' => 'Credit card',
@@ -62,23 +67,23 @@ class PaymentsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\ColumnGroup::make('Details')
+                ColumnGroup::make('Details')
                     ->columns([
-                        Tables\Columns\TextColumn::make('reference')
+                        TextColumn::make('reference')
                             ->searchable(),
 
-                        Tables\Columns\TextColumn::make('amount')
+                        TextColumn::make('amount')
                             ->sortable()
                             ->money(fn ($record) => $record->currency),
                     ]),
 
-                Tables\Columns\ColumnGroup::make('Context')
+                ColumnGroup::make('Context')
                     ->columns([
-                        Tables\Columns\TextColumn::make('provider')
+                        TextColumn::make('provider')
                             ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
 
-                        Tables\Columns\TextColumn::make('method')
+                        TextColumn::make('method')
                             ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
                     ]),

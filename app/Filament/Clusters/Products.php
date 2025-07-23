@@ -8,9 +8,9 @@ use UnitEnum;
 
 class Products extends Cluster
 {
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-squares-2x2';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-squares-2x2';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Shop';
+    protected static string | \UnitEnum | null $navigationGroup = 'Shop';
 
     protected static ?int $navigationSort = 0;
 
