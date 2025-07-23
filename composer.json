@@ -21,7 +21,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "squirephp/countries-en": "^3.3",
-        "squirephp/currencies-en": "^3.3"
+        "squirephp/currencies-en": "^3.3",
+        "padmission/data-lens": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
@@ -84,6 +85,12 @@
             "composer/package-versions-deprecated": true
         }
     },
-    "minimum-stability": "beta",
-    "prefer-stable": true
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../data-lens"
+        }
+    ]
 }

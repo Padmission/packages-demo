@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use Padmission\DataLens\Resources\CustomReportResource as BaseResource;
+
+class CustomReportResource extends BaseResource
+{
+    // Your custom configuration can go here
+}
