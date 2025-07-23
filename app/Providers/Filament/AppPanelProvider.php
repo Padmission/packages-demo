@@ -51,6 +51,7 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
                 HandleMissingTenant::class,
             ])
-            ->plugin(DataLensPlugin::make());
+            ->plugin(DataLensPlugin::make())
+            ->viteTheme('resources/css/filament/app/theme.css');
     }
 }
