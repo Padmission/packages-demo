@@ -1,7 +1,7 @@
 <?php
 
 // ABOUTME: Seeder that creates demo users with isolated multi-tenant data
-// ABOUTME: Generates complete datasets for shop, blog, tickets, and data lens per team
+// ABOUTME: Generates complete datasets for shop, blog, and data lens per team
 
 namespace Database\Seeders;
 
@@ -72,7 +72,6 @@ class DemoSeeder extends Seeder
                 // Don't set tenant context during seeding - we'll pass team_id directly
                 $this->seedShopData($team, $config['shop']);
                 $this->seedBlogData($team, $config['blog']);
-                $this->seedTicketsData($team, $config['tickets']);
                 $this->seedDataLensReports($team, $config['data_lens']);
             }
         });
@@ -109,7 +108,7 @@ class DemoSeeder extends Seeder
             $addresses = Address::factory(rand(1, 3))->create([
                 'team_id' => $team->id,
             ]);
-            
+
             // Attach addresses to customer through the polymorphic relationship
             foreach ($addresses as $address) {
                 $customer->addresses()->attach($address);
@@ -177,50 +176,6 @@ class DemoSeeder extends Seeder
         Link::factory(10)->create([
             'team_id' => $team->id,
         ]);
-    }
-
-    /**
-     * Seed tickets data for a team.
-     */
-    private function seedTicketsData(Team $team, array $config): void
-    {
-        // Only seed tickets if the plugin is available
-        if (! class_exists('Padmission\Tickets\Models\Ticket')) {
-            return;
-        }
-
-        // Check if ticket statuses exist, if not, skip tickets seeding
-        if (\Padmission\Tickets\Models\TicketStatus::count() === 0) {
-            Log::info('Skipping tickets seeding - no ticket statuses found. Run tickets seeder first.');
-            return;
-        }
-
-        // Get some customers to create tickets for
-        $customers = Customer::where('team_id', $team->id)
-            ->limit(10)
-            ->get();
-
-        if ($customers->isEmpty()) {
-            return;
-        }
-
-        foreach ($customers as $customer) {
-            $ticketCount = rand($config['per_customer'][0], $config['per_customer'][1]);
-
-            for ($i = 0; $i < $ticketCount; $i++) {
-                // Create tickets using the Tickets plugin factory if available
-                try {
-                    \Padmission\Tickets\Models\Ticket::factory()->create([
-                        'email' => $customer->email,
-                        'name' => $customer->name,
-                        'subject' => fake()->sentence(),
-                        'message' => fake()->paragraphs(3, true),
-                    ]);
-                } catch (\Exception $e) {
-                    Log::warning('Failed to create ticket: ' . $e->getMessage());
-                }
-            }
-        }
     }
 
     /**
