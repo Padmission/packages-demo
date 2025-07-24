@@ -38,9 +38,9 @@ class CustomerResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Shop';
+    protected static string|\UnitEnum|null $navigationGroup = 'Shop';
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-group';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?int $navigationSort = 2;
 
@@ -66,22 +66,29 @@ class CustomerResource extends Resource
 
                         DatePicker::make('birthday')
                             ->maxDate('today'),
+
+                        Forms\Components\Select::make('gender')
+                            ->required()
+                            ->options([
+                                'male' => 'Male',
+                                'female' => 'Female',
+                            ])
                     ])
                     ->columns(2)
-                    ->columnSpan(['lg' => fn (?Customer $record) => $record === null ? 3 : 2]),
+                    ->columnSpan(['lg' => fn(?Customer $record) => $record === null ? 3 : 2]),
 
                 Section::make()
                     ->schema([
                         Placeholder::make('created_at')
                             ->label('Created at')
-                            ->content(fn (Customer $record): ?string => $record->created_at?->diffForHumans()),
+                            ->content(fn(Customer $record): ?string => $record->created_at?->diffForHumans()),
 
                         Placeholder::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (Customer $record): ?string => $record->updated_at?->diffForHumans()),
+                            ->content(fn(Customer $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
-                    ->hidden(fn (?Customer $record) => $record === null),
+                    ->hidden(fn(?Customer $record) => $record === null),
             ])
             ->columns(3);
     }
@@ -98,7 +105,7 @@ class CustomerResource extends Resource
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
                 TextColumn::make('country')
-                    ->getStateUsing(fn ($record): ?string => Country::find($record->addresses->first()?->country)?->name ?? null),
+                    ->getStateUsing(fn($record): ?string => Country::find($record->addresses->first()?->country)?->name ?? null),
                 TextColumn::make('phone')
                     ->searchable()
                     ->sortable(),
