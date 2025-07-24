@@ -183,64 +183,97 @@ class DemoSeeder extends Seeder
                 'name' => '📊 Sales Dashboard',
                 'model' => Order::class,
                 'columns' => [
-                    ['name' => 'number', 'label' => 'Order #', 'searchable' => true],
-                    ['name' => 'customer.name', 'label' => 'Customer', 'searchable' => true],
-                    ['name' => 'total_price', 'label' => 'Total', 'type' => 'money'],
-                    ['name' => 'status', 'label' => 'Status'],
-                    ['name' => 'created_at', 'label' => 'Date', 'type' => 'datetime'],
+                    ['field' => 'number', 'label' => 'Order #', 'type' => 'text'],
+                    ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'customer'],
+                    ['field' => 'total_price', 'label' => 'Total', 'type' => 'money'],
+                    ['field' => 'status', 'label' => 'Status', 'type' => 'badge'],
+                    ['field' => 'created_at', 'label' => 'Date', 'type' => 'datetime'],
                 ],
                 'filters' => [
-                    ['field' => 'created_at', 'operator' => '>=', 'value' => now()->subDays(30)->toDateString()],
-                ],
-                'sorts' => [
-                    ['field' => 'created_at', 'direction' => 'desc'],
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'created_at',
+                                        'operator' => '>=',
+                                        'value' => now()->subDays(30)->toDateString(),
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
                 ],
             ],
             [
                 'name' => '📈 Customer Analytics',
                 'model' => Customer::class,
                 'columns' => [
-                    ['name' => 'name', 'label' => 'Name', 'searchable' => true],
-                    ['name' => 'email', 'label' => 'Email', 'searchable' => true],
-                    ['name' => 'phone', 'label' => 'Phone'],
-                    ['name' => 'birthday', 'label' => 'Birthday', 'type' => 'date'],
+                    ['field' => 'name', 'label' => 'Name', 'type' => 'text'],
+                    ['field' => 'email', 'label' => 'Email', 'type' => 'text'],
+                    ['field' => 'phone', 'label' => 'Phone', 'type' => 'text'],
+                    ['field' => 'birthday', 'label' => 'Birthday', 'type' => 'date'],
                 ],
                 'filters' => [],
-                'sorts' => [
-                    ['field' => 'name', 'direction' => 'asc'],
-                ],
             ],
             [
                 'name' => '📦 Product Inventory',
                 'model' => Product::class,
                 'columns' => [
-                    ['name' => 'name', 'label' => 'Product', 'searchable' => true],
-                    ['name' => 'brand.name', 'label' => 'Brand'],
-                    ['name' => 'price', 'label' => 'Price', 'type' => 'money'],
-                    ['name' => 'sku', 'label' => 'SKU'],
-                    ['name' => 'qty', 'label' => 'Stock'],
+                    ['field' => 'name', 'label' => 'Product', 'type' => 'text'],
+                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'relationship' => 'brand'],
+                    ['field' => 'price', 'label' => 'Price', 'type' => 'money'],
+                    ['field' => 'sku', 'label' => 'SKU', 'type' => 'text'],
+                    ['field' => 'qty', 'label' => 'Stock', 'type' => 'number'],
                 ],
                 'filters' => [
-                    ['field' => 'qty', 'operator' => '>', 'value' => '0'],
-                ],
-                'sorts' => [
-                    ['field' => 'name', 'direction' => 'asc'],
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'qty',
+                                        'operator' => '>',
+                                        'value' => '0',
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
                 ],
             ],
             [
                 'name' => '📝 Blog Analytics',
                 'model' => Post::class,
                 'columns' => [
-                    ['name' => 'title', 'label' => 'Title', 'searchable' => true],
-                    ['name' => 'author.name', 'label' => 'Author'],
-                    ['name' => 'category.name', 'label' => 'Category'],
-                    ['name' => 'published_at', 'label' => 'Published', 'type' => 'datetime'],
+                    ['field' => 'title', 'label' => 'Title', 'type' => 'text'],
+                    ['field' => 'name', 'label' => 'Author', 'type' => 'text', 'relationship' => 'author'],
+                    ['field' => 'name', 'label' => 'Category', 'type' => 'text', 'relationship' => 'category'],
+                    ['field' => 'published_at', 'label' => 'Published', 'type' => 'datetime'],
                 ],
                 'filters' => [
-                    ['field' => 'published_at', 'operator' => 'not_null', 'value' => ''],
-                ],
-                'sorts' => [
-                    ['field' => 'published_at', 'direction' => 'desc'],
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'published_at',
+                                        'operator' => 'not_null',
+                                        'value' => '',
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
                 ],
             ],
         ];
