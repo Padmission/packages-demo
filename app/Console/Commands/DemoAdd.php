@@ -13,7 +13,7 @@ class DemoAdd extends Command
      *
      * @var string
      */
-    protected $signature = 'demo:add 
+    protected $signature = 'demo:add
                             {count=5 : Number of demo instances to add}
                             {--queue : Add via queue instead of synchronously}';
 
@@ -39,8 +39,7 @@ class DemoAdd extends Command
 
         if ($this->option('queue')) {
             $this->info("Dispatching job to create {$count} demo instances...");
-            ReplenishDemoPool::dispatch($count)
-                ->onQueue(config('demo.queue', 'demo'));
+            ReplenishDemoPool::dispatch($count);
             $this->info('Job dispatched successfully. Check queue worker for progress.');
         } else {
             $this->info("Creating {$count} demo instances...");

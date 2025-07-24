@@ -12,6 +12,6 @@ class DemoLoginResponse implements LoginResponse
 {
     public function toResponse($request): RedirectResponse|Redirector
     {
-        return redirect('/app');
+        return redirect('/');
     }
 }

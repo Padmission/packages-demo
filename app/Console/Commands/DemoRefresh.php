@@ -16,7 +16,7 @@ class DemoRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'demo:refresh 
+    protected $signature = 'demo:refresh
                             {--force : Force a full database refresh}
                             {--skip-seed : Skip seeding after refresh}';
 
@@ -103,8 +103,7 @@ class DemoRefresh extends Command
             } else {
                 // Dispatch job for large numbers
                 $this->info('Dispatching job to create demo instances...');
-                ReplenishDemoPool::dispatch($needed)
-                    ->onQueue(config('demo.queue', 'demo'));
+                ReplenishDemoPool::dispatch($needed);
             }
         } else {
             $this->info("Demo pool is full ({$availableCount}/{$targetPoolSize}).");

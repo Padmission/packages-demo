@@ -28,8 +28,7 @@ class Login extends BasePage
     public function authenticate(): ?LoginResponse
     {
         // Check if this is a demo login attempt
-        if (config('demo.enabled', true) &&
-            $this->data['email'] === config('demo.display_email', 'demo@padmission.com') &&
+        if ($this->data['email'] === config('demo.display_email', 'demo@padmission.com') &&
             $this->data['password'] === config('demo.password', 'demo2024')) {
 
             Log::info('Demo login: Demo credentials detected, assigning user...');

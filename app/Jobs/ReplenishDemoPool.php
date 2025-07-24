@@ -23,6 +23,7 @@ class ReplenishDemoPool implements ShouldQueue
     public function __construct(int $count = 1)
     {
         $this->count = $count;
+        $this->onQueue(config('demo.queue', 'demo'));
     }
 
     /**
@@ -30,10 +31,6 @@ class ReplenishDemoPool implements ShouldQueue
      */
     public function handle(): void
     {
-        if (! config('demo.enabled', true)) {
-            return;
-        }
-
         // Check current pool size
         $availableCount = User::whereNull('email_verified_at')
             ->where('email', 'like', 'demo_%@demo.padmission.com')

@@ -159,8 +159,7 @@ DB_DATABASE=database/testing.sqlite php artisan test
 ### Test Helpers
 
 ```php
-// Enable demo mode in tests
-config(['demo.enabled' => true]);
+// Configure demo settings in tests
 config(['demo.pool_size' => 10]);
 
 // Create demo instances
