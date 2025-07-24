@@ -180,14 +180,17 @@ class DemoSeeder extends Seeder
     {
         $reports = [
             [
-                'name' => '📊 Sales Dashboard',
+                'name' => '📊 Sales Dashboard with Analytics',
                 'model' => Order::class,
                 'columns' => [
                     ['field' => 'number', 'label' => 'Order #', 'type' => 'text', 'classification' => 'simple'],
                     ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'customer', 'classification' => 'simple'],
-                    ['field' => 'total_price', 'label' => 'Total', 'type' => 'money', 'classification' => 'simple'],
                     ['field' => 'status', 'label' => 'Status', 'type' => 'badge', 'classification' => 'simple'],
                     ['field' => 'created_at', 'label' => 'Date', 'type' => 'datetime', 'classification' => 'simple'],
+                    // Aggregate columns
+                    ['field' => 'id', 'label' => 'Items Count', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'count', 'relationship' => 'items'],
+                    ['field' => 'qty', 'label' => 'Total Quantity', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'sum', 'relationship' => 'items'],
+                    ['field' => 'amount', 'label' => 'Total Paid', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'sum', 'relationship' => 'payments'],
                 ],
                 'filters' => [
                     [
@@ -209,25 +212,16 @@ class DemoSeeder extends Seeder
                 ],
             ],
             [
-                'name' => '📈 Customer Analytics',
+                'name' => '📈 Customer Insights',
                 'model' => Customer::class,
                 'columns' => [
                     ['field' => 'name', 'label' => 'Name', 'type' => 'text', 'classification' => 'simple'],
                     ['field' => 'email', 'label' => 'Email', 'type' => 'text', 'classification' => 'simple'],
-                    ['field' => 'phone', 'label' => 'Phone', 'type' => 'text', 'classification' => 'simple'],
-                    ['field' => 'birthday', 'label' => 'Birthday', 'type' => 'date', 'classification' => 'simple'],
-                ],
-                'filters' => [],
-            ],
-            [
-                'name' => '📦 Product Inventory',
-                'model' => Product::class,
-                'columns' => [
-                    ['field' => 'name', 'label' => 'Product', 'type' => 'text', 'classification' => 'simple'],
-                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'relationship' => 'brand', 'classification' => 'simple'],
-                    ['field' => 'price', 'label' => 'Price', 'type' => 'money', 'classification' => 'simple'],
-                    ['field' => 'sku', 'label' => 'SKU', 'type' => 'text', 'classification' => 'simple'],
-                    ['field' => 'qty', 'label' => 'Stock', 'type' => 'number', 'classification' => 'simple'],
+                    ['field' => 'created_at', 'label' => 'Member Since', 'type' => 'date', 'classification' => 'simple'],
+                    // Aggregate columns showing customer activity
+                    ['field' => 'id', 'label' => 'Total Orders', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'count', 'relationship' => 'orders'],
+                    ['field' => 'total_price', 'label' => 'Lifetime Value', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'sum', 'relationship' => 'orders'],
+                    ['field' => 'total_price', 'label' => 'Avg Order Value', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'avg', 'relationship' => 'orders'],
                 ],
                 'filters' => [
                     [
@@ -235,11 +229,47 @@ class DemoSeeder extends Seeder
                         'data' => [
                             'expressions' => [
                                 [
-                                    'type' => 'field_expression',
+                                    'type' => 'aggregate_expression',
+                                    'data' => [
+                                        'field' => 'id',
+                                        'operator' => '>',
+                                        'value' => '0',
+                                        'aggregate_function' => 'count',
+                                        'relationship' => 'orders',
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'name' => '📦 Brand Performance',
+                'model' => Brand::class,
+                'columns' => [
+                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'website', 'label' => 'Website', 'type' => 'text', 'classification' => 'simple'],
+                    // Aggregate columns for brand analysis
+                    ['field' => 'id', 'label' => 'Product Count', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'count', 'relationship' => 'products'],
+                    ['field' => 'price', 'label' => 'Avg Price', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'avg', 'relationship' => 'products'],
+                    ['field' => 'price', 'label' => 'Min Price', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'min', 'relationship' => 'products'],
+                    ['field' => 'price', 'label' => 'Max Price', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'max', 'relationship' => 'products'],
+                    ['field' => 'qty', 'label' => 'Total Stock', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'sum', 'relationship' => 'products'],
+                ],
+                'filters' => [
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'aggregate_expression',
                                     'data' => [
                                         'field' => 'qty',
                                         'operator' => '>',
-                                        'value' => '0',
+                                        'value' => '100',
+                                        'aggregate_function' => 'sum',
+                                        'relationship' => 'products',
                                     ],
                                 ],
                             ],
@@ -249,32 +279,33 @@ class DemoSeeder extends Seeder
                 ],
             ],
             [
-                'name' => '📝 Blog Analytics',
-                'model' => Post::class,
+                'name' => '✍️ Author Performance',
+                'model' => Author::class,
                 'columns' => [
-                    ['field' => 'title', 'label' => 'Title', 'type' => 'text', 'classification' => 'simple'],
-                    ['field' => 'name', 'label' => 'Author', 'type' => 'text', 'relationship' => 'author', 'classification' => 'simple'],
-                    ['field' => 'name', 'label' => 'Category', 'type' => 'text', 'relationship' => 'category', 'classification' => 'simple'],
-                    ['field' => 'published_at', 'label' => 'Published', 'type' => 'datetime', 'classification' => 'simple'],
-                ],
-                'filters' => [
-                    [
-                        'type' => 'filter_group',
-                        'data' => [
-                            'expressions' => [
-                                [
-                                    'type' => 'field_expression',
-                                    'data' => [
-                                        'field' => 'published_at',
-                                        'operator' => 'not_null',
-                                        'value' => '',
+                    ['field' => 'name', 'label' => 'Author', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'email', 'label' => 'Email', 'type' => 'text', 'classification' => 'simple'],
+                    // Aggregate columns for author metrics
+                    ['field' => 'id', 'label' => 'Posts Count', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'count', 'relationship' => 'posts'],
+                    ['field' => 'published_at', 'label' => 'Published Posts', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'count', 'relationship' => 'posts', 'aggregate_filters' => [
+                        [
+                            'type' => 'filter_group',
+                            'data' => [
+                                'expressions' => [
+                                    [
+                                        'type' => 'field_expression',
+                                        'data' => [
+                                            'field' => 'published_at',
+                                            'operator' => 'not_null',
+                                            'value' => '',
+                                        ],
                                     ],
                                 ],
+                                'logic_operator' => 'and',
                             ],
-                            'logic_operator' => 'and',
                         ],
-                    ],
+                    ]],
                 ],
+                'filters' => [],
             ],
         ];
 

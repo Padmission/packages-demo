@@ -112,10 +112,6 @@ return [
     'excluded_models' => [
         Team::class,
         User::class,
-        Author::class,
-        Category::class,
-        Link::class,
-        Post::class,
     ],
 
     /*
