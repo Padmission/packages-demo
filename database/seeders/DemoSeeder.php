@@ -108,11 +108,25 @@ class DemoSeeder extends Seeder
             }
         });
 
-        // Create orders
-        Order::factory($config['orders'])->create([
+        // Create orders with better distribution
+        $orders = Order::factory($config['orders'])->create([
             'team_id' => $team->id,
             'shop_customer_id' => fn () => $customers->random()->id,
-        ])->each(function ($order) use ($products, $team) {
+        ]);
+
+        // Ensure some customers have multiple orders for better filtering
+        $repeatCustomers = $customers->random(min(10, $customers->count()));
+        foreach ($repeatCustomers as $customer) {
+            Order::factory(rand(2, 4))->create([
+                'team_id' => $team->id,
+                'shop_customer_id' => $customer->id,
+            ]);
+        }
+
+        // Get all orders (original + repeat customer orders)
+        $allOrders = Order::where('team_id', $team->id)->get();
+
+        $allOrders->each(function ($order) use ($products, $team) {
             // Create order items
             $orderProducts = $products->random(rand(1, 5));
             foreach ($orderProducts as $product) {
@@ -345,11 +359,19 @@ class DemoSeeder extends Seeder
                                         'value' => '2',
                                     ],
                                 ],
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'price',
+                                        'operator' => 'less_than',
+                                        'value' => '500',
+                                    ],
+                                ],
                             ],
                             'logic_operator' => 'and',
                         ],
                     ],
-                ], // Show only visible products in stock
+                ], // Show visible, in-stock products under $500
             ],
         ];
 

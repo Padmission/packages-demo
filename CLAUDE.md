@@ -46,11 +46,8 @@ composer cs
 # Populate demo user pool (required for demo mode)
 php artisan demo:populate [count]
 
-# Add more demo instances
-php artisan demo:add <count>
-
 # Refresh demo data
-php artisan demo:refresh [--force]
+php artisan demo:refresh
 
 # Start Laravel Horizon for queue processing
 php artisan horizon

@@ -116,14 +116,8 @@ php artisan schedule:work
 ### Demo Management Commands
 
 ```sh
-# Manually refresh demo data (cleanup and replenish)
+# Maintain demo system health (cleanup expired data and ensure pool availability)
 php artisan demo:refresh
-
-# Add more demo instances
-php artisan demo:add 10
-
-# Force reset all demo data
-php artisan demo:refresh --force
 ```
 
 When demo mode is enabled, visitors will be automatically assigned a demo account with isolated data in their own tenant (team).
