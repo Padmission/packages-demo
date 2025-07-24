@@ -201,7 +201,7 @@ class DemoSeeder extends Seeder
                                     'type' => 'field_expression',
                                     'data' => [
                                         'field' => 'created_at',
-                                        'operator' => '>=',
+                                        'operator' => 'after',
                                         'value' => now()->subDays(30)->toDateString(),
                                     ],
                                 ],
@@ -232,7 +232,7 @@ class DemoSeeder extends Seeder
                                     'type' => 'aggregate_expression',
                                     'data' => [
                                         'field' => 'id',
-                                        'operator' => '>',
+                                        'operator' => 'greater_than',
                                         'value' => '0',
                                         'aggregate_function' => 'count',
                                         'relationship' => 'orders',
@@ -266,7 +266,7 @@ class DemoSeeder extends Seeder
                                     'type' => 'aggregate_expression',
                                     'data' => [
                                         'field' => 'qty',
-                                        'operator' => '>',
+                                        'operator' => 'greater_than',
                                         'value' => '100',
                                         'aggregate_function' => 'sum',
                                         'relationship' => 'products',
@@ -295,7 +295,7 @@ class DemoSeeder extends Seeder
                                         'type' => 'field_expression',
                                         'data' => [
                                             'field' => 'published_at',
-                                            'operator' => 'not_null',
+                                            'operator' => 'is_not_null',
                                             'value' => '',
                                         ],
                                     ],
