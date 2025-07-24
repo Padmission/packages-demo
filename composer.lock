@@ -5878,7 +5878,7 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "dev-next",
+            "version": "2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "../data-lens",

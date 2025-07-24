@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(php artisan list:*)",
-      "Bash(list:*)"
+      "Bash(list:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(php:*)",
+      "Bash(composer update:*)",
+      "Bash(composer run-script:*)",
+      "Bash(composer dump-autoload:*)",
+      "Bash(rm:*)",
+      "WebFetch(domain:laravel.com)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }

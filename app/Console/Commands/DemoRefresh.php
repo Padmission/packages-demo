@@ -37,7 +37,7 @@ class DemoRefresh extends Command
         // Clean up expired demo users
         $this->cleanupExpiredDemos();
 
-        // Replenish pool
+        // Replenish the pool
         $this->replenishDemoPool();
 
         // Optional: Full refresh
