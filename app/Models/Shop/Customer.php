@@ -4,6 +4,7 @@ namespace App\Models\Shop;
 
 use App\Models\Address;
 use App\Models\Comment;
+use App\Models\Concerns\BelongsToTeam;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,6 +16,7 @@ class Customer extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use BelongsToTeam;
 
     /**
      * @var string
