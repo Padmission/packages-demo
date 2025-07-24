@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Laravel 12.x demo application for Filament Admin Panel showcasing:
-- Multi-tenant architecture with teams
-- E-commerce models (Products, Orders, Customers, Payments)
-- Blog functionality (Posts, Authors, Categories)
-- Demo mode with isolated user environments
-- Custom `data-lens` package integration for reporting
+This is a Laravel 12.x demo application showcasing both Filament Admin Panel and the Data Lens reporting plugin. The application demonstrates:
+- Multi-tenant architecture with teams (one team per demo user)
+- E-commerce domain with complete shop functionality (Products, Orders, Customers, Payments, Brands)
+- Blog domain with content management (Posts, Authors, Categories, Comments)
+- Demo mode providing isolated environments for each visitor
+- Data Lens plugin integration for advanced reporting and analytics
+- Pre-configured reports for sales, customer analytics, inventory, and blog metrics
 
 ## Key Commands
 
@@ -51,8 +52,8 @@ php artisan demo:add <count>
 # Refresh demo data
 php artisan demo:refresh [--force]
 
-# Start queue worker for demo operations
-php artisan queue:work --queue=demo,default
+# Start Laravel Horizon for queue processing
+php artisan horizon
 ```
 
 ### Database
@@ -92,6 +93,7 @@ Located in `app/Filament/Resources/`, each resource provides:
 
 ### Multi-Tenancy
 - Uses teams (`App\Models\Team`) as tenant model
+- Each demo user is assigned one team (tenant) for data isolation
 - Tenant awareness configured via `config/data-lens.php`
 - All models automatically scope to current tenant
 - Demo mode assigns isolated tenants to visitors
@@ -112,4 +114,4 @@ The `data-lens` package is loaded from `../data-lens` directory:
 
 4. **Testing**: PHPUnit tests should be run with test database configuration. Check `phpunit.xml` for environment settings.
 
-5. **Queue Processing**: Demo mode and certain features require queue workers. Use Laravel Horizon for production queue management.
+5. **Queue Processing**: Demo mode and certain features require queue workers. The application uses Laravel Horizon for queue management. Start with `php artisan horizon` and monitor at `/horizon`.

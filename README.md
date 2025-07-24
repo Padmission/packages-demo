@@ -1,6 +1,6 @@
-# Filament Demo App
+# Filament & Data Lens Demo Application
 
-A demo application to illustrate how Filament Admin works.
+A comprehensive demo application showcasing Filament Admin Panel features alongside the Data Lens reporting plugin. This demo provides a realistic e-commerce and blogging platform with multi-tenant architecture and advanced reporting capabilities.
 
 ![Filament Demo](https://github.com/filamentphp/demo/assets/171715/899161a9-3c85-4dc9-9599-13928d3a4412)
 
@@ -88,13 +88,15 @@ php artisan demo:populate
 php artisan demo:populate 100
 ```
 
-### Queue Worker
+### Queue Worker (Laravel Horizon)
 
-Start the queue worker to handle background pool replenishment:
+This application uses Laravel Horizon for queue management. Start Horizon to handle background pool replenishment:
 
 ```sh
-php artisan queue:work --queue=demo,default
+php artisan horizon
 ```
+
+Access the Horizon dashboard at `/horizon` to monitor queue jobs and performance.
 
 ### Scheduled Tasks
 
@@ -124,7 +126,39 @@ php artisan demo:add 10
 php artisan demo:refresh --force
 ```
 
-When demo mode is enabled, visitors will be automatically assigned a demo account with isolated data.
+When demo mode is enabled, visitors will be automatically assigned a demo account with isolated data in their own tenant (team).
+
+## Key Features
+
+### Multi-Tenant Architecture
+- Each demo user gets their own isolated tenant (team)
+- All data is automatically scoped to the current tenant
+- Seamless tenant switching in the admin panel
+
+### E-Commerce Features (Shop Domain)
+- **Products**: Full product catalog with categories, brands, and pricing
+- **Orders**: Complete order management with status tracking
+- **Customers**: Customer profiles with order history and addresses
+- **Payments**: Payment tracking integrated with orders
+- **Brands**: Product brand management with addresses
+
+### Content Management (Blog Domain)
+- **Posts**: Blog posts with rich content editing
+- **Authors**: Author profiles and post associations
+- **Categories**: Hierarchical category system
+- **Comments**: Polymorphic commenting system
+
+### Data Lens Integration
+- **Custom Reports**: Pre-configured reports for sales, customers, inventory, and blog analytics
+- **Dynamic Filtering**: Advanced filtering capabilities on all reports
+- **Export Functionality**: Export report data in various formats
+- **Saved Views**: Save and share custom report configurations
+
+### Demo Mode Features
+- Automatic demo user assignment from pre-populated pool
+- Isolated data environment per visitor
+- Background pool replenishment via queues
+- Automatic cleanup of expired sessions
 
 ## Features to explore
 

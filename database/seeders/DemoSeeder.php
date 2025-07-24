@@ -56,24 +56,17 @@ class DemoSeeder extends Seeder
                 'email_verified_at' => null, // Mark as available
             ]);
 
-            // Create two teams with descriptive names
-            $teams = [
-                Team::factory()->create(['name' => 'Acme Corporation']),
-                Team::factory()->create(['name' => 'TechStart Inc.']),
-            ];
+            // Create one team with a descriptive name
+            $team = Team::factory()->create(['name' => 'Acme Corporation']);
 
-            // Attach user to teams
-            foreach ($teams as $team) {
-                $user->teams()->attach($team, ['role' => 'owner']);
-            }
+            // Attach user to team
+            $user->teams()->attach($team, ['role' => 'owner']);
 
-            // Seed data for each team
-            foreach ($teams as $index => $team) {
-                // Don't set tenant context during seeding - we'll pass team_id directly
-                $this->seedShopData($team, $config['shop']);
-                $this->seedBlogData($team, $config['blog']);
-                $this->seedDataLensReports($team, $config['data_lens']);
-            }
+            // Seed data for the team
+            // Don't set tenant context during seeding - we'll pass team_id directly
+            $this->seedShopData($team, $config['shop']);
+            $this->seedBlogData($team, $config['blog']);
+            $this->seedDataLensReports($team, $config['data_lens']);
         });
     }
 
