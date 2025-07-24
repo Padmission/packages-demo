@@ -128,7 +128,7 @@ return [
         'enabled' => true,
         'formats' => ['csv', 'xlsx'],
         'default_format' => 'csv',
-        'should_queue' => false,
+        'should_queue' => true,
         'chunk_size' => 500,
         'use_timestamps_in_filename' => true,
         'template' => 'report_{report_name}_{date}',
