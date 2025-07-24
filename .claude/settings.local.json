@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(php artisan list:*)"
+      "Bash(php artisan list:*)",
+      "Bash(list:*)"
     ],
     "deny": []
   }
