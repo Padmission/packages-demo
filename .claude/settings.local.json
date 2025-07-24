@@ -15,7 +15,8 @@
       "WebFetch(domain:laravel.com)",
       "WebFetch(domain:github.com)",
       "Bash(find:*)",
-      "Bash(composer cs:*)"
+      "Bash(composer cs:*)",
+      "mcp__tinkerwell__evaluate-local-php-code"
     ],
     "deny": []
   }
