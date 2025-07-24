@@ -271,7 +271,7 @@ return [
     |
     */
     'column_names' => [
-        'tenant_foreign_key' => 'tenant_id',
+        'tenant_foreign_key' => 'team_id',
     ],
 
     /*

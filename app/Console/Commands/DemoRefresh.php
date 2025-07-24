@@ -75,13 +75,18 @@ class DemoRefresh extends Command
             }
 
             if (! empty($deletedTeams)) {
-                // Explicit cleanup of all tenant-scoped data before deleting teams
-                $this->cleanupTenantData($deletedTeams);
+                // Filter to only include teams that actually exist
+                $existingTeamIds = Team::whereIn('id', $deletedTeams)->pluck('id')->toArray();
+                
+                if (! empty($existingTeamIds)) {
+                    // Explicit cleanup of all tenant-scoped data before deleting teams
+                    $this->cleanupTenantData($existingTeamIds);
 
-                // Delete teams (this will cascade remaining data via foreign key constraints)
-                Team::whereIn('id', $deletedTeams)->delete();
+                    // Delete teams (this will cascade remaining data via foreign key constraints)
+                    Team::whereIn('id', $existingTeamIds)->delete();
+                }
 
-                // Delete the expired users
+                // Delete the expired users regardless of team existence
                 User::whereIn('id', $expiredUsers->pluck('id'))->delete();
             }
 
@@ -96,7 +101,9 @@ class DemoRefresh extends Command
         // Clean up Data Lens custom reports (might not have proper cascading)
         if (class_exists(CustomReport::class)) {
             try {
-                CustomReport::whereIn('tenant_id', $teamIds)->delete();
+                // Use the configured tenant foreign key column name
+                $tenantColumn = config('data-lens.column_names.tenant_foreign_key', 'team_id');
+                CustomReport::whereIn($tenantColumn, $teamIds)->delete();
             } catch (Exception $e) {
                 // Skip if there are issues with the Data Lens tables
                 $this->warn('→ Skipped custom reports cleanup: ' . $e->getMessage());

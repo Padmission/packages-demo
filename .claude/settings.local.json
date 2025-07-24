@@ -18,7 +18,9 @@
       "Bash(composer cs:*)",
       "mcp__tinkerwell__evaluate-local-php-code",
       "Bash(composer show:*)",
-      "Bash(composer:*)"
+      "Bash(composer:*)",
+      "Bash(composer show:*)",
+      "Bash(sqlite3:*)"
     ],
     "deny": []
   }

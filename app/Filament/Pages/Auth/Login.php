@@ -6,6 +6,7 @@ use App\Http\Responses\DemoLoginResponse;
 use App\Jobs\ReplenishDemoPool;
 use App\Models\User;
 use Database\Seeders\DemoSeeder;
+use Filament\Actions\Action;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Filament\Auth\Pages\Login as BasePage;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,8 @@ class Login extends BasePage
 
     public function authenticate(): ?LoginResponse
     {
+        sleep(2);
+
         // Check if this is a demo login
         if ($this->data['email'] === config('demo.display_email') &&
             $this->data['password'] === config('demo.password')) {
@@ -110,5 +113,23 @@ class Login extends BasePage
         if ($available < 10) {
             ReplenishDemoPool::dispatch(5);
         }
+    }
+
+    protected function getAuthenticateFormAction(): Action
+    {
+        return Action::make('authenticate')
+            ->extraAttributes([
+                'wire:loading.attr' => 'disabled',
+                'wire:loading.class' => 'opacity-50',
+                'wire:target' => 'authenticate',
+                'x-data' => '{ processing: false }',
+                'x-on:livewire:call-started' => 'processing = true',
+                'x-on:livewire:call-finished' => 'processing = false',
+                'x-text' => 'processing ? "Preparing the demo..." : "' . __('filament-panels::auth/pages/login.form.actions.authenticate.label') . '"',
+            ])
+            ->label(function(): string {
+                return __('filament-panels::auth/pages/login.form.actions.authenticate.label');
+            })
+            ->submit('authenticate');
     }
 }

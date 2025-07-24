@@ -407,7 +407,7 @@ class DemoSeeder extends Seeder
 
         foreach ($reports as $reportData) {
             CustomReport::create([
-                'tenant_id' => $team->id,
+                'team_id' => $team->id,
                 'creator_id' => $user->id, // Demo user
                 'name' => $reportData['name'],
                 'data_model' => $reportData['model'],

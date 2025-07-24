@@ -67,11 +67,6 @@ Run the dev server (the output will give the address):
 php artisan serve
 ```
 
-You're ready to go! Visit the url in your browser, and login with:
-
--   **Username:** admin@filamentphp.com
--   **Password:** password
-
 ## Demo Mode Setup
 
 This application includes a demo mode that provides isolated environments for each visitor. To enable it:
