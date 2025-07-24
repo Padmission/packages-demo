@@ -29,11 +29,6 @@ class DemoPopulatePool extends Command
      */
     public function handle(): int
     {
-        if (!config('demo.enabled', true)) {
-            $this->error('Demo mode is disabled');
-            return Command::FAILURE;
-        }
-
         $count = $this->argument('count') ?? config('demo.pool_size', 50);
 
         $this->info("Creating {$count} demo users...");

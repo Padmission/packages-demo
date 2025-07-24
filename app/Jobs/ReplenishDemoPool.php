@@ -23,7 +23,6 @@ class ReplenishDemoPool implements ShouldQueue
     public function __construct(int $count = 1)
     {
         $this->count = $count;
-        $this->onQueue(config('demo.queue', 'demo'));
     }
 
     /**

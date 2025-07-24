@@ -29,12 +29,6 @@ class DemoAdd extends Command
      */
     public function handle()
     {
-        if (! config('demo.enabled', true)) {
-            $this->error('Demo system is disabled.');
-
-            return 1;
-        }
-
         $count = (int) $this->argument('count');
 
         if ($count < 1 || $count > 100) {

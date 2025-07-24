@@ -32,12 +32,6 @@ class DemoRefresh extends Command
      */
     public function handle()
     {
-        if (! config('demo.enabled', true)) {
-            $this->error('Demo system is disabled.');
-
-            return 1;
-        }
-
         $this->info('Starting demo refresh...');
 
         // Clean up expired demo users

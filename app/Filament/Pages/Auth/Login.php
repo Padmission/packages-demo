@@ -18,21 +18,11 @@ class Login extends BasePage
     {
         parent::mount();
 
-        // Check if demo is enabled and pre-fill the form
-        if (config('demo.enabled', true) && config('demo.login.auto_fill', true)) {
-            $this->form->fill([
-                'email' => config('demo.display_email', 'demo@padmission.com'),
-                'password' => config('demo.password', 'demo2024'),
-                'remember' => false,
-            ]);
-        } else {
-            // Fallback to default admin credentials
-            $this->form->fill([
-                'email' => 'admin@filamentphp.com',
-                'password' => 'password',
-                'remember' => true,
-            ]);
-        }
+        $this->form->fill([
+            'email' => config('demo.display_email', 'demo@padmission.com'),
+            'password' => config('demo.password', 'demo2024'),
+            'remember' => false,
+        ]);
     }
 
     public function authenticate(): ?LoginResponse
@@ -85,16 +75,14 @@ class Login extends BasePage
                 $this->assignedEmail = $demoUser->email;
                 Log::info('Demo login: Assigned demo user', ['email' => $this->assignedEmail]);
 
-                // Dispatch job to replenish pool
-                ReplenishDemoPool::dispatch(1)
-                    ->onQueue(config('demo.queue', 'demo'));
+                // Dispatch a job to replenish pool
+                ReplenishDemoPool::dispatch(1);
             } else {
                 // No available users, dispatch job to create more
                 Log::warning('No demo users available, dispatching job to create pool');
 
                 // Dispatch job to create more asynchronously
-                ReplenishDemoPool::dispatch(config('demo.pool_size', 50))
-                    ->onQueue(config('demo.queue', 'demo'));
+                ReplenishDemoPool::dispatch(config('demo.pool_size', 50));
 
                 // Show a message to the user
                 session()->flash('demo_pool_empty', 'Demo system is preparing. Please try again in a moment.');
