@@ -7,6 +7,7 @@ use App\Models\User;
 use Database\Seeders\DemoSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Padmission\DataLens\Models\CustomReport;
 
 class DemoRefresh extends Command
 {
@@ -80,20 +81,40 @@ class DemoRefresh extends Command
             }
 
             $deletedCount = 0;
+            $deletedTeams = [];
 
             foreach ($expiredUsers as $user) {
-                // Delete each user's teams (this will cascade delete all tenant-scoped data)
+                // Collect team IDs for explicit data cleanup
                 foreach ($user->teams as $team) {
-                    $team->delete(); // Cascades to all shop/blog data via foreign key constraints
+                    $deletedTeams[] = $team->id;
                 }
-
-                // Delete the user
-                $user->delete();
                 $deletedCount++;
+            }
+
+            if (!empty($deletedTeams)) {
+                // Explicit cleanup of all tenant-scoped data before deleting teams
+                $this->cleanupTenantData($deletedTeams);
+                
+                // Delete teams (this will cascade remaining data via foreign key constraints)
+                Team::whereIn('id', $deletedTeams)->delete();
+                
+                // Delete the expired users
+                User::whereIn('id', $expiredUsers->pluck('id'))->delete();
             }
 
             $this->info("→ Cleaned up $deletedCount expired demo instances and their data");
         });
+    }
+
+    private function cleanupTenantData(array $teamIds): void
+    {
+        // Clean up Data Lens custom reports (might not have proper cascading)
+        if (class_exists(CustomReport::class)) {
+            CustomReport::whereIn('tenant_id', $teamIds)->delete();
+        }
+
+        // Additional explicit cleanup can be added here for other data
+        // that might not cascade properly
     }
 
     private function maintainPoolSize(): void
