@@ -5882,18 +5882,19 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "6b9602b508167297765a68af9198d51b49c04cbb"
+                "reference": "804960ab86bf4b080a705a1367675fbdbff15ef9"
             },
             "require": {
                 "filament/filament": "^4.0",
                 "illuminate/contracts": "^10.0|^11.0|^12.0",
+                "maatwebsite/excel": "^3.1",
                 "php": "^8.3",
-                "pxlrbt/filament-excel": "v3.0.0",
                 "rlanvin/php-rrule": "^2.5",
                 "spatie/laravel-data": "^4.0",
                 "spatie/laravel-package-tools": "^1.15.0"
             },
             "require-dev": {
+                "filament/upgrade": "^4.0",
                 "larastan/larastan": "^3.0",
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^8.1",
@@ -6355,16 +6356,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.29.11",
+            "version": "1.29.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "05b6c4378ddf3e81b460ea645c42b46432c0db25"
+                "reference": "7c06eed662cce7ecab88f6f9f7626b443f5285df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/05b6c4378ddf3e81b460ea645c42b46432c0db25",
-                "reference": "05b6c4378ddf3e81b460ea645c42b46432c0db25",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/7c06eed662cce7ecab88f6f9f7626b443f5285df",
+                "reference": "7c06eed662cce7ecab88f6f9f7626b443f5285df",
                 "shasum": ""
             },
             "require": {
@@ -6455,9 +6456,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.29.11"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.29.12"
             },
-            "time": "2025-06-23T01:22:06+00:00"
+            "time": "2025-07-23T04:40:30+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -7190,73 +7191,6 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.9"
             },
             "time": "2025-06-23T02:35:06+00:00"
-        },
-        {
-            "name": "pxlrbt/filament-excel",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pxlrbt/filament-excel.git",
-                "reference": "317e7e480c233509d52cc7f5b646cc5e2848f3af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pxlrbt/filament-excel/zipball/317e7e480c233509d52cc7f5b646cc5e2848f3af",
-                "reference": "317e7e480c233509d52cc7f5b646cc5e2848f3af",
-                "shasum": ""
-            },
-            "require": {
-                "anourvalar/eloquent-serialize": "^1.2",
-                "filament/filament": "^4.0",
-                "maatwebsite/excel": "^3.1",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.10"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "pxlrbt\\FilamentExcel\\FilamentExcelServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "pxlrbt\\FilamentExcel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dennis Koch",
-                    "email": "info@pixelarbeit.de"
-                }
-            ],
-            "description": "Supercharged Excel exports for Filament Resources",
-            "keywords": [
-                "PHPExcel",
-                "actions",
-                "filament",
-                "laravel",
-                "laravel-filament",
-                "phpspreadsheet"
-            ],
-            "support": {
-                "issues": "https://github.com/pxlrbt/filament-excel/issues",
-                "source": "https://github.com/pxlrbt/filament-excel/tree/v3.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/pxlrbt",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-06-17T07:34:28+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
