@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class OrderAddress extends Model
 {
-    use HasFactory;
     use BelongsToTeam;
+    use HasFactory;
 
     protected $table = 'shop_order_addresses';
 

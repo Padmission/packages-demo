@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Models\Blog\Author;
-use App\Models\Blog\Category;
-use App\Models\Blog\Link;
-use App\Models\Blog\Post;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

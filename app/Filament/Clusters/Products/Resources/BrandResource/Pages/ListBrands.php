@@ -2,11 +2,10 @@
 
 namespace App\Filament\Clusters\Products\Resources\BrandResource\Pages;
 
-use Filament\Actions\ExportAction;
-use Filament\Actions\CreateAction;
 use App\Filament\Clusters\Products\Resources\BrandResource;
 use App\Filament\Exports\Shop\BrandExporter;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
+use Filament\Actions\ExportAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListBrands extends ListRecords

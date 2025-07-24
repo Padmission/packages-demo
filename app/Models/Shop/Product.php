@@ -14,9 +14,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
+    use BelongsToTeam;
     use HasFactory;
     use InteractsWithMedia;
-    use BelongsToTeam;
 
     /**
      * @var string

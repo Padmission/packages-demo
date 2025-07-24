@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
-    use HasFactory;
     use BelongsToTeam;
+    use HasFactory;
 
     /**
      * @var string

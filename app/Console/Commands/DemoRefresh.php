@@ -2,11 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ReplenishDemoPool;
+use App\Models\Team;
 use App\Models\User;
 use Database\Seeders\DemoSeeder;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class DemoRefresh extends Command
@@ -16,127 +15,118 @@ class DemoRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'demo:refresh
-                            {--force : Force a full database refresh}
-                            {--skip-seed : Skip seeding after refresh}';
+    protected $signature = 'demo:refresh';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Refresh demo data and manage demo user pool';
+    protected $description = 'Maintain demo system health - cleanup expired data and ensure pool availability';
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-        $this->info('Starting demo refresh...');
+        $this->info('🔄 Demo system maintenance starting...');
 
-        // Clean up expired demo users
-        $this->cleanupExpiredDemos();
+        // Step 1: Release expired sessions
+        $this->releaseExpiredSessions();
 
-        // Replenish the pool
-        $this->replenishDemoPool();
+        // Step 2: Clean up old data
+        $this->cleanupOldData();
 
-        // Optional: Full refresh
-        if ($this->option('force')) {
-            if ($this->confirm('This will delete ALL data and start fresh. Are you sure?')) {
-                $this->fullRefresh();
-            }
-        }
+        // Step 3: Ensure pool is at target size
+        $this->maintainPoolSize();
 
-        $this->info('Demo refresh completed!');
+        // Step 4: Show final status
+        $this->showStatus();
+
+        $this->info('✅ Demo system maintenance complete!');
 
         return 0;
     }
 
-    /**
-     * Clean up expired demo instances.
-     */
-    private function cleanupExpiredDemos(): void
+    private function releaseExpiredSessions(): void
     {
-        $this->info('Cleaning up expired demo users...');
-
-        // Release users inactive for session_ttl hours
         $sessionTtl = config('demo.session_ttl', 4);
+
         $released = User::where('email', 'like', 'demo_%@demo.padmission.com')
             ->whereNotNull('email_verified_at')
-            ->where('email_verified_at', '<', now()->subHours($sessionTtl))
+            ->where('email_verified_at', '<', now()->subMinutes($sessionTtl * 60))
             ->update(['email_verified_at' => null]);
 
-        $this->info("Released {$released} inactive demo users.");
+        if ($released > 0) {
+            $this->info("→ Released $released expired sessions");
+        }
+    }
 
-        // Delete old unused demo users (data_ttl hours old)
+    private function cleanupOldData(): void
+    {
         $dataTtl = config('demo.data_ttl', 24);
-        $deleted = User::where('email', 'like', 'demo_%@demo.padmission.com')
-            ->whereNull('email_verified_at')
-            ->where('created_at', '<', now()->subHours($dataTtl))
-            ->delete();
 
-        $this->info("Deleted {$deleted} old demo users.");
-    }
+        DB::transaction(function () use ($dataTtl) {
+            // Find old unused demo users
+            $oldUsers = User::where('email', 'like', 'demo_%@demo.padmission.com')
+                ->whereNull('email_verified_at')
+                ->where('created_at', '<', now()->subHours($dataTtl))
+                ->pluck('id');
 
-    /**
-     * Replenish the demo user pool.
-     */
-    private function replenishDemoPool(): void
-    {
-        $this->info('Checking demo pool size...');
-
-        $availableCount = User::whereNull('email_verified_at')
-            ->where('email', 'like', 'demo_%@demo.padmission.com')
-            ->count();
-
-        $targetPoolSize = config('demo.pool_size', 50);
-        $needed = max(0, $targetPoolSize - $availableCount);
-
-        if ($needed > 0) {
-            $this->info("Need to create {$needed} demo instances.");
-
-            if ($needed <= 5) {
-                // Create synchronously for small numbers
-                $this->info('Creating demo instances synchronously...');
-                $seeder = new DemoSeeder;
-                $seeder->run($needed);
-            } else {
-                // Dispatch job for large numbers
-                $this->info('Dispatching job to create demo instances...');
-                ReplenishDemoPool::dispatch($needed);
+            if ($oldUsers->isEmpty()) {
+                return;
             }
-        } else {
-            $this->info("Demo pool is full ({$availableCount}/{$targetPoolSize}).");
-        }
+
+            // Delete their teams (cascades will handle related data)
+            $deletedTeams = Team::whereHas('users', function ($query) use ($oldUsers) {
+                $query->whereIn('id', $oldUsers);
+            })->delete();
+
+            // Delete the users
+            $deletedUsers = User::whereIn('id', $oldUsers)->delete();
+
+            $this->info("→ Cleaned up $deletedUsers old demo instances");
+        });
     }
 
-    /**
-     * Perform a full database refresh.
-     */
-    private function fullRefresh(): void
+    private function maintainPoolSize(): void
     {
-        $this->warn('Performing full database refresh...');
+        $target = config('demo.pool_size', 50);
+        $available = $this->getAvailableCount();
+        $needed = max(0, $target - $available);
 
-        // Run migration fresh
-        Artisan::call('migrate:fresh', ['--force' => true]);
-        $this->info('Database refreshed.');
-
-        if (! $this->option('skip-seed')) {
-            // Seed admin user
-            $this->info('Seeding admin user...');
-            DB::table('users')->insert([
-                'name' => 'Admin',
-                'email' => 'admin@filamentphp.com',
-                'password' => bcrypt('password'),
-                'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            // Create demo pool
-            $this->info('Creating demo pool...');
-            $seeder = new DemoSeeder;
-            $seeder->run(config('demo.pool_size', 50));
+        if ($needed === 0) {
+            return;
         }
+
+        $this->info("→ Creating $needed new instances...");
+
+        $seeder = new DemoSeeder;
+        $seeder->run((int) $needed);
+
+        $this->info('→ Pool replenished');
+    }
+
+    private function showStatus(): void
+    {
+        $available = $this->getAvailableCount();
+        $active = User::where('email', 'like', 'demo_%@demo.padmission.com')
+            ->whereNotNull('email_verified_at')
+            ->count();
+        $target = config('demo.pool_size', 50);
+
+        $this->info('');
+        $this->info('📊 Demo System Status');
+        $this->info("├─ Available: $available");
+        $this->info("├─ Active: $active");
+        $this->info("├─ Target: $target");
+        $this->info('└─ Total: ' . ($available + $active));
+    }
+
+    private function getAvailableCount(): int
+    {
+        return User::where('email', 'like', 'demo_%@demo.padmission.com')
+            ->whereNull('email_verified_at')
+            ->count();
     }
 }

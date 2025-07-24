@@ -2,28 +2,20 @@
 
 namespace App\Filament\Resources\Blog;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\FileUpload;
-use Filament\Tables\Columns\Layout\Stack;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\Layout\Panel;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\ColorColumn;
-use App\Filament\Resources\Blog\LinkResource\Pages\ListLinks;
 use App\Filament\Resources\Blog\LinkResource\Pages\CreateLink;
-use App\Filament\Resources\Blog\LinkResource\Pages\ViewLink;
 use App\Filament\Resources\Blog\LinkResource\Pages\EditLink;
-use App\Filament\Resources\Blog\LinkResource\Pages;
+use App\Filament\Resources\Blog\LinkResource\Pages\ListLinks;
+use App\Filament\Resources\Blog\LinkResource\Pages\ViewLink;
 use App\Models\Blog\Link;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ColorEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -31,7 +23,12 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
-use Filament\Tables;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\Layout\Panel;
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 use UnitEnum;
@@ -42,9 +39,9 @@ class LinkResource extends Resource
 
     protected static ?string $model = Link::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-link';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-link';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
+    protected static string | UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 3;
 

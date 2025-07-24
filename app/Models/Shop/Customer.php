@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
+    use BelongsToTeam;
     use HasFactory;
     use SoftDeletes;
-    use BelongsToTeam;
 
     /**
      * @var string

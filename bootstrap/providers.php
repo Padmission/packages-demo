@@ -1,10 +1,14 @@
 <?php
 
 declare(strict_types=1);
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
+use App\Providers\Filament\AppPanelProvider;
+use App\Providers\HorizonServiceProvider;
 
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\HorizonServiceProvider::class,
-    App\Providers\Filament\AppPanelProvider::class,
-    App\Providers\Filament\AdminPanelProvider::class
+    AppServiceProvider::class,
+    HorizonServiceProvider::class,
+    AppPanelProvider::class,
+    AdminPanelProvider::class,
 ];

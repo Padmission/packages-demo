@@ -20,11 +20,9 @@ use App\Models\Shop\Payment;
 use App\Models\Shop\Product;
 use App\Models\Team;
 use App\Models\User;
-use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Padmission\DataLens\Models\CustomReport;
 
@@ -68,7 +66,7 @@ class DemoSeeder extends Seeder
             // Don't set tenant context during seeding - we'll pass team_id directly
             $this->seedShopData($team, $config['shop']);
             $this->seedBlogData($team, $config['blog']);
-            $this->seedDataLensReports($team, $user, $config['data_lens']);
+            $this->seedDataLensReports($team, $user);
         });
     }
 
@@ -90,7 +88,7 @@ class DemoSeeder extends Seeder
         // Create products
         $products = Product::factory($config['products'])->create([
             'team_id' => $team->id,
-            'shop_brand_id' => fn() => $brands->random()->id,
+            'shop_brand_id' => fn () => $brands->random()->id,
         ])->each(function ($product) use ($categories) {
             $product->categories()->attach($categories->random(rand(1, 3)));
         });
@@ -113,7 +111,7 @@ class DemoSeeder extends Seeder
         // Create orders
         Order::factory($config['orders'])->create([
             'team_id' => $team->id,
-            'shop_customer_id' => fn() => $customers->random()->id,
+            'shop_customer_id' => fn () => $customers->random()->id,
         ])->each(function ($order) use ($products, $team) {
             // Create order items
             $orderProducts = $products->random(rand(1, 5));
@@ -132,7 +130,7 @@ class DemoSeeder extends Seeder
                 Payment::factory()->create([
                     'team_id' => $team->id,
                     'shop_order_id' => $order->id,
-                    'amount' => $order->items->sum(fn($item) => $item->qty * $item->unit_price),
+                    'amount' => $order->items->sum(fn ($item) => $item->qty * $item->unit_price),
                 ]);
             }
         });
@@ -156,8 +154,8 @@ class DemoSeeder extends Seeder
         // Create blog posts
         Post::factory($config['posts'])->create([
             'team_id' => $team->id,
-            'blog_author_id' => fn() => $authors->random()->id,
-            'blog_category_id' => fn() => $categories->random()->id,
+            'blog_author_id' => fn () => $authors->random()->id,
+            'blog_category_id' => fn () => $categories->random()->id,
         ])->each(function ($post) use ($team, $config) {
             // Create comments
             Comment::factory(rand(0, $config['comments_per_post']))->create([
@@ -176,7 +174,7 @@ class DemoSeeder extends Seeder
     /**
      * Seed Data Lens reports for a team.
      */
-    private function seedDataLensReports(Team $team, User $user, array $config): void
+    private function seedDataLensReports(Team $team, User $user): void
     {
         $reports = [
             [
@@ -202,14 +200,22 @@ class DemoSeeder extends Seeder
                                     'data' => [
                                         'field' => 'created_at',
                                         'operator' => 'after',
-                                        'value' => now()->subDays(30)->toDateString(),
+                                        'value' => now()->subMonths(6)->toDateString(),
+                                    ],
+                                ],
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'status',
+                                        'operator' => 'in',
+                                        'value' => ['processing', 'shipped', 'delivered'],
                                     ],
                                 ],
                             ],
                             'logic_operator' => 'and',
                         ],
                     ],
-                ],
+                ], // Recent orders (last 6 months) with progress
             ],
             [
                 'name' => '📈 Customer Insights',
@@ -231,18 +237,18 @@ class DemoSeeder extends Seeder
                                 [
                                     'type' => 'aggregate_expression',
                                     'data' => [
-                                        'field' => 'id',
-                                        'operator' => 'greater_than',
-                                        'value' => '0',
-                                        'aggregate_function' => 'count',
                                         'relationship' => 'orders',
+                                        'aggregate_function' => 'count',
+                                        'field' => 'id',
+                                        'operator' => 'greater_than_or_equal',
+                                        'value' => '2',
                                     ],
                                 ],
                             ],
                             'logic_operator' => 'and',
                         ],
                     ],
-                ],
+                ], // High-value customers with 2+ orders
             ],
             [
                 'name' => '📦 Brand Performance',
@@ -257,26 +263,7 @@ class DemoSeeder extends Seeder
                     ['field' => 'price', 'label' => 'Max Price', 'type' => 'money', 'classification' => 'aggregate', 'aggregate_function' => 'max', 'relationship' => 'products'],
                     ['field' => 'qty', 'label' => 'Total Stock', 'type' => 'number', 'classification' => 'aggregate', 'aggregate_function' => 'sum', 'relationship' => 'products'],
                 ],
-                'filters' => [
-                    [
-                        'type' => 'filter_group',
-                        'data' => [
-                            'expressions' => [
-                                [
-                                    'type' => 'aggregate_expression',
-                                    'data' => [
-                                        'field' => 'qty',
-                                        'operator' => 'greater_than',
-                                        'value' => '100',
-                                        'aggregate_function' => 'sum',
-                                        'relationship' => 'products',
-                                    ],
-                                ],
-                            ],
-                            'logic_operator' => 'and',
-                        ],
-                    ],
-                ],
+                'filters' => [], // Show all brands - no filter needed
             ],
             [
                 'name' => '✍️ Author Performance',
@@ -305,11 +292,68 @@ class DemoSeeder extends Seeder
                         ],
                     ]],
                 ],
-                'filters' => [],
+                'filters' => [
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'aggregate_expression',
+                                    'data' => [
+                                        'relationship' => 'posts',
+                                        'aggregate_function' => 'count',
+                                        'field' => 'id',
+                                        'operator' => 'greater_than',
+                                        'value' => '3',
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
+                ], // Active authors with 4+ posts
+            ],
+            [
+                'name' => '🛍️ Product Catalog',
+                'model' => Product::class,
+                'columns' => [
+                    ['field' => 'name', 'label' => 'Product', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'sku', 'label' => 'SKU', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'relationship' => 'brand', 'classification' => 'simple'],
+                    ['field' => 'price', 'label' => 'Price', 'type' => 'money', 'classification' => 'simple'],
+                    ['field' => 'qty', 'label' => 'Stock', 'type' => 'number', 'classification' => 'simple'],
+                    ['field' => 'is_visible', 'label' => 'Visible', 'type' => 'boolean', 'classification' => 'simple'],
+                ],
+                'filters' => [
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'is_visible',
+                                        'operator' => 'is_true',
+                                        'value' => '',
+                                    ],
+                                ],
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'qty',
+                                        'operator' => 'greater_than',
+                                        'value' => '2',
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
+                ], // Show only visible products in stock
             ],
         ];
 
-        foreach (array_slice($reports, 0, $config['reports']) as $reportData) {
+        foreach ($reports as $reportData) {
             CustomReport::create([
                 'tenant_id' => $team->id,
                 'creator_id' => $user->id, // Demo user

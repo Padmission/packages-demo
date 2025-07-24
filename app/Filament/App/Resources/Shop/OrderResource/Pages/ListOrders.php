@@ -2,9 +2,8 @@
 
 namespace App\Filament\App\Resources\Shop\OrderResource\Pages;
 
-use Filament\Actions\CreateAction;
 use App\Filament\App\Resources\Shop\OrderResource;
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Pages\Concerns\ExposesTableToWidgets;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;

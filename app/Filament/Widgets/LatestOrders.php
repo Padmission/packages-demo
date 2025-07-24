@@ -2,11 +2,10 @@
 
 namespace App\Filament\Widgets;
 
-use Filament\Tables\Columns\TextColumn;
 use App\Filament\Resources\Shop\OrderResource;
 use App\Models\Shop\Order;
 use Filament\Actions\Action;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Squire\Models\Currency;

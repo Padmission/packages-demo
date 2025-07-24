@@ -12,9 +12,9 @@ use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
+    use BelongsToTeam;
     use HasFactory;
     use HasTags;
-    use BelongsToTeam;
 
     /**
      * @var string

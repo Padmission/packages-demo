@@ -56,7 +56,7 @@ class AppPanelProvider extends PanelProvider
             ->plugins([
                 DataLensPlugin::make(),
                 SpatieTranslatablePlugin::make()
-                    ->defaultLocales(['en', 'es', 'nl'])
+                    ->defaultLocales(['en', 'es', 'nl']),
             ])
             ->viteTheme('resources/css/filament/app/theme.css');
     }

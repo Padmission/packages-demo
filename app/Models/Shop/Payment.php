@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
-    use HasFactory;
     use BelongsToTeam;
+    use HasFactory;
 
     protected $table = 'shop_payments';
 

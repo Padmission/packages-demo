@@ -31,20 +31,26 @@ class ReplenishDemoPool implements ShouldQueue
      */
     public function handle(): void
     {
-        // Check current pool size
-        $availableCount = User::whereNull('email_verified_at')
+        // Always check current pool size to avoid overshooting target
+        $available = User::whereNull('email_verified_at')
             ->where('email', 'like', 'demo_%@demo.padmission.com')
             ->count();
 
-        $targetPoolSize = config('demo.pool_size', 50);
-        $needed = max(0, $targetPoolSize - $availableCount);
+        $target = config('demo.pool_size', 50);
+        $needed = max(0, $target - $available);
 
-        if ($needed > 0) {
-            Log::info("Demo pool replenishment: Creating {$needed} demo instances");
+        // Create only what's actually needed
+        $toCreate = min($needed, $this->count);
 
-            // Create the needed demo instances
+        if ($toCreate > 0) {
+            Log::info("Demo pool replenishment: Creating {$toCreate} demo instances (target: {$target}, available: {$available})");
+
             $seeder = new DemoSeeder;
-            $seeder->run(min($needed, $this->count));
+            $seeder->run($toCreate);
+
+            Log::info("Demo pool replenishment: Completed. Created {$toCreate} instances.");
+        } else {
+            Log::info("Demo pool replenishment: Pool is healthy ({$available}/{$target}), no action needed.");
         }
     }
 }

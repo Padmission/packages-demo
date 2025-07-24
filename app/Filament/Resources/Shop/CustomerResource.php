@@ -2,28 +2,25 @@
 
 namespace App\Filament\Resources\Shop;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Placeholder;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
-use App\Filament\Resources\Shop\CustomerResource\RelationManagers\AddressesRelationManager;
-use App\Filament\Resources\Shop\CustomerResource\RelationManagers\PaymentsRelationManager;
-use App\Filament\Resources\Shop\CustomerResource\Pages\ListCustomers;
 use App\Filament\Resources\Shop\CustomerResource\Pages\CreateCustomer;
 use App\Filament\Resources\Shop\CustomerResource\Pages\EditCustomer;
-use App\Filament\Resources\Shop\CustomerResource\Pages;
-use App\Filament\Resources\Shop\CustomerResource\RelationManagers;
+use App\Filament\Resources\Shop\CustomerResource\Pages\ListCustomers;
+use App\Filament\Resources\Shop\CustomerResource\RelationManagers\AddressesRelationManager;
+use App\Filament\Resources\Shop\CustomerResource\RelationManagers\PaymentsRelationManager;
 use App\Models\Shop\Customer;
 use BackedEnum;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -38,9 +35,9 @@ class CustomerResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Shop';
+    protected static string | UnitEnum | null $navigationGroup = 'Shop';
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?int $navigationSort = 2;
 
@@ -72,23 +69,23 @@ class CustomerResource extends Resource
                             ->options([
                                 'male' => 'Male',
                                 'female' => 'Female',
-                            ])
+                            ]),
                     ])
                     ->columns(2)
-                    ->columnSpan(['lg' => fn(?Customer $record) => $record === null ? 3 : 2]),
+                    ->columnSpan(['lg' => fn (?Customer $record) => $record === null ? 3 : 2]),
 
                 Section::make()
                     ->schema([
                         Placeholder::make('created_at')
                             ->label('Created at')
-                            ->content(fn(Customer $record): ?string => $record->created_at?->diffForHumans()),
+                            ->content(fn (Customer $record): ?string => $record->created_at?->diffForHumans()),
 
                         Placeholder::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn(Customer $record): ?string => $record->updated_at?->diffForHumans()),
+                            ->content(fn (Customer $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
-                    ->hidden(fn(?Customer $record) => $record === null),
+                    ->hidden(fn (?Customer $record) => $record === null),
             ])
             ->columns(3);
     }
@@ -105,7 +102,7 @@ class CustomerResource extends Resource
                     ->searchable(isIndividual: true, isGlobal: false)
                     ->sortable(),
                 TextColumn::make('country')
-                    ->getStateUsing(fn($record): ?string => Country::find($record->addresses->first()?->country)?->name ?? null),
+                    ->getStateUsing(fn ($record): ?string => Country::find($record->addresses->first()?->country)?->name ?? null),
                 TextColumn::make('phone')
                     ->searchable()
                     ->sortable(),

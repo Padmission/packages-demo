@@ -13,9 +13,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Category extends Model implements HasMedia
 {
+    use BelongsToTeam;
     use HasFactory;
     use InteractsWithMedia;
-    use BelongsToTeam;
 
     /**
      * @var string

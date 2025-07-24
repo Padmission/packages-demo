@@ -77,9 +77,6 @@ return [
             'priorities' => 3,
             'dispositions' => 5,
         ],
-        'data_lens' => [
-            'reports' => 4, // Number of pre-configured reports
-        ],
     ],
 
     /*

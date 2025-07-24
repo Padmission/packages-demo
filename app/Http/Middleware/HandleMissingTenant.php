@@ -5,6 +5,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Team;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ class HandleMissingTenant
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -24,7 +25,7 @@ class HandleMissingTenant
             $tenantId = $request->route()->parameter('tenant');
 
             // Check if tenant exists
-            $teamModel = config('filament.tenant_model', \App\Models\Team::class);
+            $teamModel = config('filament.tenant_model', Team::class);
             $tenant = $teamModel::find($tenantId);
 
             if (! $tenant) {

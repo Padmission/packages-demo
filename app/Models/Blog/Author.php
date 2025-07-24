@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Author extends Model
 {
-    use HasFactory;
     use BelongsToTeam;
+    use HasFactory;
 
     /**
      * @var string

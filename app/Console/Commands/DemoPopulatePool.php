@@ -1,10 +1,10 @@
 <?php
+
 // ABOUTME: Command to pre-populate the demo user pool before app launch
 // ABOUTME: Creates initial batch of demo users with isolated data for each
 
 namespace App\Console\Commands;
 
-use App\Jobs\ReplenishDemoPool;
 use Database\Seeders\DemoSeeder;
 use Illuminate\Console\Command;
 
@@ -36,8 +36,8 @@ class DemoPopulatePool extends Command
         $bar = $this->output->createProgressBar($count);
         $bar->start();
 
-        $seeder = new DemoSeeder();
-        
+        $seeder = new DemoSeeder;
+
         for ($i = 0; $i < $count; $i++) {
             $seeder->run(1);
             $bar->advance();

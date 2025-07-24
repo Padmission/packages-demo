@@ -2,11 +2,10 @@
 
 namespace App\Filament\App\Resources\Shop\CustomerResource\Pages;
 
-use Filament\Actions\DeleteAction;
-use Filament\Actions\RestoreAction;
-use Filament\Actions\ForceDeleteAction;
 use App\Filament\App\Resources\Shop\CustomerResource;
-use Filament\Actions;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditCustomer extends EditRecord

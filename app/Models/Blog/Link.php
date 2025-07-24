@@ -9,9 +9,9 @@ use Spatie\Translatable\HasTranslations;
 
 class Link extends Model
 {
+    use BelongsToTeam;
     use HasFactory;
     use HasTranslations;
-    use BelongsToTeam;
 
     /** @var string[] */
     public $translatable = [

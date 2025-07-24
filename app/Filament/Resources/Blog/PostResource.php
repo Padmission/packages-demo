@@ -2,32 +2,26 @@
 
 namespace App\Filament\Resources\Blog;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\SpatieTagsEntry;
-use Filament\Infolists\Components\ImageEntry;
-use App\Filament\Resources\Blog\PostResource\Pages\ViewPost;
-use App\Filament\Resources\Blog\PostResource\Pages\EditPost;
-use App\Filament\Resources\Blog\PostResource\Pages\ManagePostComments;
-use App\Filament\Resources\Blog\PostResource\Pages\ListPosts;
 use App\Filament\Resources\Blog\PostResource\Pages\CreatePost;
-use App\Filament\Resources\Blog\PostResource\Pages;
+use App\Filament\Resources\Blog\PostResource\Pages\EditPost;
+use App\Filament\Resources\Blog\PostResource\Pages\ListPosts;
+use App\Filament\Resources\Blog\PostResource\Pages\ManagePostComments;
+use App\Filament\Resources\Blog\PostResource\Pages\ViewPost;
 use App\Models\Blog\Post;
 use BackedEnum;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Infolists\Components;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\SpatieTagsEntry;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
@@ -38,7 +32,9 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
-use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -54,13 +50,13 @@ class PostResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
+    protected static string | UnitEnum | null $navigationGroup = 'Blog';
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?int $navigationSort = 0;
 
-    protected static ?\Filament\Pages\Enums\SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function form(Schema $schema): Schema
     {

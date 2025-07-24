@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use BelongsToTeam;
     use HasFactory;
     use SoftDeletes;
-    use BelongsToTeam;
 
     /**
      * @var string
