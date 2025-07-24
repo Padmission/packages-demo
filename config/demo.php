@@ -43,11 +43,11 @@ return [
     | Time to Live (TTL) Settings
     |--------------------------------------------------------------------------
     |
-    | Controls how long demo data persists before being refreshed or released.
+    | Controls how long demo instances persist before being completely deleted.
+    | After expiration, the user, team, and all associated data are removed.
     |
     */
-    'data_ttl' => env('DEMO_DATA_TTL', 24), // Hours before full data refresh
-    'session_ttl' => env('DEMO_SESSION_TTL', 4), // Hours before releasing demo user
+    'ttl' => env('DEMO_TTL', 4), // Hours before deleting demo instance completely
 
     /*
     |--------------------------------------------------------------------------

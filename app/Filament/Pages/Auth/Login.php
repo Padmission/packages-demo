@@ -86,8 +86,8 @@ class Login extends BasePage
 
                 if ($existingDemoUser) {
                     // Check if session hasn't expired
-                    $sessionTtl = config('demo.session_ttl', 240);
-                    $expiresAt = $existingDemoUser->email_verified_at->addMinutes($sessionTtl);
+                    $ttl = config('demo.ttl', 4); // Hours from config
+                    $expiresAt = $existingDemoUser->email_verified_at->addHours($ttl);
 
                     if (now()->lessThan($expiresAt)) {
                         $this->assignedEmail = $existingDemoUser->email;
@@ -105,8 +105,9 @@ class Login extends BasePage
                 $this->assignedEmail = $demoUser->email;
                 Log::info('Demo login: Assigned new demo user', ['email' => $this->assignedEmail]);
 
-                // Store in cookie for persistence (4 hour expiry)
-                $minutes = config('demo.session_ttl', 240);
+                // Store in cookie for persistence
+                $hours = config('demo.ttl', 4);
+                $minutes = $hours * 60; // Convert hours to minutes for cookie
                 Cookie::queue('demo_user_email', $demoUser->email, $minutes);
 
                 Log::info('Demo login: Queued cookie for demo user', [

@@ -23,7 +23,7 @@ class DemoRefresh extends Command
      *
      * @var string
      */
-    protected $description = 'Maintain demo system health - cleanup expired data and ensure pool availability';
+    protected $description = 'Maintain demo system health - delete expired instances and ensure pool availability';
 
     /**
      * Execute the console command.
@@ -32,16 +32,13 @@ class DemoRefresh extends Command
     {
         $this->info('🔄 Demo system maintenance starting...');
 
-        // Step 1: Release expired sessions
-        $this->releaseExpiredSessions();
+        // Step 1: Clean up expired instances
+        $this->cleanupExpiredInstances();
 
-        // Step 2: Clean up old data
-        $this->cleanupOldData();
-
-        // Step 3: Ensure pool is at target size
+        // Step 2: Ensure pool is at target size
         $this->maintainPoolSize();
 
-        // Step 4: Show final status
+        // Step 3: Show final status
         $this->showStatus();
 
         $this->info('✅ Demo system maintenance complete!');
@@ -49,30 +46,15 @@ class DemoRefresh extends Command
         return 0;
     }
 
-    private function releaseExpiredSessions(): void
+    private function cleanupExpiredInstances(): void
     {
-        $sessionTtl = config('demo.session_ttl', 240); // Minutes, consistent with Login.php
+        $ttl = config('demo.ttl', 4); // Hours from config
 
-        $released = User::where('email', 'like', 'demo_%@demo.padmission.com')
-            ->whereNotNull('email_verified_at')
-            ->where('email_verified_at', '<', now()->subMinutes($sessionTtl))
-            ->update(['email_verified_at' => null]);
-
-        if ($released > 0) {
-            $this->info("→ Released $released expired sessions");
-        }
-    }
-
-    private function cleanupOldData(): void
-    {
-        $dataTtl = config('demo.data_ttl', 24);
-
-        DB::transaction(function () use ($dataTtl) {
-            // Find demo users that were used but expired long ago
-            // We keep unused users (email_verified_at = null) indefinitely in the pool
+        DB::transaction(function () use ($ttl) {
+            // Find all demo users that have expired (used and past TTL)
             $expiredUsers = User::where('email', 'like', 'demo_%@demo.padmission.com')
                 ->whereNotNull('email_verified_at') // Was used at some point
-                ->where('email_verified_at', '<', now()->subHours($dataTtl)) // But expired long ago
+                ->where('email_verified_at', '<', now()->subHours($ttl)) // Past TTL
                 ->with('teams')
                 ->get();
 
@@ -102,7 +84,9 @@ class DemoRefresh extends Command
                 User::whereIn('id', $expiredUsers->pluck('id'))->delete();
             }
 
-            $this->info("→ Cleaned up $deletedCount expired demo instances and their data");
+            if ($deletedCount > 0) {
+                $this->info("→ Cleaned up $deletedCount expired demo instances");
+            }
         });
     }
 
@@ -110,7 +94,12 @@ class DemoRefresh extends Command
     {
         // Clean up Data Lens custom reports (might not have proper cascading)
         if (class_exists(CustomReport::class)) {
-            CustomReport::whereIn('tenant_id', $teamIds)->delete();
+            try {
+                CustomReport::whereIn('tenant_id', $teamIds)->delete();
+            } catch (\Exception $e) {
+                // Skip if there are issues with the Data Lens tables
+                $this->warn('→ Skipped custom reports cleanup: ' . $e->getMessage());
+            }
         }
 
         // Additional explicit cleanup can be added here for other data
