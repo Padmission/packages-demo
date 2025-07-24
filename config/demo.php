@@ -66,10 +66,10 @@ return [
             'orders' => 100,
         ],
         'blog' => [
-            'authors' => 3,
-            'categories' => 5,
-            'posts' => 15,
-            'comments_per_post' => 5,
+            'authors' => 4,
+            'categories' => 6,
+            'posts' => 18,
+            'comments_per_post' => 6,
         ],
         'tickets' => [
             'per_customer' => [1, 3], // Random range

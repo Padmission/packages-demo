@@ -50,11 +50,11 @@ class DemoRefresh extends Command
 
     private function releaseExpiredSessions(): void
     {
-        $sessionTtl = config('demo.session_ttl', 4);
+        $sessionTtl = config('demo.session_ttl', 240); // Minutes, consistent with Login.php
 
         $released = User::where('email', 'like', 'demo_%@demo.padmission.com')
             ->whereNotNull('email_verified_at')
-            ->where('email_verified_at', '<', now()->subMinutes($sessionTtl * 60))
+            ->where('email_verified_at', '<', now()->subMinutes($sessionTtl))
             ->update(['email_verified_at' => null]);
 
         if ($released > 0) {
@@ -67,25 +67,32 @@ class DemoRefresh extends Command
         $dataTtl = config('demo.data_ttl', 24);
 
         DB::transaction(function () use ($dataTtl) {
-            // Find old unused demo users
-            $oldUsers = User::where('email', 'like', 'demo_%@demo.padmission.com')
-                ->whereNull('email_verified_at')
-                ->where('created_at', '<', now()->subHours($dataTtl))
-                ->pluck('id');
+            // Find demo users that were used but expired long ago
+            // We keep unused users (email_verified_at = null) indefinitely in the pool
+            $expiredUsers = User::where('email', 'like', 'demo_%@demo.padmission.com')
+                ->whereNotNull('email_verified_at') // Was used at some point
+                ->where('email_verified_at', '<', now()->subHours($dataTtl)) // But expired long ago
+                ->with('teams')
+                ->get();
 
-            if ($oldUsers->isEmpty()) {
+            if ($expiredUsers->isEmpty()) {
                 return;
             }
 
-            // Delete their teams (cascades will handle related data)
-            $deletedTeams = Team::whereHas('users', function ($query) use ($oldUsers) {
-                $query->whereIn('id', $oldUsers);
-            })->delete();
+            $deletedCount = 0;
 
-            // Delete the users
-            $deletedUsers = User::whereIn('id', $oldUsers)->delete();
+            foreach ($expiredUsers as $user) {
+                // Delete each user's teams (this will cascade delete all tenant-scoped data)
+                foreach ($user->teams as $team) {
+                    $team->delete(); // Cascades to all shop/blog data via foreign key constraints
+                }
 
-            $this->info("→ Cleaned up $deletedUsers old demo instances");
+                // Delete the user
+                $user->delete();
+                $deletedCount++;
+            }
+
+            $this->info("→ Cleaned up $deletedCount expired demo instances and their data");
         });
     }
 

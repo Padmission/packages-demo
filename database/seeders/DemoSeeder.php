@@ -165,12 +165,26 @@ class DemoSeeder extends Seeder
             'team_id' => $team->id,
         ]);
 
-        // Create blog posts
-        Post::factory($config['posts'])->create([
+        // Create blog posts with better author distribution
+        $posts = Post::factory($config['posts'])->create([
             'team_id' => $team->id,
             'blog_author_id' => fn () => $authors->random()->id,
             'blog_category_id' => fn () => $categories->random()->id,
-        ])->each(function ($post) use ($team, $config) {
+        ]);
+
+        // Ensure some authors have additional posts for filtering
+        $productiveAuthors = $authors->random(min(2, $authors->count()));
+        foreach ($productiveAuthors as $author) {
+            Post::factory(rand(3, 6))->create([
+                'team_id' => $team->id,
+                'blog_author_id' => $author->id,
+                'blog_category_id' => fn () => $categories->random()->id,
+            ]);
+        }
+
+        // Get all posts and add comments
+        $allPosts = Post::where('team_id', $team->id)->get();
+        $allPosts->each(function ($post) use ($team, $config) {
             // Create comments
             Comment::factory(rand(0, $config['comments_per_post']))->create([
                 'team_id' => $team->id,
