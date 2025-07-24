@@ -68,7 +68,7 @@ class DemoSeeder extends Seeder
             // Don't set tenant context during seeding - we'll pass team_id directly
             $this->seedShopData($team, $config['shop']);
             $this->seedBlogData($team, $config['blog']);
-            $this->seedDataLensReports($team, $config['data_lens']);
+            $this->seedDataLensReports($team, $user, $config['data_lens']);
         });
     }
 
@@ -176,18 +176,18 @@ class DemoSeeder extends Seeder
     /**
      * Seed Data Lens reports for a team.
      */
-    private function seedDataLensReports(Team $team, array $config): void
+    private function seedDataLensReports(Team $team, User $user, array $config): void
     {
         $reports = [
             [
                 'name' => '📊 Sales Dashboard',
                 'model' => Order::class,
                 'columns' => [
-                    ['field' => 'number', 'label' => 'Order #', 'type' => 'text'],
-                    ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'customer'],
-                    ['field' => 'total_price', 'label' => 'Total', 'type' => 'money'],
-                    ['field' => 'status', 'label' => 'Status', 'type' => 'badge'],
-                    ['field' => 'created_at', 'label' => 'Date', 'type' => 'datetime'],
+                    ['field' => 'number', 'label' => 'Order #', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'customer', 'classification' => 'simple'],
+                    ['field' => 'total_price', 'label' => 'Total', 'type' => 'money', 'classification' => 'simple'],
+                    ['field' => 'status', 'label' => 'Status', 'type' => 'badge', 'classification' => 'simple'],
+                    ['field' => 'created_at', 'label' => 'Date', 'type' => 'datetime', 'classification' => 'simple'],
                 ],
                 'filters' => [
                     [
@@ -212,10 +212,10 @@ class DemoSeeder extends Seeder
                 'name' => '📈 Customer Analytics',
                 'model' => Customer::class,
                 'columns' => [
-                    ['field' => 'name', 'label' => 'Name', 'type' => 'text'],
-                    ['field' => 'email', 'label' => 'Email', 'type' => 'text'],
-                    ['field' => 'phone', 'label' => 'Phone', 'type' => 'text'],
-                    ['field' => 'birthday', 'label' => 'Birthday', 'type' => 'date'],
+                    ['field' => 'name', 'label' => 'Name', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'email', 'label' => 'Email', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'phone', 'label' => 'Phone', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'birthday', 'label' => 'Birthday', 'type' => 'date', 'classification' => 'simple'],
                 ],
                 'filters' => [],
             ],
@@ -223,11 +223,11 @@ class DemoSeeder extends Seeder
                 'name' => '📦 Product Inventory',
                 'model' => Product::class,
                 'columns' => [
-                    ['field' => 'name', 'label' => 'Product', 'type' => 'text'],
-                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'relationship' => 'brand'],
-                    ['field' => 'price', 'label' => 'Price', 'type' => 'money'],
-                    ['field' => 'sku', 'label' => 'SKU', 'type' => 'text'],
-                    ['field' => 'qty', 'label' => 'Stock', 'type' => 'number'],
+                    ['field' => 'name', 'label' => 'Product', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'name', 'label' => 'Brand', 'type' => 'text', 'relationship' => 'brand', 'classification' => 'simple'],
+                    ['field' => 'price', 'label' => 'Price', 'type' => 'money', 'classification' => 'simple'],
+                    ['field' => 'sku', 'label' => 'SKU', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'qty', 'label' => 'Stock', 'type' => 'number', 'classification' => 'simple'],
                 ],
                 'filters' => [
                     [
@@ -252,10 +252,10 @@ class DemoSeeder extends Seeder
                 'name' => '📝 Blog Analytics',
                 'model' => Post::class,
                 'columns' => [
-                    ['field' => 'title', 'label' => 'Title', 'type' => 'text'],
-                    ['field' => 'name', 'label' => 'Author', 'type' => 'text', 'relationship' => 'author'],
-                    ['field' => 'name', 'label' => 'Category', 'type' => 'text', 'relationship' => 'category'],
-                    ['field' => 'published_at', 'label' => 'Published', 'type' => 'datetime'],
+                    ['field' => 'title', 'label' => 'Title', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'name', 'label' => 'Author', 'type' => 'text', 'relationship' => 'author', 'classification' => 'simple'],
+                    ['field' => 'name', 'label' => 'Category', 'type' => 'text', 'relationship' => 'category', 'classification' => 'simple'],
+                    ['field' => 'published_at', 'label' => 'Published', 'type' => 'datetime', 'classification' => 'simple'],
                 ],
                 'filters' => [
                     [
@@ -281,7 +281,7 @@ class DemoSeeder extends Seeder
         foreach (array_slice($reports, 0, $config['reports']) as $reportData) {
             CustomReport::create([
                 'tenant_id' => $team->id,
-                'creator_id' => 1, // System user
+                'creator_id' => $user->id, // Demo user
                 'name' => $reportData['name'],
                 'data_model' => $reportData['model'],
                 'columns' => $reportData['columns'],

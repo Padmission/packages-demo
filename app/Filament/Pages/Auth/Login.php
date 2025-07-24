@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Filament\Auth\Pages\Login as BasePage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -40,14 +41,14 @@ class Login extends BasePage
             if ($this->assignedEmail) {
                 // Get the demo user
                 $demoUser = User::where('email', $this->assignedEmail)->first();
-                
+
                 // Manually authenticate the user without changing form data
                 Auth::login($demoUser, $this->data['remember'] ?? false);
-                
+
                 // Mark user as verified (in use)
                 $demoUser->update(['email_verified_at' => now()]);
                 Log::info('Demo login: Logged in and marked user as verified', ['email' => $this->assignedEmail]);
-                
+
                 // Return custom response that redirects demo users to the app panel
                 return new DemoLoginResponse;
             } else {
@@ -67,16 +68,56 @@ class Login extends BasePage
         Log::info('Demo login: Assigning demo user...');
 
         DB::transaction(function () {
+            // First, check if user has an existing demo user cookie
+            $existingDemoEmail = Cookie::get('demo_user_email');
+
+            Log::info('Demo login: Checking for existing demo cookie', [
+                'existing_email' => $existingDemoEmail,
+                'has_cookie' => ! is_null($existingDemoEmail),
+            ]);
+
+            if ($existingDemoEmail) {
+                // Try to get this demo user if they're still active
+                $existingDemoUser = User::where('email', $existingDemoEmail)
+                    ->whereNotNull('email_verified_at')
+                    ->where('email', 'like', 'demo_%@demo.padmission.com')
+                    ->with('teams')
+                    ->first();
+
+                if ($existingDemoUser) {
+                    // Check if session hasn't expired
+                    $sessionTtl = config('demo.session_ttl', 240);
+                    $expiresAt = $existingDemoUser->email_verified_at->addMinutes($sessionTtl);
+
+                    if (now()->lessThan($expiresAt)) {
+                        $this->assignedEmail = $existingDemoUser->email;
+                        Log::info('Demo login: Reassigned existing demo user from cookie', ['email' => $this->assignedEmail]);
+
+                        return;
+                    }
+                }
+            }
+
+            // No existing cookie or expired, assign a new demo user
             $demoUser = $this->getAvailableDemoUser();
 
             if ($demoUser) {
                 $this->assignedEmail = $demoUser->email;
-                Log::info('Demo login: Assigned demo user', ['email' => $this->assignedEmail]);
+                Log::info('Demo login: Assigned new demo user', ['email' => $this->assignedEmail]);
+
+                // Store in cookie for persistence (4 hour expiry)
+                $minutes = config('demo.session_ttl', 240);
+                Cookie::queue('demo_user_email', $demoUser->email, $minutes);
+
+                Log::info('Demo login: Queued cookie for demo user', [
+                    'email' => $demoUser->email,
+                    'minutes' => $minutes,
+                ]);
 
                 // Dispatch a job to replenish pool
                 ReplenishDemoPool::dispatch(1);
             } else {
-                // No available users, dispatch job to create more
+                // No available users, dispatch a job to create more
                 Log::warning('No demo users available, dispatching job to create pool');
 
                 // Dispatch job to create more asynchronously

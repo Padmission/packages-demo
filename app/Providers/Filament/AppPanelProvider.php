@@ -26,7 +26,6 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->id('app')
             ->login(Login::class)
-            ->registration()
             ->passwordReset()
             ->emailVerification()
             ->tenant(Team::class, ownershipRelationship: 'team')
