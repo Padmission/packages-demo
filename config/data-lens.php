@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Models\Blog\Author;
+use App\Models\Blog\Category;
+use App\Models\Blog\Link;
+use App\Models\Blog\Post;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Padmission\DataLens\Mail\ReportEmail;
 
 return [
     /*
@@ -48,7 +55,7 @@ return [
     * This is the model that will be used to identify users who have permission
     * to access and manage reports.
     */
-    'user_model' => App\Models\User::class,
+    'user_model' => User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +110,12 @@ return [
     ],
 
     'excluded_models' => [
-         App\Models\Team::class,
+        Team::class,
+        User::class,
+        Author::class,
+        Category::class,
+        Link::class,
+        Post::class,
     ],
 
     /*
@@ -191,7 +203,7 @@ return [
     |
     */
     'mailable_classes' => [
-        'report_email' => Padmission\DataLens\Mail\ReportEmail::class,
+        'report_email' => ReportEmail::class,
     ],
 
     /*

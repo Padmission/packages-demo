@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e709fc9e6ce455b5d02f7629194ff1fe",
+    "content-hash": "0a4be5336148efcc70da589729ceea58",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5882,7 +5882,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "804960ab86bf4b080a705a1367675fbdbff15ef9"
+                "reference": "d57bfc60824d75d392da33127454415d6771f3b2"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5894,7 +5894,6 @@
                 "spatie/laravel-package-tools": "^1.15.0"
             },
             "require-dev": {
-                "filament/upgrade": "^4.0",
                 "larastan/larastan": "^3.0",
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^8.1",
@@ -14658,7 +14657,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.2"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
