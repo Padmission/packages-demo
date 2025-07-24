@@ -108,13 +108,4 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
-    public function down(): void
-    {
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedule_recipients'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedule_history'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedules'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_user'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_reports'));
-    }
 };

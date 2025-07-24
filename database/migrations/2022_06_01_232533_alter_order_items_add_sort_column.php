@@ -12,11 +12,4 @@ return new class extends Migration
             $table->unsignedInteger('sort')->default(0)->after('id');
         });
     }
-
-    public function down()
-    {
-        Schema::table('shop_order_items', function (Blueprint $table) {
-            $table->dropColumn('sort');
-        });
-    }
 };

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+    /**
      * Run the migrations.
      *
      * @return void
@@ -22,15 +23,5 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('users');
     }
 };

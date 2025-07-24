@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Team;
 use App\Models\User;
 use Database\Seeders\DemoSeeder;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Padmission\DataLens\Models\CustomReport;
@@ -73,13 +74,13 @@ class DemoRefresh extends Command
                 $deletedCount++;
             }
 
-            if (!empty($deletedTeams)) {
+            if (! empty($deletedTeams)) {
                 // Explicit cleanup of all tenant-scoped data before deleting teams
                 $this->cleanupTenantData($deletedTeams);
-                
+
                 // Delete teams (this will cascade remaining data via foreign key constraints)
                 Team::whereIn('id', $deletedTeams)->delete();
-                
+
                 // Delete the expired users
                 User::whereIn('id', $expiredUsers->pluck('id'))->delete();
             }
@@ -96,7 +97,7 @@ class DemoRefresh extends Command
         if (class_exists(CustomReport::class)) {
             try {
                 CustomReport::whereIn('tenant_id', $teamIds)->delete();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // Skip if there are issues with the Data Lens tables
                 $this->warn('→ Skipped custom reports cleanup: ' . $e->getMessage());
             }

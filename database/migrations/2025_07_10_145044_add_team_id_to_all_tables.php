@@ -47,41 +47,4 @@ return new class extends Migration
             }
         }
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        $tables = [
-            // Shop domain
-            'shop_brands',
-            'shop_categories',
-            'shop_customers',
-            'shop_orders',
-            'shop_order_addresses',
-            'shop_order_items',
-            'shop_payments',
-            'shop_products',
-
-            // Blog domain
-            'blog_authors',
-            'blog_categories',
-            'blog_links',
-            'blog_posts',
-
-            // Other
-            'addresses',
-            'comments',
-        ];
-
-        foreach ($tables as $table) {
-            if (Schema::hasTable($table) && Schema::hasColumn($table, 'team_id')) {
-                Schema::table($table, function (Blueprint $table) {
-                    $table->dropForeign(['team_id']);
-                    $table->dropColumn('team_id');
-                });
-            }
-        }
-    }
 };

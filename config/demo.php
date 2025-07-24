@@ -14,8 +14,6 @@ return [
     |
     */
 
-    'enabled' => env('DEMO_ENABLED', true),
-
     /*
     |--------------------------------------------------------------------------
     | Demo User Pool
@@ -51,6 +49,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Queue Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Queue name for processing demo-related background jobs.
+    |
+    */
+    'queue' => env('DEMO_QUEUE', 'default'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Data Seeding Configuration
     |--------------------------------------------------------------------------
     |
@@ -71,25 +79,5 @@ return [
             'posts' => 18,
             'comments_per_post' => 6,
         ],
-        'tickets' => [
-            'per_customer' => [1, 3], // Random range
-            'statuses' => 5,
-            'priorities' => 3,
-            'dispositions' => 5,
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Login Page Settings
-    |--------------------------------------------------------------------------
-    |
-    | Controls the auto-login behavior and display.
-    |
-    */
-    'login' => [
-        'auto_fill' => true,
-        'show_spinner' => true,
-        'spinner_delay' => 2, // Seconds
     ],
 ];

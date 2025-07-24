@@ -24,12 +24,4 @@ return new class extends Migration
             $table->integer('finished_at')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('job_batches');
-    }
 };
