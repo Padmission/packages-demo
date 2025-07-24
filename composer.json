@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "fakerphp/faker": "^1.24",
         "filament/filament": "^4.0",
         "filament/spatie-laravel-media-library-plugin": "^4.0",
         "filament/spatie-laravel-settings-plugin": "^4.0",
@@ -20,12 +21,11 @@
         "laravel/horizon": "^5.21",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
+        "padmission/data-lens": "*",
         "squirephp/countries-en": "^3.3",
-        "squirephp/currencies-en": "^3.3",
-        "padmission/data-lens": "*"
+        "squirephp/currencies-en": "^3.3"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
         "larastan/larastan": "^3.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
