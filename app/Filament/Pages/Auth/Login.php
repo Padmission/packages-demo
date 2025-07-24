@@ -118,6 +118,7 @@ class Login extends BasePage
     protected function getAuthenticateFormAction(): Action
     {
         return Action::make('authenticate')
+            ->submit('authenticate')
             ->extraAttributes([
                 'wire:loading.attr' => 'disabled',
                 'wire:loading.class' => 'opacity-50',
