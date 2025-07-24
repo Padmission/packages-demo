@@ -7,6 +7,7 @@ use App\Jobs\ReplenishDemoPool;
 use App\Models\User;
 use Filament\Auth\Http\Responses\Contracts\LoginResponse;
 use Filament\Auth\Pages\Login as BasePage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -37,9 +38,18 @@ class Login extends BasePage
             $this->assignDemoUser();
 
             if ($this->assignedEmail) {
-                // Replace the form email with the actual demo user email
-                data_set($this->data, 'email', $this->assignedEmail);
-                Log::info('Demo login: Using assigned email', ['assigned' => $this->assignedEmail]);
+                // Get the demo user
+                $demoUser = User::where('email', $this->assignedEmail)->first();
+                
+                // Manually authenticate the user without changing form data
+                Auth::login($demoUser, $this->data['remember'] ?? false);
+                
+                // Mark user as verified (in use)
+                $demoUser->update(['email_verified_at' => now()]);
+                Log::info('Demo login: Logged in and marked user as verified', ['email' => $this->assignedEmail]);
+                
+                // Return custom response that redirects demo users to the app panel
+                return new DemoLoginResponse;
             } else {
                 // No demo users available
                 $this->addError('email', 'Demo system is preparing. Please try again in a moment.');
@@ -48,19 +58,8 @@ class Login extends BasePage
             }
         }
 
-        $response = parent::authenticate();
-
-        // Mark user as verified (in use) if demo mode
-        if ($response && $this->assignedEmail) {
-            User::where('email', $this->assignedEmail)
-                ->update(['email_verified_at' => now()]);
-            Log::info('Demo login: Marked user as verified', ['email' => $this->assignedEmail]);
-
-            // Return custom response that redirects demo users to the app panel
-            return new DemoLoginResponse;
-        }
-
-        return $response;
+        // For non-demo logins, use parent authentication
+        return parent::authenticate();
     }
 
     private function assignDemoUser(): void
