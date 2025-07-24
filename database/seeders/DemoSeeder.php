@@ -90,7 +90,7 @@ class DemoSeeder extends Seeder
         // Create products
         $products = Product::factory($config['products'])->create([
             'team_id' => $team->id,
-            'shop_brand_id' => fn () => $brands->random()->id,
+            'shop_brand_id' => fn() => $brands->random()->id,
         ])->each(function ($product) use ($categories) {
             $product->categories()->attach($categories->random(rand(1, 3)));
         });
@@ -113,7 +113,7 @@ class DemoSeeder extends Seeder
         // Create orders
         Order::factory($config['orders'])->create([
             'team_id' => $team->id,
-            'shop_customer_id' => fn () => $customers->random()->id,
+            'shop_customer_id' => fn() => $customers->random()->id,
         ])->each(function ($order) use ($products, $team) {
             // Create order items
             $orderProducts = $products->random(rand(1, 5));
@@ -132,7 +132,7 @@ class DemoSeeder extends Seeder
                 Payment::factory()->create([
                     'team_id' => $team->id,
                     'shop_order_id' => $order->id,
-                    'amount' => $order->items->sum(fn ($item) => $item->qty * $item->unit_price),
+                    'amount' => $order->items->sum(fn($item) => $item->qty * $item->unit_price),
                 ]);
             }
         });
@@ -156,8 +156,8 @@ class DemoSeeder extends Seeder
         // Create blog posts
         Post::factory($config['posts'])->create([
             'team_id' => $team->id,
-            'blog_author_id' => fn () => $authors->random()->id,
-            'blog_category_id' => fn () => $categories->random()->id,
+            'blog_author_id' => fn() => $authors->random()->id,
+            'blog_category_id' => fn() => $categories->random()->id,
         ])->each(function ($post) use ($team, $config) {
             // Create comments
             Comment::factory(rand(0, $config['comments_per_post']))->create([
@@ -246,25 +246,23 @@ class DemoSeeder extends Seeder
         ];
 
         foreach (array_slice($reports, 0, $config['reports']) as $reportData) {
-            try {
-                CustomReport::create([
-                    'team_id' => $team->id,
-                    'user_id' => null, // Public report
-                    'name' => $reportData['name'],
-                    'model' => $reportData['model'],
-                    'columns' => $reportData['columns'],
-                    'filters' => $reportData['filters'],
-                    'sorts' => $reportData['sorts'],
-                    'settings' => [
-                        'per_page' => 25,
-                        'show_filters' => true,
-                        'show_search' => true,
+            CustomReport::create([
+                'tenant_id' => $team->id,
+                'creator_id' => 1, // System user
+                'name' => $reportData['name'],
+                'data_model' => $reportData['model'],
+                'columns' => $reportData['columns'],
+                'filters' => $reportData['filters'],
+                'settings' => [
+                    'api' => [
+                        'enabled' => false,
+                        'auth_type' => 'api_key',
                     ],
-                ]);
-            } catch (Exception $e) {
-                Log::warning('Failed to create DataLens report: ' . $e->getMessage());
-                // Skip DataLens reports if there's an issue with the format
-            }
+                    'filters' => [
+                        'global_logic_operator' => 'or',
+                    ],
+                ],
+            ]);
         }
     }
 }
