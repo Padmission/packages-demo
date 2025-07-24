@@ -20,11 +20,13 @@ use App\Models\Shop\Payment;
 use App\Models\Shop\Product;
 use App\Models\Team;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Padmission\DataLens\Models\CustomReport;
 
 class DemoSeeder extends Seeder
 {
@@ -176,11 +178,6 @@ class DemoSeeder extends Seeder
      */
     private function seedDataLensReports(Team $team, array $config): void
     {
-        // Only seed reports if the plugin is available
-        if (! class_exists('Padmission\DataLens\Models\CustomReport')) {
-            return;
-        }
-
         $reports = [
             [
                 'name' => '📊 Sales Dashboard',
@@ -250,7 +247,7 @@ class DemoSeeder extends Seeder
 
         foreach (array_slice($reports, 0, $config['reports']) as $reportData) {
             try {
-                \Padmission\DataLens\Models\CustomReport::create([
+                CustomReport::create([
                     'team_id' => $team->id,
                     'user_id' => null, // Public report
                     'name' => $reportData['name'],
@@ -258,13 +255,13 @@ class DemoSeeder extends Seeder
                     'columns' => $reportData['columns'],
                     'filters' => $reportData['filters'],
                     'sorts' => $reportData['sorts'],
-                    'settings' => json_encode([
+                    'settings' => [
                         'per_page' => 25,
                         'show_filters' => true,
                         'show_search' => true,
-                    ]),
+                    ],
                 ]);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Log::warning('Failed to create DataLens report: ' . $e->getMessage());
                 // Skip DataLens reports if there's an issue with the format
             }

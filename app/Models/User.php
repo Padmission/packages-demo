@@ -54,4 +54,12 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
     {
         return $this->teams;
     }
+
+    /**
+     * Check if this user is a demo user
+     */
+    public function isDemoUser(): bool
+    {
+        return str_starts_with($this->email, 'demo_') && str_ends_with($this->email, '@demo.padmission.com');
+    }
 }

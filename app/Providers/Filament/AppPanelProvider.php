@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\App\Pages\RegisterTeam;
 use App\Filament\Pages\Auth\Login;
 use App\Http\Middleware\HandleMissingTenant;
 use App\Models\Team;
@@ -31,7 +30,6 @@ class AppPanelProvider extends PanelProvider
             ->passwordReset()
             ->emailVerification()
             ->tenant(Team::class, ownershipRelationship: 'team')
-            ->tenantRegistration(RegisterTeam::class)
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
