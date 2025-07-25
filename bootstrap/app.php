@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        \Spatie\LaravelFlare\Facades\Flare::handles($exceptions);
     })
     ->withSchedule(function (Schedule $schedule): void {
         $schedule->command('demo:refresh')->hourly();

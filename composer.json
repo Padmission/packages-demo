@@ -22,6 +22,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "padmission/data-lens": "^2.0-beta",
+        "spatie/laravel-flare": "^1.1",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
     },
