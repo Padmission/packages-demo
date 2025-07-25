@@ -29,8 +29,6 @@ class Login extends BasePage
 
     public function authenticate(): ?LoginResponse
     {
-        sleep(2);
-
         // Check if this is a demo login
         if ($this->data['email'] === config('demo.display_email') &&
             $this->data['password'] === config('demo.password')) {
