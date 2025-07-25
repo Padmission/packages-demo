@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2500888000e37c55c7ca13f249558339",
+    "content-hash": "060d7ee5c4d7561b40a2071d730e8501",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5941,12 +5941,11 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-beta3",
+            "version": "2.x-dev",
             "dist": {
-                "type": "zip",
-                "url": "https://data-lens.composer.sh/download/9f79e893-621c-4d72-8a6e-bb80a2083f6c/data-lens-2.0.0-beta3.zip",
-                "reference": "feb24c103cd065a9afb1f58f5e370d70115bb13c",
-                "shasum": "abda41c729443d77d4e8c80307ce72c2163906f3"
+                "type": "path",
+                "url": "../data-lens",
+                "reference": "feb24c103cd065a9afb1f58f5e370d70115bb13c"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5974,12 +5973,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "DataLens": "Padmission\\DataLens\\Facades\\CustomReport"
-                    },
                     "providers": [
                         "Padmission\\DataLens\\DataLensServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "DataLens": "Padmission\\DataLens\\Facades\\CustomReport"
+                    }
                 }
             },
             "autoload": {
@@ -5995,19 +5994,14 @@
                 }
             },
             "scripts": {
-                "lint": [
-                    "pint"
-                ],
-                "test": [
-                    "@test:lint",
-                    "@test:refactor",
-                    "@test:pest"
-                ],
-                "format": [
-                    "vendor/bin/pint"
+                "post-autoload-dump": [
+                    "@php ./vendor/bin/testbench package:discover --ansi"
                 ],
                 "analyse": [
                     "vendor/bin/phpstan analyse"
+                ],
+                "lint": [
+                    "pint"
                 ],
                 "refactor": [
                     "rector"
@@ -6015,14 +6009,19 @@
                 "test:lint": [
                     "pint --test"
                 ],
-                "test:pest": [
-                    "vendor/bin/pest"
-                ],
                 "test:refactor": [
                     "rector --dry-run"
                 ],
-                "post-autoload-dump": [
-                    "@php ./vendor/bin/testbench package:discover --ansi"
+                "test:pest": [
+                    "vendor/bin/pest"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "test": [
+                    "@test:lint",
+                    "@test:refactor",
+                    "@test:pest"
                 ]
             },
             "license": [
@@ -6031,8 +6030,8 @@
             "authors": [
                 {
                     "name": "Padmission",
-                    "role": "Developer",
-                    "email": "hello@padmission.com"
+                    "email": "hello@padmission.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Provides a Custom Report Resource for your Filament application that allows users to build their own tables and export the data to CSV.",
@@ -6045,7 +6044,9 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-07-25T16:03:38+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "paragonie/constant_time_encoding",

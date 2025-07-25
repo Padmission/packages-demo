@@ -21,7 +21,8 @@
         "laravel/horizon": "^5.21",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "padmission/data-lens": "^2.0-beta",
+        "padmission/data-lens": "*",
+        "phiki/phiki": "^1.1",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
     },
@@ -88,8 +89,8 @@
     "prefer-stable": true,
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://data-lens.composer.sh/"
+            "type": "path",
+            "url": "../data-lens"
         }
     ]
 }
