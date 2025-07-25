@@ -5211,16 +5211,16 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6"
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
-                "reference": "f5ac2c0b0a2eefca70b2ce32a5809992227e75a6",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/fcf91eb64359852f00d921887b219479b4f21251",
+                "reference": "fcf91eb64359852f00d921887b219479b4f21251",
                 "shasum": ""
             },
             "require": {
@@ -5272,9 +5272,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Masterminds/html5-php/issues",
-                "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
+                "source": "https://github.com/Masterminds/html5-php/tree/2.10.0"
             },
-            "time": "2024-03-31T07:05:07+00:00"
+            "time": "2025-07-25T09:04:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5941,12 +5941,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-beta2",
+            "version": "2.0.0-beta3",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/9f784e9d-02af-4d0e-99c2-98ad172c620d/data-lens-2.0.0-beta2.zip",
-                "reference": "7221cf2edbb337ecaa477ac7cc23fdb444269df8",
-                "shasum": "9099a26a71f24eda91b7eab2117ddceb228823ca"
+                "url": "https://data-lens.composer.sh/download/9f79e893-621c-4d72-8a6e-bb80a2083f6c/data-lens-2.0.0-beta3.zip",
+                "reference": "feb24c103cd065a9afb1f58f5e370d70115bb13c",
+                "shasum": "abda41c729443d77d4e8c80307ce72c2163906f3"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -6045,7 +6045,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-07-24T20:57:19+00:00"
+            "time": "2025-07-25T16:03:38+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
