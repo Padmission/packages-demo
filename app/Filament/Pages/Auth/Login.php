@@ -12,6 +12,7 @@ use Filament\Auth\Pages\Login as BasePage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\HtmlString;
 
 class Login extends BasePage
 {
@@ -119,18 +120,22 @@ class Login extends BasePage
     {
         return Action::make('authenticate')
             ->submit('authenticate')
-            ->extraAttributes([
-                'wire:loading.attr' => 'disabled',
-                'wire:loading.class' => 'opacity-50',
-                'wire:target' => 'authenticate',
-                'x-data' => '{ processing: false }',
-                'x-on:livewire:call-started' => 'processing = true',
-                'x-on:livewire:call-finished' => 'processing = false',
-                'x-text' => 'processing ? "Preparing the demo..." : "' . __('filament-panels::auth/pages/login.form.actions.authenticate.label') . '"',
-            ])
-            ->label(function(): string {
-                return __('filament-panels::auth/pages/login.form.actions.authenticate.label');
-            })
+            ->extraAttributes(['class' => 'h-9'])
+            ->label(
+                new HtmlString('
+                <span
+                    wire:target="authenticate"
+                    wire:loading.delay.default
+                >
+                    Preparing your demo experience...
+                </span>
+                <span
+                    wire:loading.remove
+                >
+                    ' . __('filament-panels::auth/pages/login.form.actions.authenticate.label') . '
+                </span>
+            ')
+            )
             ->submit('authenticate');
     }
 }

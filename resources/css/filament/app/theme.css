@@ -3,3 +3,7 @@
 @source '../../../../app/Filament/App/**/*';
 @source '../../../../resources/views/filament/app/**/*';
 @source '../../../../vendor/padmission/data-lens';
+
+.h-9 {
+    height: 2.25rem;
+}
