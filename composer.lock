@@ -5941,12 +5941,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-beta4",
+            "version": "2.0.0-beta5",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/9f7a19fd-4270-468e-8930-da25bac299e7/data-lens-2.0.0-beta4.zip",
-                "reference": "3fd42968f59a73555175d7c1bf790d7d00a43705",
-                "shasum": "7a4c1d6b7a33939b651df799066e41d778cbd485"
+                "url": "https://data-lens.composer.sh/download/9f7be98f-1df1-41e0-8f3d-b94423afdff1/data-lens-2.0.0-beta5.zip",
+                "reference": "1223a546688da2dbfcdf0fcaa16aacbe08f8711f",
+                "shasum": "62d7ed368eba5473c1bfb1824261b780dab32ec5"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -6045,7 +6045,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-07-25T18:21:49+00:00"
+            "time": "2025-07-26T15:58:03+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
