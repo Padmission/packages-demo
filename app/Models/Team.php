@@ -10,6 +10,11 @@ class Team extends Model implements HasCurrentTenantLabel
 {
     use HasFactory;
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps()->withPivot('role');
+    }
+
     public function getCurrentTenantLabel(): string
     {
         return 'Current team';
