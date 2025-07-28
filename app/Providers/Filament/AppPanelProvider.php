@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
+use App\Http\Middleware\ApplyTenantScopes;
 use App\Http\Middleware\HandleMissingTenant;
 use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
@@ -53,6 +54,12 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
                 HandleMissingTenant::class,
             ])
+            ->tenantMiddleware(
+                [
+                    ApplyTenantScopes::class,
+                ],
+                isPersistent: true
+            )
             ->plugins([
                 DataLensPlugin::make(),
                 SpatieTranslatablePlugin::make()
