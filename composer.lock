@@ -5732,11 +5732,11 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "1.x-dev",
+            "version": "dev-CU-868exzxjf",
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "02f87d74b31bfdac06e835499c521e329ea5dcca"
+                "reference": "088dd4c504a49a3c4ae72d215f53a0852c21685e"
             },
             "require": {
                 "awcodes/filament-table-repeater": "^3.1",

@@ -101,6 +101,23 @@ The `data-lens` package is loaded from `../data-lens` directory:
 - Integrated with Filament admin panel
 - Configured in `config/data-lens.php`
 
+### Code Comments Policy
+
+**NO DOCBLOCK COMMENTS**: Never add docblock comments explaining what code does. Method names, parameter names, and return types should be self-documenting.
+
+**NO OBVIOUS COMMENTS**: Never add comments that explain what the code is doing when it's clear from reading the code itself.
+
+**ALLOWED COMMENTS**: Only add comments when they explain:
+- **WHY** a specific decision was made (e.g., `// Using array_merge here instead of + operator to reindex numeric keys`)
+- **HOW** something complex works when the implementation is not obvious (e.g., `// Binary search with custom comparator for timezone-aware date ranges`)
+- **WARNINGS** about non-obvious behavior or gotchas (e.g., `// Must flush cache before this operation due to MySQL transaction isolation`)
+
+**SELF-DOCUMENTING CODE**: Instead of comments:
+- Use descriptive method names that explain intent
+- Extract complex logic into well-named private methods
+- Use meaningful variable names
+- Keep methods small and focused on a single responsibility
+
 ## Important Considerations
 
 1. **Demo Mode**: When enabled, visitors get isolated environments. Ensure queue workers are running for pool replenishment.
