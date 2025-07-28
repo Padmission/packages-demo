@@ -64,7 +64,10 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                DataLensPlugin::make(),
+                DataLensPlugin::make()
+                ->modelDirectories([
+                    'app/Models',
+                ]),
             ])
             ->spa()
             ->colors([
