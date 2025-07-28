@@ -228,7 +228,8 @@ class DemoSeeder extends Seeder
                                     'data' => [
                                         'field' => 'created_at',
                                         'operator' => 'after',
-                                        'value' => now()->subMonths(6)->toDateString(),
+                                        'value' => now()->subMonths(6)->toISOString(),
+                                        'date_value' => now()->subMonths(6)->toDateTimeString()
                                     ],
                                 ],
                                 [
