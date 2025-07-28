@@ -17,7 +17,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 
 class AppPanelProvider extends PanelProvider
@@ -55,8 +54,6 @@ class AppPanelProvider extends PanelProvider
             ])
             ->plugins([
                 DataLensPlugin::make(),
-                SpatieTranslatablePlugin::make()
-                    ->defaultLocales(['en', 'es', 'nl']),
             ])
             ->viteTheme('resources/css/filament/app/theme.css');
     }

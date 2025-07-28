@@ -2,36 +2,20 @@
 
 namespace App\Filament\Resources\Blog;
 
-use App\Filament\Resources\Blog\LinkResource\Pages\CreateLink;
-use App\Filament\Resources\Blog\LinkResource\Pages\EditLink;
-use App\Filament\Resources\Blog\LinkResource\Pages\ListLinks;
-use App\Filament\Resources\Blog\LinkResource\Pages\ViewLink;
+use App\Filament\Resources\Blog\LinkResource\Pages;
 use App\Models\Blog\Link;
-use BackedEnum;
-use Filament\Actions\Action;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Infolists\Components\ColorEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
-use Filament\Tables\Columns\ColorColumn;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\Layout\Panel;
-use Filament\Tables\Columns\Layout\Split;
-use Filament\Tables\Columns\Layout\Stack;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
-use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
-use UnitEnum;
 
 class LinkResource extends Resource
 {
@@ -39,41 +23,41 @@ class LinkResource extends Resource
 
     protected static ?string $model = Link::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-link';
+    protected static ?string $navigationIcon = 'heroicon-o-link';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static ?string $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 3;
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
-            ->components([
-                TextInput::make('title')
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('title')
                     ->maxLength(255)
                     ->required(),
-                ColorPicker::make('color')
+                Forms\Components\ColorPicker::make('color')
                     ->required()
                     ->hex()
                     ->hexColor(),
-                Textarea::make('description')
+                Forms\Components\Textarea::make('description')
                     ->maxLength(1024)
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('url')
+                Forms\Components\TextInput::make('url')
                     ->label('URL')
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                FileUpload::make('image')
+                Forms\Components\FileUpload::make('image')
                     ->image(),
             ]);
     }
 
-    public static function infolist(Schema $schema): Schema
+    public static function infolist(Infolist $infolist): Infolist
     {
-        return $schema
-            ->components([
+        return $infolist
+            ->schema([
                 TextEntry::make('title'),
                 ColorEntry::make('color'),
                 TextEntry::make('description')
@@ -90,24 +74,24 @@ class LinkResource extends Resource
     {
         return $table
             ->columns([
-                Stack::make([
-                    ImageColumn::make('image')
+                Tables\Columns\Layout\Stack::make([
+                    Tables\Columns\ImageColumn::make('image')
                         ->height('100%')
                         ->width('100%'),
-                    Stack::make([
-                        TextColumn::make('title')
+                    Tables\Columns\Layout\Stack::make([
+                        Tables\Columns\TextColumn::make('title')
                             ->weight(FontWeight::Bold),
-                        TextColumn::make('url')
+                        Tables\Columns\TextColumn::make('url')
                             ->formatStateUsing(fn (string $state): string => str($state)->after('://')->ltrim('www.')->trim('/'))
                             ->color('gray')
                             ->limit(30),
                     ]),
                 ])->space(3),
-                Panel::make([
-                    Split::make([
-                        ColorColumn::make('color')
+                Tables\Columns\Layout\Panel::make([
+                    Tables\Columns\Layout\Split::make([
+                        Tables\Columns\ColorColumn::make('color')
                             ->grow(false),
-                        TextColumn::make('description')
+                        Tables\Columns\TextColumn::make('description')
                             ->color('gray'),
                     ]),
                 ])->collapsible(),
@@ -125,17 +109,17 @@ class LinkResource extends Resource
                 72,
                 'all',
             ])
-            ->recordActions([
-                Action::make('visit')
+            ->actions([
+                Tables\Actions\Action::make('visit')
                     ->label('Visit link')
                     ->icon('heroicon-m-arrow-top-right-on-square')
                     ->color('gray')
                     ->url(fn (Link $record): string => '#' . urlencode($record->url)),
-                EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make()
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make()
                         ->action(function () {
                             Notification::make()
                                 ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
@@ -156,10 +140,10 @@ class LinkResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListLinks::route('/'),
-            'create' => CreateLink::route('/create'),
-            'view' => ViewLink::route('/{record}'),
-            'edit' => EditLink::route('/{record}/edit'),
+            'index' => Pages\ListLinks::route('/'),
+            'create' => Pages\CreateLink::route('/create'),
+            'view' => Pages\ViewLink::route('/{record}'),
+            'edit' => Pages\EditLink::route('/{record}/edit'),
         ];
     }
 }

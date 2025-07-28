@@ -65,8 +65,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                SpatieTranslatablePlugin::make()
-                    ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make(),
             ])
             ->spa()

@@ -4,8 +4,7 @@ namespace App\Filament\Widgets;
 
 use App\Filament\Resources\Shop\OrderResource;
 use App\Models\Shop\Order;
-use Filament\Actions\Action;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 use Squire\Models\Currency;
@@ -23,32 +22,32 @@ class LatestOrders extends BaseWidget
             ->defaultPaginationPageOption(5)
             ->defaultSort('created_at', 'desc')
             ->columns([
-                TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->label('Order Date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('number')
+                Tables\Columns\TextColumn::make('number')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('customer.name')
+                Tables\Columns\TextColumn::make('customer.name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->badge(),
-                TextColumn::make('currency')
+                Tables\Columns\TextColumn::make('currency')
                     ->getStateUsing(fn ($record): ?string => Currency::find($record->currency)?->name ?? null)
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('total_price')
+                Tables\Columns\TextColumn::make('total_price')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('shipping_price')
+                Tables\Columns\TextColumn::make('shipping_price')
                     ->label('Shipping cost')
                     ->searchable()
                     ->sortable(),
             ])
-            ->recordActions([
-                Action::make('open')
+            ->actions([
+                Tables\Actions\Action::make('open')
                     ->url(fn (Order $record): string => OrderResource::getUrl('edit', ['record' => $record])),
             ]);
     }

@@ -3,22 +3,14 @@
 namespace App\Filament\Clusters\Products\Resources\ProductResource\RelationManagers;
 
 use App\Models\User;
-use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Schemas\Schema;
-use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
 
 class CommentsRelationManager extends RelationManager
@@ -27,34 +19,34 @@ class CommentsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    public function form(Schema $schema): Schema
+    public function form(Form $form): Form
     {
-        return $schema
+        return $form
             ->columns(1)
-            ->components([
-                TextInput::make('title')
+            ->schema([
+                Forms\Components\TextInput::make('title')
                     ->required(),
 
-                Select::make('customer_id')
+                Forms\Components\Select::make('customer_id')
                     ->relationship('customer', 'name')
                     ->searchable()
                     ->required(),
 
-                Toggle::make('is_visible')
+                Forms\Components\Toggle::make('is_visible')
                     ->label('Approved for public')
                     ->default(true),
 
-                MarkdownEditor::make('content')
+                Forms\Components\MarkdownEditor::make('content')
                     ->required()
                     ->label('Content'),
             ]);
     }
 
-    public function infolist(Schema $schema): Schema
+    public function infolist(Infolist $infolist): Infolist
     {
-        return $schema
+        return $infolist
             ->columns(1)
-            ->components([
+            ->schema([
                 TextEntry::make('title'),
                 TextEntry::make('customer.name'),
                 IconEntry::make('is_visible')
@@ -68,17 +60,17 @@ class CommentsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('customer.name')
+                Tables\Columns\TextColumn::make('customer.name')
                     ->label('Customer')
                     ->searchable()
                     ->sortable(),
 
-                IconColumn::make('is_visible')
+                Tables\Columns\IconColumn::make('is_visible')
                     ->label('Visibility')
                     ->sortable(),
             ])
@@ -86,7 +78,7 @@ class CommentsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make()
+                Tables\Actions\CreateAction::make()
                     ->after(function ($record) {
                         /** @var User $user */
                         $user = auth()->user();
@@ -98,13 +90,13 @@ class CommentsRelationManager extends RelationManager
                             ->sendToDatabase($user);
                     }),
             ])
-            ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
-                DeleteAction::make(),
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->groupedBulkActions([
-                DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 }

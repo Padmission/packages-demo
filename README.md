@@ -1,6 +1,6 @@
-# Filament & Data Lens Demo Application
+# Filament Demo App
 
-A comprehensive demo application showcasing Filament Admin Panel features alongside the Data Lens reporting plugin. This demo provides a realistic e-commerce and blogging platform with multi-tenant architecture and advanced reporting capabilities.
+A demo application to illustrate how Filament Admin works.
 
 ![Filament Demo](https://github.com/filamentphp/demo/assets/171715/899161a9-3c85-4dc9-9599-13928d3a4412)
 
@@ -67,87 +67,10 @@ Run the dev server (the output will give the address):
 php artisan serve
 ```
 
-## Demo Mode Setup
+You're ready to go! Visit the url in your browser, and login with:
 
-This application includes a demo mode that provides isolated environments for each visitor. To enable it:
-
-### Initial Setup
-
-Pre-populate the demo user pool before launching:
-
-```sh
-# Create 50 demo users (default)
-php artisan demo:populate
-
-# Or create a specific number
-php artisan demo:populate 100
-```
-
-### Queue Worker (Laravel Horizon)
-
-This application uses Laravel Horizon for queue management. Start Horizon to handle background pool replenishment:
-
-```sh
-php artisan horizon
-```
-
-Access the Horizon dashboard at `/horizon` to monitor queue jobs and performance.
-
-### Scheduled Tasks
-
-Set up a cron job to run the scheduler for automatic cleanup:
-
-```sh
-# Add to your crontab
-* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
-```
-
-Or run the scheduler locally for development:
-
-```sh
-php artisan schedule:work
-```
-
-### Demo Management Commands
-
-```sh
-# Maintain demo system health (cleanup expired data and ensure pool availability)
-php artisan demo:refresh
-```
-
-When demo mode is enabled, visitors will be automatically assigned a demo account with isolated data in their own tenant (team).
-
-## Key Features
-
-### Multi-Tenant Architecture
-- Each demo user gets their own isolated tenant (team)
-- All data is automatically scoped to the current tenant
-- Seamless tenant switching in the admin panel
-
-### E-Commerce Features (Shop Domain)
-- **Products**: Full product catalog with categories, brands, and pricing
-- **Orders**: Complete order management with status tracking
-- **Customers**: Customer profiles with order history and addresses
-- **Payments**: Payment tracking integrated with orders
-- **Brands**: Product brand management with addresses
-
-### Content Management (Blog Domain)
-- **Posts**: Blog posts with rich content editing
-- **Authors**: Author profiles and post associations
-- **Categories**: Hierarchical category system
-- **Comments**: Polymorphic commenting system
-
-### Data Lens Integration
-- **Custom Reports**: Pre-configured reports for sales, customers, inventory, and blog analytics
-- **Dynamic Filtering**: Advanced filtering capabilities on all reports
-- **Export Functionality**: Export report data in various formats
-- **Saved Views**: Save and share custom report configurations
-
-### Demo Mode Features
-- Automatic demo user assignment from pre-populated pool
-- Isolated data environment per visitor
-- Background pool replenishment via queues
-- Automatic cleanup of expired sessions
+-   **Username:** admin@filamentphp.com
+-   **Password:** password
 
 ## Features to explore
 

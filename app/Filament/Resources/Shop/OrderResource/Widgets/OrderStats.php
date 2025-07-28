@@ -14,7 +14,7 @@ class OrderStats extends BaseWidget
 {
     use InteractsWithPageTable;
 
-    protected ?string $pollingInterval = null;
+    protected static ?string $pollingInterval = null;
 
     protected function getTablePage(): string
     {

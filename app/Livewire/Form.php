@@ -2,17 +2,14 @@
 
 namespace App\Livewire;
 
-use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Schemas\Schema;
 use Illuminate\View\View;
 use Livewire\Component;
 
 /**
- * @property-read Schema $form
+ * @property-read Forms\Form $form
  */
 class Form extends Component implements HasForms
 {
@@ -30,19 +27,19 @@ class Form extends Component implements HasForms
         $this->form->fill();
     }
 
-    /** @return \Filament\Schemas\Components\Component[] */
+    /** @return Forms\Components\Component[] */
     protected function getFormSchema(): array
     {
         return [
-            Builder::make('test')
+            Forms\Components\Builder::make('test')
                 ->blocks([
-                    Block::make('one')
+                    Forms\Components\Builder\Block::make('one')
                         ->schema([
-                            TextInput::make('one'),
+                            Forms\Components\TextInput::make('one'),
                         ]),
-                    Block::make('two')
+                    Forms\Components\Builder\Block::make('two')
                         ->schema([
-                            TextInput::make('two'),
+                            Forms\Components\TextInput::make('two'),
                         ]),
                 ]),
         ];

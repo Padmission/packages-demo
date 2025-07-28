@@ -3,9 +3,7 @@
 namespace App\Filament\Resources\Shop\CustomerResource\Pages;
 
 use App\Filament\Resources\Shop\CustomerResource;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ForceDeleteAction;
-use Filament\Actions\RestoreAction;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditCustomer extends EditRecord
@@ -15,9 +13,9 @@ class EditCustomer extends EditRecord
     protected function getActions(): array
     {
         return [
-            DeleteAction::make(),
-            RestoreAction::make(),
-            ForceDeleteAction::make(),
+            Actions\DeleteAction::make(),
+            Actions\RestoreAction::make(),
+            Actions\ForceDeleteAction::make(),
         ];
     }
 }

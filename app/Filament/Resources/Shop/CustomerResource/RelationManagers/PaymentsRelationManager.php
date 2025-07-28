@@ -4,17 +4,10 @@ namespace App\Filament\Resources\Shop\CustomerResource\RelationManagers;
 
 use Akaunting\Money\Currency;
 use App\Filament\Resources\Shop\OrderResource;
-use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Schemas\Schema;
-use Filament\Tables\Columns\ColumnGroup;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -25,11 +18,11 @@ class PaymentsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'reference';
 
-    public function form(Schema $schema): Schema
+    public function form(Form $form): Form
     {
-        return $schema
-            ->components([
-                Select::make('order_id')
+        return $form
+            ->schema([
+                Forms\Components\Select::make('order_id')
                     ->label('Order')
                     ->relationship(
                         'order',
@@ -40,21 +33,21 @@ class PaymentsRelationManager extends RelationManager
                     ->hiddenOn('edit')
                     ->required(),
 
-                TextInput::make('reference')
+                Forms\Components\TextInput::make('reference')
                     ->columnSpan(fn (string $operation) => $operation === 'edit' ? 2 : 1)
                     ->required(),
 
-                TextInput::make('amount')
+                Forms\Components\TextInput::make('amount')
                     ->numeric()
                     ->rules(['regex:/^\d{1,6}(\.\d{0,2})?$/'])
                     ->required(),
 
-                Select::make('currency')
+                Forms\Components\Select::make('currency')
                     ->options(collect(Currency::getCurrencies())->mapWithKeys(fn ($item, $key) => [$key => data_get($item, 'name')]))
                     ->searchable()
                     ->required(),
 
-                ToggleButtons::make('provider')
+                Forms\Components\ToggleButtons::make('provider')
                     ->inline()
                     ->grouped()
                     ->options([
@@ -63,7 +56,7 @@ class PaymentsRelationManager extends RelationManager
                     ])
                     ->required(),
 
-                ToggleButtons::make('method')
+                Forms\Components\ToggleButtons::make('method')
                     ->inline()
                     ->options([
                         'credit_card' => 'Credit card',
@@ -78,28 +71,28 @@ class PaymentsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('order.number')
+                Tables\Columns\TextColumn::make('order.number')
                     ->url(fn ($record) => OrderResource::getUrl('edit', [$record->order]))
                     ->searchable()
                     ->sortable(),
 
-                ColumnGroup::make('Details')
+                Tables\Columns\ColumnGroup::make('Details')
                     ->columns([
-                        TextColumn::make('reference')
+                        Tables\Columns\TextColumn::make('reference')
                             ->searchable(),
 
-                        TextColumn::make('amount')
+                        Tables\Columns\TextColumn::make('amount')
                             ->sortable()
                             ->money(fn ($record) => $record->currency),
                     ]),
 
-                ColumnGroup::make('Context')
+                Tables\Columns\ColumnGroup::make('Context')
                     ->columns([
-                        TextColumn::make('provider')
+                        Tables\Columns\TextColumn::make('provider')
                             ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
 
-                        TextColumn::make('method')
+                        Tables\Columns\TextColumn::make('method')
                             ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
                     ]),
@@ -108,14 +101,14 @@ class PaymentsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
+                Tables\Actions\CreateAction::make(),
             ])
-            ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->groupedBulkActions([
-                DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 }

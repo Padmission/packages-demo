@@ -3,7 +3,6 @@
 namespace App\Models\Shop;
 
 use App\Models\Comment;
-use App\Models\Concerns\BelongsToTeam;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +13,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use BelongsToTeam;
     use HasFactory;
     use InteractsWithMedia;
 

@@ -1,6 +1,5 @@
 <?php
 
 use App\Livewire\Form;
-use Illuminate\Support\Facades\Route;
 
-Route::get('form', Form::class);
+\Illuminate\Support\Facades\Route::get('form', Form::class);

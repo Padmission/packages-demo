@@ -1,5 +1,3 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 
-@source '../../../../app/Filament/**/*';
-@source '../../../../resources/views/filament/**/*';
-@source '../../../../vendor/padmission/data-lens';
+@config 'tailwind.config.js';

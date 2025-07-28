@@ -3,7 +3,7 @@
 namespace App\Filament\Clusters\Products\Resources\ProductResource\Pages;
 
 use App\Filament\Clusters\Products\Resources\ProductResource;
-use Filament\Actions\DeleteAction;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditProduct extends EditRecord
@@ -13,7 +13,7 @@ class EditProduct extends EditRecord
     protected function getActions(): array
     {
         return [
-            DeleteAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }
