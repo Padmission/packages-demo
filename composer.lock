@@ -5732,11 +5732,11 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "dev-CU-868exzxjf",
+            "version": "dev-refactor/custom-report-tenant-resolver-1.x",
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "e2bff38b75c902f0c42598d44832e30dd1e44c96"
+                "reference": "b68db51dfbdc1cc02cfe48f7de974dffff5d966b"
             },
             "require": {
                 "awcodes/filament-table-repeater": "^3.1",

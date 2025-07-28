@@ -3,6 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
+use App\Http\Middleware\ApplyTenantScopes;
+use App\Http\Middleware\HandleMissingTenant;
 use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -24,7 +26,6 @@ class AppPanelProvider extends PanelProvider
     {
         return $panel
             ->id('app')
-            ->path('app')
             ->login(Login::class)
             ->passwordReset()
             ->emailVerification()
@@ -50,12 +51,19 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                HandleMissingTenant::class,
             ])
+            ->tenantMiddleware(
+                [
+                    ApplyTenantScopes::class,
+                ],
+                isPersistent: true
+            )
             ->plugins([
                 DataLensPlugin::make()
-                ->modelDirectories([
-                    'app/Models/Shop',
-                ])
+//                ->modelDirectories([
+//                    'app/Models/Shop',
+//                ])
             ])
             ->viteTheme('resources/css/filament/app/theme.css');
     }
