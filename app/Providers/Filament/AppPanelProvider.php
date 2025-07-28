@@ -52,7 +52,10 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                DataLensPlugin::make(),
+                DataLensPlugin::make()
+                ->modelDirectories([
+                    'app/Models/Shop',
+                ])
             ])
             ->viteTheme('resources/css/filament/app/theme.css');
     }
