@@ -18,7 +18,7 @@ return new class extends Migration
 
             if (Utils::isTenantEnabled()) {
                 $tenantForeignKey = config('data-lens.column_names.tenant_foreign_key');
-                $table->foreignId($tenantForeignKey)->constrained()->cascadeOnDelete();
+                $table->foreignId($tenantForeignKey);
             }
 
             $table->string('name');
@@ -97,7 +97,6 @@ return new class extends Migration
             $table->integer('file_size')->nullable()->comment('Size in bytes');
             $table->integer('processing_time')->nullable()->comment('Time in milliseconds');
             $table->boolean('email_sent')->nullable();
-            $table->json('metadata')->nullable();
             $table->timestamps();
         });
 
@@ -108,14 +107,5 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->timestamps();
         });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedule_recipients'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedule_history'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_schedules'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_report_user'));
-        Schema::dropIfExists(config('data-lens.table_names.custom_reports'));
     }
 };
