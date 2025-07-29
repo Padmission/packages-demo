@@ -39,8 +39,9 @@ class DatabaseSeeder extends Seeder
         // Admin
         $this->command->warn(PHP_EOL . 'Creating admin user...');
         $user = $this->withProgressBar(1, fn () => User::factory(1)->create([
-            'name' => 'Demo User',
-            'email' => 'admin@filamentphp.com',
+            'name' => 'Admin User',
+            'email' => 'admin@padmission.com',
+            'password' => bcrypt('admin2024'),
         ]));
         $this->command->info('Admin user created.');
 

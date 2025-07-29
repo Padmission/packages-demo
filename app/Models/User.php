@@ -41,6 +41,10 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
 
     public function canAccessPanel(Panel $panel): bool
     {
+        if($panel->getId() === 'admin') {
+            return $this->email === 'admin@padmission.com';
+        }
+
         return true;
     }
 

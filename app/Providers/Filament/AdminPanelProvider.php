@@ -19,7 +19,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -66,9 +65,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 DataLensPlugin::make()
-//                ->modelDirectories([
-//                    'app/Models',
-//                ]),
+                    ->modelDirectories([
+                        'app-modules/Documentation/src/Models',
+                    ]),
             ])
             ->spa()
             ->colors([
