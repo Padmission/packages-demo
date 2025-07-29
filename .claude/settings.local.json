@@ -21,8 +21,12 @@
       "Bash(composer:*)",
       "Bash(composer show:*)",
       "Bash(sqlite3:*)",
-      "Bash(npm:*)"
+      "Bash(npm:*)",
+      "Bash(mv:*)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "../data-lens"
+    ]
   }
 }
