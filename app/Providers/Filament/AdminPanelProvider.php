@@ -41,7 +41,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentInfoWidget::class,
             ])
             ->unsavedChangesAlerts()
-            ->brandLogo(fn () => view('filament.app.logo'))
+            ->brandLogo(fn() => view('filament.app.logo'))
             ->brandLogoHeight('1.25rem')
             ->navigationGroups([
                 'Shop',
@@ -65,7 +65,10 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
-                DataLensPlugin::make(),
+                DataLensPlugin::make()
+                    ->modelDirectories([
+                        'app-modules/Documentation/src/Models'
+                    ])
             ])
             ->spa()
             ->colors([
