@@ -75,17 +75,17 @@ if ! composer install; then
 fi
 
 # NPM install and build are commented out for now
-# print_status "Installing npm dependencies..."
-# if ! npm install; then
-#     print_error "Failed to install npm dependencies"
-#     exit 1
-# fi
+ print_status "Installing npm dependencies..."
+ if ! npm install; then
+     print_error "Failed to install npm dependencies"
+     exit 1
+ fi
 
-# print_status "Building frontend assets..."
-# if ! npm run build; then
-#     print_error "Failed to build frontend assets"
-#     exit 1
-# fi
+ print_status "Building frontend assets..."
+ if ! npm run build; then
+     print_error "Failed to build frontend assets"
+     exit 1
+ fi
 
 # Clear Laravel caches
 print_status "Clearing Laravel caches..."
