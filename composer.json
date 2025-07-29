@@ -72,7 +72,9 @@
         "test:phpstan": "phpstan analyse",
         "test": [
             "@test:phpstan"
-        ]
+        ],
+        "switch:3x": "./scripts/switch-branch.sh 3.x",
+        "switch:4x": "./scripts/switch-branch.sh 4.x"
     },
     "extra": {
         "laravel": {
