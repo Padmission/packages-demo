@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# ABOUTME: Script to switch between Laravel project branches (3.x and 4.x) with full cleanup and rebuild
-# ABOUTME: Handles git branch switching, dependency cleanup, composer install, and npm build
+# ABOUTME: Script to switch between Laravel project branches (3.x and 4.x) with composer dependency update
+# ABOUTME: Handles git branch switching, composer lock cleanup, and composer install
 
 # Color codes for output
 RED='\033[0;31m'
@@ -52,21 +52,20 @@ if ! git checkout "$BRANCH"; then
     exit 1
 fi
 
-# Remove vendor directory
-print_status "Removing vendor directory..."
-rm -rf vendor
+# Keep vendor directory - only remove composer.lock
+# print_status "Removing vendor directory..."
+# rm -rf vendor
 
 # Remove composer.lock
 print_status "Removing composer.lock..."
 rm -f composer.lock
 
-# Remove node_modules
-print_status "Removing node_modules directory..."
-rm -rf node_modules
+# NPM commands are commented out for now
+# print_status "Removing node_modules directory..."
+# rm -rf node_modules
 
-# Remove package-lock.json
-print_status "Removing package-lock.json..."
-rm -f package-lock.json
+# print_status "Removing package-lock.json..."
+# rm -f package-lock.json
 
 # Install composer dependencies
 print_status "Installing composer dependencies..."
@@ -75,19 +74,18 @@ if ! composer install; then
     exit 1
 fi
 
-# Install npm dependencies
-print_status "Installing npm dependencies..."
-if ! npm install; then
-    print_error "Failed to install npm dependencies"
-    exit 1
-fi
+# NPM install and build are commented out for now
+# print_status "Installing npm dependencies..."
+# if ! npm install; then
+#     print_error "Failed to install npm dependencies"
+#     exit 1
+# fi
 
-# Build frontend assets
-print_status "Building frontend assets..."
-if ! npm run build; then
-    print_error "Failed to build frontend assets"
-    exit 1
-fi
+# print_status "Building frontend assets..."
+# if ! npm run build; then
+#     print_error "Failed to build frontend assets"
+#     exit 1
+# fi
 
 # Clear Laravel caches
 print_status "Clearing Laravel caches..."
@@ -101,4 +99,4 @@ print_status "Running database migrations..."
 php artisan migrate
 
 print_status "Successfully switched to branch $BRANCH!"
-print_status "All dependencies have been reinstalled and assets rebuilt."
+print_status "Composer dependencies have been updated."
