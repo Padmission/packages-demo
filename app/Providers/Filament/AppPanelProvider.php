@@ -11,6 +11,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -61,10 +62,11 @@ class AppPanelProvider extends PanelProvider
                 isPersistent: true
             )
             ->plugins([
-                DataLensPlugin::make()
+                DataLensPlugin::make(),
 //                ->modelDirectories([
 //                    'app/Models/Shop',
-//                ])
+//                ]),
+//                SpatieLaravelTranslatablePlugin::make()
             ])
             ->viteTheme('resources/css/filament/app/theme.css');
     }

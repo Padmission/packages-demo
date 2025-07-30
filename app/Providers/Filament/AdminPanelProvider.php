@@ -65,9 +65,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 DataLensPlugin::make()
-                    ->modelDirectories([
-                        'app-modules/Documentation/src/Models',
-                    ]),
+//                    ->modelDirectories([
+//                        'app-modules/Documentation/src/Models',
+//                    ]),
             ])
             ->spa()
             ->colors([
