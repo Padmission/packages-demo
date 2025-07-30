@@ -66,9 +66,9 @@ class AdminPanelProvider extends PanelProvider
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
-                    ->modelDirectories([
-                        'app-modules/Documentation/src/Models'
-                    ])
+//                    ->modelDirectories([
+//                        'app-modules/Documentation/src/Models'
+//                    ])
             ])
             ->spa()
             ->colors([
