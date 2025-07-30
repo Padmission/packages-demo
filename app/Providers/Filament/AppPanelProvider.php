@@ -63,11 +63,11 @@ class AppPanelProvider extends PanelProvider
                 isPersistent: true
             )
             ->plugins([
-                DataLensPlugin::make(),
-//                    ->modelDirectories([
-//                        app_path(),
-//                        base_path('app-modules/Documentation'),
-//                    ]),
+                DataLensPlugin::make()
+                    ->modelDirectories([
+                        app_path(),
+                        base_path('app-modules/Documentation'),
+                    ]),
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
             ])
