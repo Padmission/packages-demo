@@ -1,0 +1,59 @@
+[
+    {
+        "relationship": null,
+        "field": "id",
+        "type": "number",
+        "label": "Id",
+        "format": [],
+        "classification": "simple",
+        "aggregate_function": null,
+        "settings": {
+            "aggregate_filters": []
+        },
+        "alias": null
+    },
+    {
+        "relationship": "items",
+        "field": "unit_price",
+        "type": "money",
+        "label": "Unit Price",
+        "format": [],
+        "classification": "aggregate",
+        "aggregate_function": "sum",
+        "settings": {
+            "aggregate_filters": [
+                {
+                    "data": {
+                        "logic_operator": "and",
+                        "expressions": [
+                            {
+                                "type": "field_expression",
+                                "data": {
+                                    "field": "qty",
+                                    "operator": "greater_than",
+                                    "number_value": 234,
+                                    "value": 234,
+                                    "value_start": null,
+                                    "value_end": null
+                                }
+                            },
+                            {
+                                "type": "field_expression",
+                                "data": {
+                                    "field": "qty",
+                                    "operator": "greater_than_or_equal",
+                                    "number_value": 3,
+                                    "value": 3,
+                                    "value_start": null,
+                                    "value_end": null
+                                }
+                            }
+                        ]
+                    },
+                    "type": "filter_group"
+                }
+            ]
+        },
+        "alias": null
+    }
+]

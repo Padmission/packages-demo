@@ -1,0 +1,94 @@
+[
+    {
+        "type": "text",
+        "field": "name",
+        "label": "Agency",
+        "format": null,
+        "settings": {
+            "classification": "simple",
+            "aggregate_filters": null,
+            "aggregate_filters_logic_operator": "or"
+        },
+        "relationship": "agency",
+        "classification": "simple",
+        "aggregate_filters": null
+    },
+    {
+        "type": "text",
+        "field": "name",
+        "label": "Program",
+        "format": null,
+        "settings": {
+            "classification": "simple",
+            "aggregate_filters": null,
+            "aggregate_filters_logic_operator": "or"
+        },
+        "relationship": "program",
+        "classification": "simple",
+        "aggregate_filters": null
+    },
+    {
+        "type": "text",
+        "field": "name",
+        "label": "Project",
+        "format": null,
+        "settings": {
+            "classification": "simple",
+            "aggregate_filters": null,
+            "aggregate_filters_logic_operator": "or"
+        },
+        "relationship": null,
+        "classification": "simple",
+        "aggregate_filters": null
+    },
+    {
+        "type": "money",
+        "field": "amount",
+        "label": "Total",
+        "format": null,
+        "settings": {
+            "classification": "aggregate",
+            "aggregate_filters": [
+                {
+                    "data": {
+                        "expressions": [
+                            {
+                                "data": {
+                                    "type": "has",
+                                    "fields": [
+                                        {
+                                            "data": {
+                                                "field": "name",
+                                                "value": "Housing Assistance Payment (HAP)",
+                                                "operator": "equals",
+                                                "value_end": null,
+                                                "bool_value": null,
+                                                "date_value": null,
+                                                "value_start": null,
+                                                "date_value_end": null,
+                                                "date_value_start": null
+                                            },
+                                            "type": "field_expression"
+                                        }
+                                    ],
+                                    "relationship": "expenseType",
+                                    "child_relationship": null,
+                                    "parent_relationship": "expenseType",
+                                    "third_level_relationship": null
+                                },
+                                "type": "relationship_expression"
+                            }
+                        ],
+                        "logic_operator": "and"
+                    },
+                    "type": "filter_group"
+                }
+            ],
+            "aggregate_filters_logic_operator": "or"
+        },
+        "relationship": "transactions",
+        "classification": "aggregate",
+        "aggregate_filters": null,
+        "aggregate_function": "sum"
+    }
+]
