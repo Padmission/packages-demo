@@ -66,6 +66,11 @@ class AdminPanelProvider extends PanelProvider
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
+                    ->apiEnabled()
+                    ->navigationGroup('Analytics')
+                    ->navigationIcon('heroicon-o-chart-bar')
+                    ->navigationSort(1000)
+                    ->navigationLabel('Admin Custom Reports')
             ])
             ->spa()
             ->colors([
