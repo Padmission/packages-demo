@@ -41,7 +41,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentInfoWidget::class,
             ])
             ->unsavedChangesAlerts()
-            ->brandLogo(fn() => view('filament.app.logo'))
+            ->brandLogo(fn () => view('filament.app.logo'))
             ->brandLogoHeight('1.25rem')
             ->navigationGroups([
                 'Shop',
@@ -70,7 +70,7 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationGroup('Analytics')
                     ->navigationIcon('heroicon-o-chart-bar')
                     ->navigationSort(1000)
-                    ->navigationLabel('Admin Custom Reports')
+                    ->navigationLabel('Admin Custom Reports'),
             ])
             ->spa()
             ->colors([

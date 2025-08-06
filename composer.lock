@@ -5944,7 +5944,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "dd691671c5028c62bd2ba538a7a01cfe5e3781e2"
+                "reference": "497ae36ade57ede8e1536aabc82a46f0d82c213b"
             },
             "require": {
                 "filament/filament": "^4.0",
