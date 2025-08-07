@@ -25,7 +25,8 @@
     ],
     "deny": [],
     "additionalDirectories": [
-      "../data-lens"
+      "../data-lens",
+      "../filament.padmission"
     ]
   }
 }
