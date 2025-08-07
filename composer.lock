@@ -5950,7 +5950,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "83f952d1b6ed980c24b296b6979a7c36b42a6ea6"
+                "reference": "942bc4f4fa5bf486a5e29a749c2a2fbce08e326a"
             },
             "require": {
                 "filament/filament": "^4.0",

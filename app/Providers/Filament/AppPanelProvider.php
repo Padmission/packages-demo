@@ -64,6 +64,8 @@ class AppPanelProvider extends PanelProvider
             )
             ->plugins([
                 DataLensPlugin::make()
+                    ->slug('data-lens')
+                    ->schedulingEnabled()
                     ->modelDirectories([
                         app_path(),
                         base_path('app-modules/Documentation'),
