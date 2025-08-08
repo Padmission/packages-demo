@@ -40,6 +40,23 @@ return [
 
     /*
     |==========================================================================
+    | Feature Toggles
+    |==========================================================================
+    |
+    | Control which features are available in your reports.
+    */
+    'features' => [
+        'aggregation' => [
+            // Enable/disable aggregate columns (SUM, AVG, COUNT, etc.)
+            'columns_enabled' => true,
+
+            // Enable/disable aggregate filters
+            'filters_enabled' => true,
+        ],
+    ],
+
+    /*
+    |==========================================================================
     | Model & Data Access Control
     |==========================================================================
     |
@@ -118,6 +135,22 @@ return [
         'models' => [
             //             App\Models\Blog\Author::class => ['photo'],
         ],
+    ],
+
+    /*
+    |==========================================================================
+    | Aggregation Settings
+    |==========================================================================
+    |
+    | Control aggregation features availability in reports.
+    */
+
+    'aggregation' => [
+        // Enable/disable aggregate columns (SUM, AVG, COUNT, etc.)
+        'columns_enabled' => true,
+
+        // Enable/disable aggregate filters
+        'filters_enabled' => true,
     ],
 
     /*
