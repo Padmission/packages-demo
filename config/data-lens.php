@@ -139,22 +139,6 @@ return [
 
     /*
     |==========================================================================
-    | Aggregation Settings
-    |==========================================================================
-    |
-    | Control aggregation features availability in reports.
-    */
-
-    'aggregation' => [
-        // Enable/disable aggregate columns (SUM, AVG, COUNT, etc.)
-        'columns_enabled' => true,
-
-        // Enable/disable aggregate filters
-        'filters_enabled' => true,
-    ],
-
-    /*
-    |==========================================================================
     | Export Settings
     |==========================================================================
     */
