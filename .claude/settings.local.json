@@ -21,7 +21,8 @@
       "Bash(composer:*)",
       "Bash(composer show:*)",
       "Bash(sqlite3:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "mcp__context7__resolve-library-id"
     ],
     "deny": [],
     "additionalDirectories": [
