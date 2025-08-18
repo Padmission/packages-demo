@@ -229,7 +229,7 @@ class DemoSeeder extends Seeder
                                         'field' => 'created_at',
                                         'operator' => 'after',
                                         'value' => now()->subMonths(6)->toISOString(),
-                                        'date_value' => now()->subMonths(6)->toDateTimeString()
+                                        'date_value' => now()->subMonths(6)->toDateTimeString(),
                                     ],
                                 ],
                                 [

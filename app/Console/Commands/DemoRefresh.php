@@ -77,7 +77,7 @@ class DemoRefresh extends Command
             if (! empty($deletedTeams)) {
                 // Filter to only include teams that actually exist
                 $existingTeamIds = Team::whereIn('id', $deletedTeams)->pluck('id')->toArray();
-                
+
                 if (! empty($existingTeamIds)) {
                     // Explicit cleanup of all tenant-scoped data before deleting teams
                     $this->cleanupTenantData($existingTeamIds);
