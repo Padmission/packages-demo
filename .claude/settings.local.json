@@ -23,7 +23,8 @@
       "Bash(sqlite3:*)",
       "Bash(mv:*)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "mcp__laravel-boost__search-docs"
     ],
     "deny": [],
     "additionalDirectories": [
