@@ -33,8 +33,9 @@
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.0",
-        "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpunit/phpunit": "^11.1"
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-drift": "^4.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -68,6 +69,7 @@
             "pint"
         ],
         "pint": "pint",
+        "pest": "pest",
         "test:phpstan": "phpstan analyse",
         "test": [
             "@test:phpstan"
@@ -85,7 +87,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "composer/package-versions-deprecated": true
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true
         }
     },
     "minimum-stability": "dev",
