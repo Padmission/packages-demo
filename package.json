@@ -17,5 +17,8 @@
         "tailwindcss": "^4.1.11",
         "tippy.js": "^6.3.7",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "playwright": "^1.55.0"
     }
 }
