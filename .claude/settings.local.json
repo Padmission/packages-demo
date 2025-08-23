@@ -33,7 +33,8 @@
       "mcp__laravel-boost__database-schema",
       "mcp__laravel-boost__browser-logs",
       "Read(//Users/manuk/Herd/**)",
-      "mcp__laravel-boost__get-absolute-url"
+      "mcp__laravel-boost__get-absolute-url",
+      "mcp__laravel-boost__list-routes"
     ],
     "deny": [],
     "additionalDirectories": [
