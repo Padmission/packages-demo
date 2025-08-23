@@ -34,7 +34,8 @@
       "mcp__laravel-boost__browser-logs",
       "Read(//Users/manuk/Herd/**)",
       "mcp__laravel-boost__get-absolute-url",
-      "mcp__laravel-boost__list-routes"
+      "mcp__laravel-boost__list-routes",
+      "Read(//Users/manuk/Herd/**)"
     ],
     "deny": [],
     "additionalDirectories": [
