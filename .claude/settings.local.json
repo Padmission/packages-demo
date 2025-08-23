@@ -37,7 +37,8 @@
       "mcp__laravel-boost__list-routes",
       "Read(//Users/manuk/Herd/**)",
       "mcp__laravel-boost__read-log-entries",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(vendor/bin/rector process:*)"
     ],
     "deny": [],
     "additionalDirectories": [
