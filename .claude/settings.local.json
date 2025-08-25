@@ -38,7 +38,8 @@
       "Read(//Users/manuk/Herd/**)",
       "mcp__laravel-boost__read-log-entries",
       "Bash(cat:*)",
-      "Bash(vendor/bin/rector process:*)"
+      "Bash(vendor/bin/rector process:*)",
+      "mcp__laravel-boost__get-config"
     ],
     "deny": [],
     "additionalDirectories": [
