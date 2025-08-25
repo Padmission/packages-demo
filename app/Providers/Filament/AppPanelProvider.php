@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
-use App\Filament\Pages\Dashboard;
 use App\Http\Middleware\ApplyTenantScopes;
 use App\Http\Middleware\HandleMissingTenant;
 use App\Models\Team;
@@ -39,9 +38,6 @@ class AppPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
             ->discoverClusters(in: app_path('Filament/App/Clusters'), for: 'App\\Filament\\App\\Clusters')
             ->databaseNotifications()
-            ->pages([
-                Dashboard::class,
-            ])
             ->navigationGroups([
                 'Shop',
             ])
