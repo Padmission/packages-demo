@@ -39,7 +39,9 @@
       "mcp__laravel-boost__read-log-entries",
       "Bash(cat:*)",
       "Bash(vendor/bin/rector process:*)",
-      "mcp__laravel-boost__get-config"
+      "mcp__laravel-boost__get-config",
+      "Bash(for file in AggregationData GroupingColumnData ProcessingHintsData SearchConfigurationData SummaryConfigurationData)",
+      "Bash(do echo \"=== $file.php ===\")"
     ],
     "deny": [],
     "additionalDirectories": [
