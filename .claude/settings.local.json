@@ -20,7 +20,9 @@
       "Bash(composer show:*)",
       "Bash(composer:*)",
       "Bash(composer show:*)",
-      "Bash(sqlite3:*)"
+      "Bash(sqlite3:*)",
+      "Read(//Users/manuk/Herd/data-lens/**)",
+      "Read(//Users/manuk/Herd/data-lens/**)"
     ],
     "deny": []
   }
