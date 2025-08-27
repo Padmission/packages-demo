@@ -46,7 +46,8 @@
     "deny": [],
     "additionalDirectories": [
       "../data-lens",
-      "../filament.padmission"
+      "../filament.padmission",
+      "/Users/manuk/Herd/data-lens"
     ]
   },
   "enabledMcpjsonServers": [
