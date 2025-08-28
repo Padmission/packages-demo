@@ -46,8 +46,7 @@
     ],
     "deny": [],
     "additionalDirectories": [
-      "../data-lens",
-      "../filament.padmission",
+      "/Users/manuk/Herd/filament.padmission",
       "/Users/manuk/Herd/data-lens"
     ]
   },
