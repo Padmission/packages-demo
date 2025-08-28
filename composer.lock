@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "776561bb1d9df7d9e106da3527b54f32",
+    "content-hash": "bd7c2a4c9145bdfa00c5b7ccbd536626",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -76,16 +76,16 @@
         },
         {
             "name": "amphp/amp",
-            "version": "v3.1.1",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/amp.git",
-                "reference": "fa0ab33a6f47a82929c38d03ca47ebb71086a93f"
+                "reference": "7cf7fef3d667bfe4b2560bc87e67d5387a7bcde9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/amp/zipball/fa0ab33a6f47a82929c38d03ca47ebb71086a93f",
-                "reference": "fa0ab33a6f47a82929c38d03ca47ebb71086a93f",
+                "url": "https://api.github.com/repos/amphp/amp/zipball/7cf7fef3d667bfe4b2560bc87e67d5387a7bcde9",
+                "reference": "7cf7fef3d667bfe4b2560bc87e67d5387a7bcde9",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
             ],
             "support": {
                 "issues": "https://github.com/amphp/amp/issues",
-                "source": "https://github.com/amphp/amp/tree/v3.1.1"
+                "source": "https://github.com/amphp/amp/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -153,7 +153,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-27T21:42:00+00:00"
+            "time": "2025-01-26T16:07:39+00:00"
         },
         {
             "name": "amphp/byte-stream",
@@ -5943,12 +5943,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha5",
+            "version": "2.0.0-alpha6",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/9fbe14ac-3b19-468d-ba19-d8d49a51c82e/data-lens-2.0.0-alpha5.zip",
-                "reference": "4134757aa5fb77745ed3fb3349dc9c515fa4e94b",
-                "shasum": "640f63b4c2f7213fcfc1f27ec9ed3a178d503630"
+                "url": "https://data-lens.composer.sh/download/9fbe6b2e-d3d5-4db9-a71d-6de58c51e9be/data-lens-2.0.0-alpha6.zip",
+                "reference": "32f41722c386f6a1ef3f92a4ec0c22608ed7ae50",
+                "shasum": "35140dbe1a225231fa94043f9306f9dd4f423715"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -6047,7 +6047,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-08-28T13:23:15+00:00"
+            "time": "2025-08-28T17:25:09+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
