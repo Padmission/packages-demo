@@ -21,6 +21,7 @@
         "laravel/horizon": "^5.21",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "padmission/data-lens": "*",
         "phiki/phiki": "^1.1",
         "squirephp/countries-en": "^3.3",
