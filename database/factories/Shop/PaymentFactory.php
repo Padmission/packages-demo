@@ -20,7 +20,7 @@ class PaymentFactory extends Factory
             'amount' => $this->faker->randomFloat(2, 100, 2000),
             'provider' => $this->faker->randomElement(PaymentProvider::cases()),
             'method' => $this->faker->randomElement(PaymentMethod::cases()),
-            'created_at' => $this->faker->dateTimeBetween('-1 year', '-6 month'),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-5 month', 'now'),
         ];
     }

@@ -72,6 +72,7 @@ class Login extends BasePage
 
         if ($user && $user->email_verified_at->addHours(config('demo.ttl'))->isFuture()) {
             Auth::login($user, false);
+
             return true;
         }
 

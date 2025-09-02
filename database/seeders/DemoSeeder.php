@@ -5,8 +5,6 @@
 
 namespace Database\Seeders;
 
-use App\Enums\PaymentMethod;
-use App\Enums\PaymentProvider;
 use App\Models\Address;
 use App\Models\Blog\Author;
 use App\Models\Blog\Category as BlogCategory;
@@ -232,7 +230,7 @@ class DemoSeeder extends Seeder
                                         'field' => 'created_at',
                                         'operator' => 'after',
                                         'value' => now()->subMonths(6)->toISOString(),
-                                        'date_value' => now()->subMonths(6)->toDateTimeString()
+                                        'date_value' => now()->subMonths(6)->toDateTimeString(),
                                     ],
                                 ],
                                 [
@@ -432,7 +430,7 @@ class DemoSeeder extends Seeder
                                         'field' => 'created_at',
                                         'operator' => 'after',
                                         'value' => now()->subMonths(3)->toISOString(),
-                                        'date_value' => now()->subMonths(3)->toDateTimeString()
+                                        'date_value' => now()->subMonths(3)->toDateTimeString(),
                                     ],
                                 ],
                             ],
@@ -450,18 +448,18 @@ class DemoSeeder extends Seeder
                                         'field_name' => 'created_at',
                                         'group_by' => 'month',
                                         'alias' => 'Payment_Month',
-                                        'relationship' => null
-                                    ]
-                                ]
+                                        'relationship' => null,
+                                    ],
+                                ],
                             ],
                             'aggregations' => [
                                 [
                                     'id' => 'payment_count',
-                                    'source_column' => 'id',
+                                    'source_column' => 'reference',
                                     'function' => 'count',
                                     'label' => 'Payment Count',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
+                                    'special_handling' => null,
                                 ],
                                 [
                                     'id' => 'total_amount',
@@ -469,7 +467,7 @@ class DemoSeeder extends Seeder
                                     'function' => 'sum',
                                     'label' => 'Total Revenue',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
+                                    'special_handling' => null,
                                 ],
                                 [
                                     'id' => 'avg_payment_size',
@@ -477,18 +475,18 @@ class DemoSeeder extends Seeder
                                     'function' => 'avg',
                                     'label' => 'Avg Payment Size',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
-                                ]
+                                    'special_handling' => null,
+                                ],
                             ],
                             'search' => [
                                 'enabled' => true,
-                                'columns' => ['Payment_Month']
+                                'columns' => ['Payment_Month'],
                             ],
                             'processing_hints' => [
                                 'prefer_sql' => true,
                                 'use_index_hints' => false,
-                                'batch_size' => 1000
-                            ]
+                                'batch_size' => 1000,
+                            ],
                         ],
                         'processing_strategy' => 'sql',
                         'cache_enabled' => true,
@@ -497,6 +495,7 @@ class DemoSeeder extends Seeder
                                 'id' => 'payment_trend_chart',
                                 'type' => 'chart',
                                 'title' => 'Monthly Payment Trends',
+                                'placement' => 'report_header',
                                 'configuration' => [
                                     'chart_type' => 'line',
                                     'x_axis' => 'Payment_Month',
@@ -504,22 +503,35 @@ class DemoSeeder extends Seeder
                                     'secondary_y_axis' => 'payment_count',
                                     'show_legend' => true,
                                     'column_span' => 'full'
+                                ],
+                                'styling' => [
+                                    'colorMap' => [
+                                        'payment_count' => '#f51717',
+                                        'total_amount' => '#2115d4',
+                                        'avg_payment_size' => '#d416be'
+                                    ],
+                                    'theme' => 'light',
+                                    'height' => null,
+                                    'showBorder' => true,
+                                    'showShadow' => true,
+                                    'customCss' => []
                                 ]
                             ],
                             [
                                 'id' => 'payment_stats',
                                 'type' => 'stats_overview',
                                 'title' => 'Payment Metrics',
+                                'placement' => 'report_footer',
                                 'configuration' => [
                                     'metrics' => [
                                         ['field' => 'total_amount', 'label' => 'Total Revenue', 'format' => 'currency'],
                                         ['field' => 'payment_count', 'label' => 'Total Payments', 'format' => 'number'],
                                         ['field' => 'avg_payment_size', 'label' => 'Avg Payment', 'format' => 'currency']
                                     ],
-                                    'column_span' => '1/2'
+                                    'column_span' => 'full'
                                 ]
-                            ]
-                        ]
+                            ],
+                        ],
                     ],
                     [
                         'name' => 'Payment Method Analysis',
@@ -530,24 +542,24 @@ class DemoSeeder extends Seeder
                                         'field_name' => 'method',
                                         'group_by' => null,
                                         'alias' => 'Payment_Method',
-                                        'relationship' => null
+                                        'relationship' => null,
                                     ],
                                     [
                                         'field_name' => 'provider',
                                         'group_by' => null,
                                         'alias' => 'Provider',
-                                        'relationship' => null
-                                    ]
-                                ]
+                                        'relationship' => null,
+                                    ],
+                                ],
                             ],
                             'aggregations' => [
                                 [
                                     'id' => 'method_count',
-                                    'source_column' => 'id',
+                                    'source_column' => 'reference',
                                     'function' => 'count',
                                     'label' => 'Transaction Count',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
+                                    'special_handling' => null,
                                 ],
                                 [
                                     'id' => 'method_revenue',
@@ -555,7 +567,7 @@ class DemoSeeder extends Seeder
                                     'function' => 'sum',
                                     'label' => 'Method Revenue',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
+                                    'special_handling' => null,
                                 ],
                                 [
                                     'id' => 'method_avg',
@@ -563,16 +575,16 @@ class DemoSeeder extends Seeder
                                     'function' => 'avg',
                                     'label' => 'Avg Transaction',
                                     'is_reaggregation' => false,
-                                    'special_handling' => null
-                                ]
+                                    'special_handling' => null,
+                                ],
                             ],
                             'search' => [
-                                'enabled' => false
+                                'enabled' => false,
                             ],
                             'processing_hints' => [
                                 'prefer_sql' => false,
-                                'use_collection_processing' => true
-                            ]
+                                'use_collection_processing' => true,
+                            ],
                         ],
                         'processing_strategy' => 'hybrid',
                         'cache_enabled' => true,
@@ -581,30 +593,44 @@ class DemoSeeder extends Seeder
                                 'id' => 'method_distribution',
                                 'type' => 'chart',
                                 'title' => 'Payment Method Distribution',
+                                'placement' => 'report_header',
                                 'configuration' => [
                                     'chart_type' => 'pie',
                                     'data_field' => 'method_revenue',
                                     'label_field' => 'Payment_Method',
                                     'show_percentages' => true,
-                                    'column_span' => '1/2'
+                                    'column_span' => 'full'
+                                ],
+                                'styling' => [
+                                    'colorMap' => [
+                                        'method_count' => '#10b981',
+                                        'method_revenue' => '#3b82f6',
+                                        'method_avg' => '#f59e0b'
+                                    ],
+                                    'theme' => 'light',
+                                    'height' => null,
+                                    'showBorder' => true,
+                                    'showShadow' => true,
+                                    'customCss' => []
                                 ]
                             ],
                             [
                                 'id' => 'provider_stats',
                                 'type' => 'stats_overview',
-                                'title' => 'Provider Performance',
+                                'title' => 'Provider Performance Metrics',
+                                'placement' => 'report_footer',
                                 'configuration' => [
                                     'metrics' => [
                                         ['field' => 'method_count', 'label' => 'Total Transactions', 'format' => 'number'],
                                         ['field' => 'method_revenue', 'label' => 'Total Volume', 'format' => 'currency'],
-                                        ['field' => 'method_avg', 'label' => 'Avg Transaction', 'format' => 'currency']
+                                        ['field' => 'method_avg', 'label' => 'Avg Transaction', 'format' => 'currency'],
                                     ],
-                                    'column_span' => '1/2'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                    'column_span' => 'full',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ];
 
