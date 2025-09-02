@@ -9,7 +9,7 @@ use Filament\Support\Contracts\HasLabel;
 enum PaymentMethod: string implements HasColor, HasIcon, HasLabel
 {
     case CreditCard = 'credit_card';
-    case PayPal = 'paypal';
+    case DigitalWallet = 'digital_wallet';
     case BankTransfer = 'bank_transfer';
     case Cash = 'cash';
 
@@ -17,7 +17,7 @@ enum PaymentMethod: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::CreditCard => 'Credit Card',
-            self::PayPal => 'PayPal',
+            self::DigitalWallet => 'Digital Wallet',
             self::BankTransfer => 'Bank Transfer',
             self::Cash => 'Cash',
         };
@@ -27,7 +27,7 @@ enum PaymentMethod: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::CreditCard => 'primary',
-            self::PayPal => 'warning',
+            self::DigitalWallet => 'warning',
             self::BankTransfer => 'info',
             self::Cash => 'success',
         };
@@ -37,7 +37,7 @@ enum PaymentMethod: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::CreditCard => 'heroicon-m-credit-card',
-            self::PayPal => 'heroicon-m-globe-alt',
+            self::DigitalWallet => 'heroicon-m-device-phone-mobile',
             self::BankTransfer => 'heroicon-m-building-library',
             self::Cash => 'heroicon-m-banknotes',
         };

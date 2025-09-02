@@ -417,6 +417,7 @@ class DemoSeeder extends Seeder
                     ['field' => 'created_at', 'label' => 'Payment Date', 'type' => 'datetime', 'classification' => 'simple'],
                     // Customer info through order relationship
                     ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'order.customer', 'classification' => 'simple'],
+                    ['field' => 'shop_customer_id', 'label' => 'Customer ID', 'type' => 'text', 'relationship' => 'order', 'classification' => 'simple'],
                     ['field' => 'number', 'label' => 'Order #', 'type' => 'text', 'relationship' => 'order', 'classification' => 'simple'],
                 ],
                 'filters' => [
@@ -458,6 +459,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'reference',
                                     'function' => 'count',
                                     'label' => 'Payment Count',
+                                    'type' => 'number',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -466,6 +468,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'amount',
                                     'function' => 'sum',
                                     'label' => 'Total Revenue',
+                                    'type' => 'money',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -474,6 +477,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'amount',
                                     'function' => 'avg',
                                     'label' => 'Avg Payment Size',
+                                    'type' => 'money',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -558,6 +562,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'reference',
                                     'function' => 'count',
                                     'label' => 'Transaction Count',
+                                    'type' => 'number',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -566,6 +571,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'amount',
                                     'function' => 'sum',
                                     'label' => 'Method Revenue',
+                                    'type' => 'money',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -574,6 +580,7 @@ class DemoSeeder extends Seeder
                                     'source_column' => 'amount',
                                     'function' => 'avg',
                                     'label' => 'Avg Transaction',
+                                    'type' => 'money',
                                     'is_reaggregation' => false,
                                     'special_handling' => null,
                                 ],
@@ -614,16 +621,75 @@ class DemoSeeder extends Seeder
                                     'customCss' => []
                                 ]
                             ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Business Performance Insights',
+                        'configuration' => [
+                            'grouping' => [
+                                'columns' => [] // No grouping - single row of business metrics
+                            ],
+                            'aggregations' => [
+                                [
+                                    'id' => 'total_transactions',
+                                    'source_column' => 'amount',
+                                    'function' => 'count',
+                                    'label' => 'Total Transactions',
+                                    'type' => 'number',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'avg_customer_value',
+                                    'source_column' => 'amount',
+                                    'function' => 'avg',
+                                    'label' => 'Avg Customer Value',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'highest_payment',
+                                    'source_column' => 'amount',
+                                    'function' => 'max',
+                                    'label' => 'Largest Payment',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'lowest_payment',
+                                    'source_column' => 'amount',
+                                    'function' => 'min',
+                                    'label' => 'Smallest Payment',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                            ],
+                            'search' => [
+                                'enabled' => false,
+                            ],
+                            'processing_hints' => [
+                                'prefer_sql' => true,
+                                'use_index_hints' => false,
+                                'batch_size' => 1000,
+                            ],
+                        ],
+                        'processing_strategy' => 'sql',
+                        'cache_enabled' => true,
+                        'widgets' => [
                             [
-                                'id' => 'provider_stats',
+                                'id' => 'business_insights',
                                 'type' => 'stats_overview',
-                                'title' => 'Provider Performance Metrics',
+                                'title' => 'Business Performance Insights',
                                 'placement' => 'report_footer',
                                 'configuration' => [
                                     'metrics' => [
-                                        ['field' => 'method_count', 'label' => 'Total Transactions', 'format' => 'number'],
-                                        ['field' => 'method_revenue', 'label' => 'Total Volume', 'format' => 'currency'],
-                                        ['field' => 'method_avg', 'label' => 'Avg Transaction', 'format' => 'currency'],
+                                        ['field' => 'total_transactions', 'label' => 'Total Transactions', 'format' => 'number'],
+                                        ['field' => 'avg_customer_value', 'label' => 'Avg Customer Value', 'format' => 'currency'],
+                                        ['field' => 'highest_payment', 'label' => 'Largest Payment', 'format' => 'currency'],
+                                        ['field' => 'lowest_payment', 'label' => 'Smallest Payment', 'format' => 'currency'],
                                     ],
                                     'column_span' => 'full',
                                 ],

@@ -10,7 +10,7 @@ enum PaymentProvider: string implements HasColor, HasIcon, HasLabel
 {
     case Stripe = 'stripe';
     case PayPal = 'paypal';
-    case Square = 'square';
+    case Adyen = 'adyen';
     case Manual = 'manual';
 
     public function getLabel(): string
@@ -18,7 +18,7 @@ enum PaymentProvider: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Stripe => 'Stripe',
             self::PayPal => 'PayPal',
-            self::Square => 'Square',
+            self::Adyen => 'Adyen',
             self::Manual => 'Manual',
         };
     }
@@ -28,7 +28,7 @@ enum PaymentProvider: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Stripe => 'primary',
             self::PayPal => 'warning',
-            self::Square => 'success',
+            self::Adyen => 'success',
             self::Manual => 'gray',
         };
     }
@@ -38,7 +38,7 @@ enum PaymentProvider: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Stripe => 'heroicon-m-credit-card',
             self::PayPal => 'heroicon-m-globe-alt',
-            self::Square => 'heroicon-m-squares-plus',
+            self::Adyen => 'heroicon-m-shield-check',
             self::Manual => 'heroicon-m-pencil-square',
         };
     }
