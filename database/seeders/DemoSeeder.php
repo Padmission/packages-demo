@@ -25,6 +25,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Padmission\DataLens\Models\CustomReport;
+use Padmission\DataLens\Models\CustomReportSummary;
 
 class DemoSeeder extends Seeder
 {
@@ -140,10 +141,10 @@ class DemoSeeder extends Seeder
             }
 
             // Create payment if order is processed or shipped
-            if (in_array($order->status, ['processing', 'shipped', 'delivered'])) {
+            if (in_array($order->status->value, ['processing', 'shipped', 'delivered'])) {
                 Payment::factory()->create([
                     'team_id' => $team->id,
-                    'shop_order_id' => $order->id,
+                    'order_id' => $order->id, // Fixed: was shop_order_id, should be order_id
                     'amount' => $order->items->sum(fn ($item) => $item->qty * $item->unit_price),
                 ]);
             }
@@ -404,10 +405,303 @@ class DemoSeeder extends Seeder
                     ],
                 ], // Show visible, in-stock products under $500
             ],
+            [
+                'name' => '💰 Payment Analytics Dashboard',
+                'model' => Payment::class,
+                'columns' => [
+                    ['field' => 'reference', 'label' => 'Payment Ref', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'method', 'label' => 'Payment Method', 'type' => 'badge', 'classification' => 'simple'],
+                    ['field' => 'provider', 'label' => 'Provider', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'amount', 'label' => 'Amount', 'type' => 'money', 'classification' => 'simple'],
+                    ['field' => 'currency', 'label' => 'Currency', 'type' => 'text', 'classification' => 'simple'],
+                    ['field' => 'created_at', 'label' => 'Payment Date', 'type' => 'datetime', 'classification' => 'simple'],
+                    // Customer info through order relationship
+                    ['field' => 'name', 'label' => 'Customer', 'type' => 'text', 'relationship' => 'order.customer', 'classification' => 'simple'],
+                    ['field' => 'shop_customer_id', 'label' => 'Customer ID', 'type' => 'text', 'relationship' => 'order', 'classification' => 'simple'],
+                    ['field' => 'number', 'label' => 'Order #', 'type' => 'text', 'relationship' => 'order', 'classification' => 'simple'],
+                ],
+                'filters' => [
+                    [
+                        'type' => 'filter_group',
+                        'data' => [
+                            'expressions' => [
+                                [
+                                    'type' => 'field_expression',
+                                    'data' => [
+                                        'field' => 'created_at',
+                                        'operator' => 'after',
+                                        'value' => now()->subMonths(3)->toISOString(),
+                                        'date_value' => now()->subMonths(3)->toDateTimeString(),
+                                    ],
+                                ],
+                            ],
+                            'logic_operator' => 'and',
+                        ],
+                    ],
+                ], // Recent payments (last 3 months)
+                'summaries' => [
+                    [
+                        'name' => 'Monthly Payment Trends',
+                        'configuration' => [
+                            'grouping' => [
+                                'columns' => [
+                                    [
+                                        'field_name' => 'created_at',
+                                        'group_by' => 'month',
+                                        'alias' => 'Payment_Month',
+                                        'relationship' => null,
+                                    ],
+                                ],
+                            ],
+                            'aggregations' => [
+                                [
+                                    'id' => 'payment_count',
+                                    'source_column' => 'reference',
+                                    'function' => 'count',
+                                    'label' => 'Payment Count',
+                                    'type' => 'number',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'total_amount',
+                                    'source_column' => 'amount',
+                                    'function' => 'sum',
+                                    'label' => 'Total Revenue',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'avg_payment_size',
+                                    'source_column' => 'amount',
+                                    'function' => 'avg',
+                                    'label' => 'Avg Payment Size',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                            ],
+                            'search' => [
+                                'enabled' => true,
+                                'columns' => ['Payment_Month'],
+                            ],
+                            'processing_hints' => [
+                                'prefer_sql' => true,
+                                'use_index_hints' => false,
+                                'batch_size' => 1000,
+                            ],
+                        ],
+                        'processing_strategy' => 'sql',
+                        'cache_enabled' => true,
+                        'widgets' => [
+                            [
+                                'id' => 'payment_trend_chart',
+                                'type' => 'chart',
+                                'title' => 'Monthly Payment Trends',
+                                'placement' => 'report_header',
+                                'configuration' => [
+                                    'chart_type' => 'line',
+                                    'x_axis' => 'Payment_Month',
+                                    'y_axis' => 'total_amount',
+                                    'secondary_y_axis' => 'payment_count',
+                                    'show_legend' => true,
+                                    'column_span' => 'full'
+                                ],
+                                'styling' => [
+                                    'colorMap' => [
+                                        'payment_count' => '#f51717',
+                                        'total_amount' => '#2115d4',
+                                        'avg_payment_size' => '#d416be'
+                                    ],
+                                    'theme' => 'light',
+                                    'height' => null,
+                                    'showBorder' => true,
+                                    'showShadow' => true,
+                                    'customCss' => []
+                                ]
+                            ],
+                            [
+                                'id' => 'payment_stats',
+                                'type' => 'stats_overview',
+                                'title' => 'Payment Metrics',
+                                'placement' => 'report_footer',
+                                'configuration' => [
+                                    'metrics' => [
+                                        ['field' => 'total_amount', 'label' => 'Total Revenue', 'format' => 'currency'],
+                                        ['field' => 'payment_count', 'label' => 'Total Payments', 'format' => 'number'],
+                                        ['field' => 'avg_payment_size', 'label' => 'Avg Payment', 'format' => 'currency']
+                                    ],
+                                    'column_span' => 'full'
+                                ]
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Payment Method Analysis',
+                        'configuration' => [
+                            'grouping' => [
+                                'columns' => [
+                                    [
+                                        'field_name' => 'method',
+                                        'group_by' => null,
+                                        'alias' => 'Payment_Method',
+                                        'relationship' => null,
+                                    ],
+                                    [
+                                        'field_name' => 'provider',
+                                        'group_by' => null,
+                                        'alias' => 'Provider',
+                                        'relationship' => null,
+                                    ],
+                                ],
+                            ],
+                            'aggregations' => [
+                                [
+                                    'id' => 'method_count',
+                                    'source_column' => 'reference',
+                                    'function' => 'count',
+                                    'label' => 'Transaction Count',
+                                    'type' => 'number',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'method_revenue',
+                                    'source_column' => 'amount',
+                                    'function' => 'sum',
+                                    'label' => 'Method Revenue',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'method_avg',
+                                    'source_column' => 'amount',
+                                    'function' => 'avg',
+                                    'label' => 'Avg Transaction',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                            ],
+                            'search' => [
+                                'enabled' => false,
+                            ],
+                            'processing_hints' => [
+                                'prefer_sql' => false,
+                                'use_collection_processing' => true,
+                            ],
+                        ],
+                        'processing_strategy' => 'hybrid',
+                        'cache_enabled' => true,
+                        'widgets' => [
+                            [
+                                'id' => 'method_distribution',
+                                'type' => 'chart',
+                                'title' => 'Payment Method Distribution',
+                                'placement' => 'report_header',
+                                'configuration' => [
+                                    'chart_type' => 'pie',
+                                    'data_field' => 'method_revenue',
+                                    'label_field' => 'Payment_Method',
+                                    'show_percentages' => true,
+                                    'column_span' => 'full'
+                                ],
+                                'styling' => [
+                                    'colorMap' => [
+                                        'method_count' => '#10b981',
+                                        'method_revenue' => '#3b82f6',
+                                        'method_avg' => '#f59e0b'
+                                    ],
+                                    'theme' => 'light',
+                                    'height' => null,
+                                    'showBorder' => true,
+                                    'showShadow' => true,
+                                    'customCss' => []
+                                ]
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'Business Performance Insights',
+                        'configuration' => [
+                            'grouping' => [
+                                'columns' => [] // No grouping - single row of business metrics
+                            ],
+                            'aggregations' => [
+                                [
+                                    'id' => 'total_transactions',
+                                    'source_column' => 'amount',
+                                    'function' => 'count',
+                                    'label' => 'Total Transactions',
+                                    'type' => 'number',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'avg_customer_value',
+                                    'source_column' => 'amount',
+                                    'function' => 'avg',
+                                    'label' => 'Avg Customer Value',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'highest_payment',
+                                    'source_column' => 'amount',
+                                    'function' => 'max',
+                                    'label' => 'Largest Payment',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                                [
+                                    'id' => 'lowest_payment',
+                                    'source_column' => 'amount',
+                                    'function' => 'min',
+                                    'label' => 'Smallest Payment',
+                                    'type' => 'money',
+                                    'is_reaggregation' => false,
+                                    'special_handling' => null,
+                                ],
+                            ],
+                            'search' => [
+                                'enabled' => false,
+                            ],
+                            'processing_hints' => [
+                                'prefer_sql' => true,
+                                'use_index_hints' => false,
+                                'batch_size' => 1000,
+                            ],
+                        ],
+                        'processing_strategy' => 'sql',
+                        'cache_enabled' => true,
+                        'widgets' => [
+                            [
+                                'id' => 'business_insights',
+                                'type' => 'stats_overview',
+                                'title' => 'Business Performance Insights',
+                                'placement' => 'report_footer',
+                                'configuration' => [
+                                    'metrics' => [
+                                        ['field' => 'total_transactions', 'label' => 'Total Transactions', 'format' => 'number'],
+                                        ['field' => 'avg_customer_value', 'label' => 'Avg Customer Value', 'format' => 'currency'],
+                                        ['field' => 'highest_payment', 'label' => 'Largest Payment', 'format' => 'currency'],
+                                        ['field' => 'lowest_payment', 'label' => 'Smallest Payment', 'format' => 'currency'],
+                                    ],
+                                    'column_span' => 'full',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         foreach ($reports as $reportData) {
-            CustomReport::create([
+            $report = CustomReport::create([
                 'team_id' => $team->id,
                 'creator_id' => $user->id, // Demo user
                 'name' => $reportData['name'],
@@ -424,6 +718,20 @@ class DemoSeeder extends Seeder
                     ],
                 ],
             ]);
+
+            // Create summaries if they exist
+            if (isset($reportData['summaries'])) {
+                foreach ($reportData['summaries'] as $summaryData) {
+                    CustomReportSummary::create([
+                        'custom_report_id' => $report->id,
+                        'name' => $summaryData['name'],
+                        'configuration' => $summaryData['configuration'],
+                        'processing_strategy' => $summaryData['processing_strategy'],
+                        'cache_enabled' => $summaryData['cache_enabled'],
+                        'widget_configurations' => $summaryData['widgets'] ?? [],
+                    ]);
+                }
+            }
         }
     }
 }

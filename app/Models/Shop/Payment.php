@@ -2,6 +2,8 @@
 
 namespace App\Models\Shop;
 
+use App\Enums\PaymentMethod;
+use App\Enums\PaymentProvider;
 use App\Models\Concerns\BelongsToTeam;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +17,11 @@ class Payment extends Model
     protected $table = 'shop_payments';
 
     protected $guarded = [];
+
+    protected $casts = [
+        'method' => PaymentMethod::class,
+        'provider' => PaymentProvider::class,
+    ];
 
     /** @return BelongsTo<Order,self> */
     public function order(): BelongsTo
