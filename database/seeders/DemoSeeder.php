@@ -506,7 +506,7 @@ class DemoSeeder extends Seeder
                                     'y_axis' => 'total_amount',
                                     'secondary_y_axis' => 'payment_count',
                                     'show_legend' => true,
-                                    'column_span' => 'full'
+                                    'column_span' => '2'
                                 ],
                                 'styling' => [
                                     'colorMap' => [
@@ -606,7 +606,7 @@ class DemoSeeder extends Seeder
                                     'data_field' => 'method_revenue',
                                     'label_field' => 'Payment_Method',
                                     'show_percentages' => true,
-                                    'column_span' => 'full'
+                                    'column_span' => '2'
                                 ],
                                 'styling' => [
                                     'colorMap' => [
