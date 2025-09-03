@@ -41,6 +41,78 @@ composer test:phpstan
 composer cs
 ```
 
+#### Pest PHP Testing Standards
+
+**ALWAYS USE PEST PHP SYNTAX**: All tests must be written using Pest PHP, not PHPUnit class syntax.
+
+**Required Pest Structure**:
+```php
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Context;
+use App\Models\User;
+
+describe('ClassName', function () {
+    beforeEach(function () {
+        // Setup logic
+    });
+
+    afterEach(function () {
+        // Cleanup logic (optional)
+    });
+
+    test('descriptive test name', function () {
+        // Test logic
+        expect($result)->toBe('expected');
+    });
+});
+```
+
+**Test Organization**:
+- Group related tests using `describe()` blocks
+- Use `test()` function for individual test cases
+- Use `beforeEach()` and `afterEach()` for setup/cleanup
+- Use `skip()` function instead of `markTestSkipped()`
+
+**Assertion Standards**:
+- Use `expect()` assertions: `expect($value)->toBe('expected')`
+- Use specific matchers: `toBeNull()`, `toBeTrue()`, `toBeFalse()`, `toBe()`, `toEqual()`
+- Use `config()` helper instead of `$this->app['config']`
+
+**Test Naming**: Use descriptive, readable test names that explain the behavior being tested:
+```php
+// ✅ Good
+test('returns null when tenancy is disabled')
+test('handles custom resolver with zero string')
+
+// ❌ Bad  
+test('test_getTenantId')
+test('it_works')
+```
+
+**Examples**:
+```php
+// ❌ Wrong - PHPUnit class syntax
+class UserTest extends TestCase
+{
+    /** @test */
+    public function it_creates_user(): void
+    {
+        $this->assertInstanceOf(User::class, $user);
+    }
+}
+
+// ✅ Correct - Pest PHP syntax  
+describe('User', function () {
+    test('creates user successfully', function () {
+        $user = User::factory()->create();
+        expect($user)->toBeInstanceOf(User::class);
+    });
+});
+```
+
 ### Demo Management
 ```bash
 # Populate demo user pool (required for demo mode)
