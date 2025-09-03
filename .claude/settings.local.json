@@ -43,7 +43,9 @@
       "Bash(for file in AggregationData GroupingColumnData ProcessingHintsData SearchConfigurationData SummaryConfigurationData)",
       "Bash(do echo \"=== $file.php ===\")",
       "mcp__laravel-boost__application-info",
-      "Read(/Users/manuk/Herd/**)"
+      "Read(/Users/manuk/Herd/**)",
+      "Bash(for file in ColumnData SettingsData ApiSettingsData FilterSettingsData)",
+      "Bash(rg:*)"
     ],
     "deny": [],
     "additionalDirectories": [
