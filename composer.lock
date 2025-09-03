@@ -6219,7 +6219,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "1bee0de39818dc0959b667ab96a2ceff94b7102f"
+                "reference": "ae9e060ee708a0aaf0e87fa6955e47f687c88f55"
             },
             "require": {
                 "filament/filament": "^4.0",
