@@ -45,7 +45,8 @@
       "mcp__laravel-boost__application-info",
       "Read(/Users/manuk/Herd/**)",
       "Bash(for file in ColumnData SettingsData ApiSettingsData FilterSettingsData)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "mcp__laravel-boost__last-error"
     ],
     "deny": [],
     "additionalDirectories": [
