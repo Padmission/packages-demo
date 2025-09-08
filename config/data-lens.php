@@ -244,6 +244,21 @@ return [
         'default' => env('DATA_LENS_TIMEZONE', 'UTC'),
     ],
 
+    /*
+    |==========================================================================
+    | Date & Time Formatting
+    |==========================================================================
+    |
+    | Configure default date and time formats for tables and reports.
+    */
+    'date_formatting' => [
+        'default_date_format' => 'Y-m-d',
+        'default_datetime_format' => 'Y-m-d H:i:s',
+        'default_time_format' => 'H:i:s',
+        'use_locale_formatting' => false,
+        'locale' => env('APP_LOCALE', 'en'),
+    ],
+
     // Third-party integrations
     'integrations' => [
         'custom_fields' => false,
