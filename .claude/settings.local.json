@@ -47,7 +47,13 @@
       "Bash(for file in ColumnData SettingsData ApiSettingsData FilterSettingsData)",
       "Bash(rg:*)",
       "mcp__laravel-boost__last-error",
-      "Read(//Users/manuk/Herd/data-lens/**)"
+      "Read(//Users/manuk/Herd/data-lens/**)",
+      "Bash(composer require:*)",
+      "Bash(composer search:*)",
+      "Bash(npm install:*)",
+      "Bash(npx playwright:*)",
+      "Bash(composer format:*)",
+      "Bash(xargs ls:*)"
     ],
     "deny": [],
     "additionalDirectories": [
