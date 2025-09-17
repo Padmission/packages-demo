@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('custom_report_summaries', function (Blueprint $table) {
-            $table->json('widget_configurations')->nullable();
-        });
+        if (Schema::hasTable('custom_report_summaries')) {
+            Schema::table('custom_report_summaries', function (Blueprint $table) {
+                $table->json('widget_configurations')->nullable();
+            });
+        }
     }
 };
