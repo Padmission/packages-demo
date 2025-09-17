@@ -15,7 +15,8 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
+use App\Enums\PaymentMethod;
+use App\Enums\PaymentProvider;
 
 class PaymentsRelationManager extends RelationManager
 {
@@ -44,19 +45,12 @@ class PaymentsRelationManager extends RelationManager
                 ToggleButtons::make('provider')
                     ->inline()
                     ->grouped()
-                    ->options([
-                        'stripe' => 'Stripe',
-                        'paypal' => 'PayPal',
-                    ])
+                    ->options(PaymentProvider::class)
                     ->required(),
 
                 ToggleButtons::make('method')
                     ->inline()
-                    ->options([
-                        'credit_card' => 'Credit card',
-                        'bank_transfer' => 'Bank transfer',
-                        'paypal' => 'PayPal',
-                    ])
+                    ->options(PaymentMethod::class)
                     ->required(),
             ]);
     }
@@ -78,11 +72,11 @@ class PaymentsRelationManager extends RelationManager
                 ColumnGroup::make('Context')
                     ->columns([
                         TextColumn::make('provider')
-                            ->formatStateUsing(fn ($state) => Str::headline($state))
+                            ->badge()
                             ->sortable(),
 
                         TextColumn::make('method')
-                            ->formatStateUsing(fn ($state) => Str::headline($state))
+                            ->badge()
                             ->sortable(),
                     ]),
             ])
