@@ -16,6 +16,7 @@ use App\Models\Shop\Order;
 use App\Models\Shop\OrderItem;
 use App\Models\Shop\Payment;
 use App\Models\Shop\Product;
+use App\Models\Team;
 use App\Models\User;
 use Closure;
 use Filament\Actions\Action;
@@ -44,6 +45,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin2024'),
         ]));
         $this->command->info('Admin user created.');
+
+        // Create team for the admin user
+        $this->command->warn(PHP_EOL . 'Creating team for admin user...');
+        $team = Team::factory()->create([
+            'name' => 'Admin Team',
+        ]);
+        $user->first()->teams()->attach($team, ['role' => 'admin']);
+        $this->command->info('Team created and associated with admin user.');
 
         // Shop
         $this->command->warn(PHP_EOL . 'Creating shop brands...');
@@ -96,7 +105,7 @@ class DatabaseSeeder extends Seeder
                 ->body("{$order->customer->name} ordered {$order->items->count()} products.")
                 ->actions([
                     Action::make('View')
-                        ->url(OrderResource::getUrl('edit', ['record' => $order])),
+                        ->url(OrderResource::getUrl('edit', ['record' => $order, 'tenant' => $team])),
                 ])
                 ->sendToDatabase($user);
         }

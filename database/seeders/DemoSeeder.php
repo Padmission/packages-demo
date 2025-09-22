@@ -720,7 +720,7 @@ class DemoSeeder extends Seeder
             ]);
 
             // Create summaries if they exist
-            if (isset($reportData['summaries'])) {
+            if (isset($reportData['summaries']) && class_exists(CustomReportSummary::class)) {
                 foreach ($reportData['summaries'] as $summaryData) {
                     CustomReportSummary::create([
                         'custom_report_id' => $report->id,
