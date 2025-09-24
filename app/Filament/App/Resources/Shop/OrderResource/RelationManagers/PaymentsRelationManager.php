@@ -3,6 +3,8 @@
 namespace App\Filament\App\Resources\Shop\OrderResource\RelationManagers;
 
 use Akaunting\Money\Currency;
+use App\Enums\PaymentMethod;
+use App\Enums\PaymentProvider;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -15,8 +17,6 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use App\Enums\PaymentMethod;
-use App\Enums\PaymentProvider;
 
 class PaymentsRelationManager extends RelationManager
 {

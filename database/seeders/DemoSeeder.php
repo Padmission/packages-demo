@@ -506,20 +506,20 @@ class DemoSeeder extends Seeder
                                     'y_axis' => 'total_amount',
                                     'secondary_y_axis' => 'payment_count',
                                     'show_legend' => true,
-                                    'column_span' => '2'
+                                    'column_span' => '2',
                                 ],
                                 'styling' => [
                                     'colorMap' => [
                                         'payment_count' => '#f51717',
                                         'total_amount' => '#2115d4',
-                                        'avg_payment_size' => '#d416be'
+                                        'avg_payment_size' => '#d416be',
                                     ],
                                     'theme' => 'light',
                                     'height' => null,
                                     'showBorder' => true,
                                     'showShadow' => true,
-                                    'customCss' => []
-                                ]
+                                    'customCss' => [],
+                                ],
                             ],
                             [
                                 'id' => 'payment_stats',
@@ -530,10 +530,10 @@ class DemoSeeder extends Seeder
                                     'metrics' => [
                                         ['field' => 'total_amount', 'label' => 'Total Revenue', 'format' => 'currency'],
                                         ['field' => 'payment_count', 'label' => 'Total Payments', 'format' => 'number'],
-                                        ['field' => 'avg_payment_size', 'label' => 'Avg Payment', 'format' => 'currency']
+                                        ['field' => 'avg_payment_size', 'label' => 'Avg Payment', 'format' => 'currency'],
                                     ],
-                                    'column_span' => 'full'
-                                ]
+                                    'column_span' => 'full',
+                                ],
                             ],
                         ],
                     ],
@@ -606,20 +606,20 @@ class DemoSeeder extends Seeder
                                     'data_field' => 'method_revenue',
                                     'label_field' => 'Payment_Method',
                                     'show_percentages' => true,
-                                    'column_span' => '2'
+                                    'column_span' => '2',
                                 ],
                                 'styling' => [
                                     'colorMap' => [
                                         'method_count' => '#10b981',
                                         'method_revenue' => '#3b82f6',
-                                        'method_avg' => '#f59e0b'
+                                        'method_avg' => '#f59e0b',
                                     ],
                                     'theme' => 'light',
                                     'height' => null,
                                     'showBorder' => true,
                                     'showShadow' => true,
-                                    'customCss' => []
-                                ]
+                                    'customCss' => [],
+                                ],
                             ],
                         ],
                     ],
@@ -627,7 +627,7 @@ class DemoSeeder extends Seeder
                         'name' => 'Business Performance Insights',
                         'configuration' => [
                             'grouping' => [
-                                'columns' => [] // No grouping - single row of business metrics
+                                'columns' => [], // No grouping - single row of business metrics
                             ],
                             'aggregations' => [
                                 [
