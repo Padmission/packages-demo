@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Padmission\DataLens\Support\Utils;
 
@@ -17,8 +18,7 @@ return new class extends Migration
             $table->uuid('api_uuid')->nullable()->unique();
 
             if (Utils::isTenantEnabled()) {
-                $tenantForeignKey = config('data-lens.column_names.tenant_foreign_key');
-                $table->foreignId($tenantForeignKey);
+                $table->foreignId(Utils::getTenantKeyName());
             }
 
             $table->string('name');
@@ -27,7 +27,12 @@ return new class extends Migration
             $table->json('columns');
             $table->json('filters')->nullable();
 
-            $table->json('settings')->nullable();
+            // Use JSONB for settings since it's frequently queried with JSON path operators
+            if (DB::getDriverName() === 'pgsql') {
+                $table->addColumn('jsonb', 'settings')->nullable();
+            } else {
+                $table->json('settings')->nullable();
+            }
 
             $table->foreignId('creator_id');
 
@@ -37,24 +42,13 @@ return new class extends Migration
         });
 
         Schema::create(config('data-lens.table_names.custom_report_user'), function (Blueprint $table) {
-            $primaryColumns = [
-                'custom_report_id',
-                'user_id',
-            ];
-
-            if (Utils::isTenantEnabled()) {
-                $tenantForeignKey = config('data-lens.column_names.tenant_foreign_key');
-                $table->foreignId($tenantForeignKey)->constrained()->cascadeOnDelete();
-                $primaryColumns[] = $tenantForeignKey;
-            }
-
             $table->foreignId('custom_report_id')
                 ->constrained(config('data-lens.table_names.custom_reports'))
                 ->cascadeOnDelete();
 
             $table->foreignId('user_id');
 
-            $table->primary($primaryColumns);
+            $table->primary(['custom_report_id', 'user_id']);
         });
 
         Schema::create(config('data-lens.table_names.custom_report_schedules'), function (Blueprint $table) {
@@ -67,7 +61,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->time('time');
             $table->text('rrule')->nullable();
-            $table->string('timezone')->default(config('app.timezone'));
+            $table->string('timezone')->default(config('data-lens.timezone.default', config('app.timezone')));
             $table->string('export_format');
             $table->string('email_subject')->nullable();
             $table->text('email_body')->nullable();
@@ -79,10 +73,15 @@ return new class extends Migration
             $table->foreignId('creator_id')->nullable();
 
             if (Utils::isTenantEnabled()) {
-                $table->foreignId(config('data-lens.column_names.tenant_foreign_key'))->nullable();
+                $table->foreignId(Utils::getTenantKeyName())->nullable();
             }
 
-            $table->json('settings')->nullable();
+            // Use JSONB for settings since it's frequently queried with JSON path operators
+            if (DB::getDriverName() === 'pgsql') {
+                $table->addColumn('jsonb', 'settings')->nullable();
+            } else {
+                $table->json('settings')->nullable();
+            }
             $table->timestamps();
         });
 
@@ -97,6 +96,7 @@ return new class extends Migration
             $table->integer('file_size')->nullable()->comment('Size in bytes');
             $table->integer('processing_time')->nullable()->comment('Time in milliseconds');
             $table->boolean('email_sent')->nullable();
+            $table->json('metadata')->nullable();
             $table->timestamps();
         });
 
