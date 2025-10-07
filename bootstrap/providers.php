@@ -8,7 +8,7 @@ use App\Providers\HorizonServiceProvider;
 
 return [
     AppServiceProvider::class,
-    HorizonServiceProvider::class,
+//    HorizonServiceProvider::class,
     AppPanelProvider::class,
     AdminPanelProvider::class,
 ];
