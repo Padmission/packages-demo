@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d7a1826ea90de9c1296d7a6bf41bed5",
+    "content-hash": "2f568430dfbf5b1af561f1b5cda496f2",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2835,16 +2835,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.32.5",
+            "version": "v12.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "77b2740391cd2a825ba59d6fada45e9b8b9bcc5a"
+                "reference": "124efc5f09d4668a4dc13f94a1018c524a58bcb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/77b2740391cd2a825ba59d6fada45e9b8b9bcc5a",
-                "reference": "77b2740391cd2a825ba59d6fada45e9b8b9bcc5a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/124efc5f09d4668a4dc13f94a1018c524a58bcb1",
+                "reference": "124efc5f09d4668a4dc13f94a1018c524a58bcb1",
                 "shasum": ""
             },
             "require": {
@@ -3050,7 +3050,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-09-30T17:39:22+00:00"
+            "time": "2025-10-07T14:30:39+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -5307,12 +5307,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha18",
+            "version": "2.0.0-alpha19",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a00e9ddc-1a35-4e8d-b3a6-7aa61afb0659/data-lens-2.0.0-alpha18.zip",
-                "reference": "56d9ed7b5693e4a57405dd749b4bf920f6062c52",
-                "shasum": "a0cb595efac09547986b6cd61fd61113bd51f065"
+                "url": "https://data-lens.composer.sh/download/a00ea696-804a-4c3e-9854-3707a3e81f7f/data-lens-2.0.0-alpha19.zip",
+                "reference": "4e2dcd862c723aece16c60d8e2e712ac51e10f96",
+                "shasum": "71f143c47697c1321bb80624b7aac417af8896b1"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5412,7 +5412,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-10-07T14:13:05+00:00"
+            "time": "2025-10-07T14:37:31+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
