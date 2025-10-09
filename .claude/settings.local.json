@@ -54,7 +54,9 @@
       "Bash(npx playwright:*)",
       "Bash(composer format:*)",
       "Bash(xargs ls:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git reset:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "additionalDirectories": [
