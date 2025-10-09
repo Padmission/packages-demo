@@ -609,11 +609,7 @@ class DemoSeeder extends Seeder
                                     'column_span' => '2',
                                 ],
                                 'styling' => [
-                                    'colorMap' => [
-                                        'method_count' => '#10b981',
-                                        'method_revenue' => '#3b82f6',
-                                        'method_avg' => '#f59e0b',
-                                    ],
+                                    'colorMap' => [],
                                     'theme' => 'light',
                                     'height' => null,
                                     'showBorder' => true,
