@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b2b51394fce06b6f3b39daa089595bd",
+    "content-hash": "a4c92a2221487c86da1f010c9b4fba39",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5227,12 +5227,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha28",
+            "version": "2.0.0-alpha31",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a02cc96a-6afb-49ad-936e-c73706d7047d/data-lens-2.0.0-alpha28.zip",
-                "reference": "61bca34b63c1b0b1a7e05b796fe81d6054069d55",
-                "shasum": "f40f2b278ff7088644b0c4a26750a549a5babd86"
+                "url": "https://data-lens.composer.sh/download/a02d2f77-ec6a-4b0c-b9c1-5925155f5b57/data-lens-2.0.0-alpha31.zip",
+                "reference": "5f42bf8cb481e540d11446d484f55c512f0397f0",
+                "shasum": "9216e649038c6dc53ce743ff270785ce9481619c"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5332,7 +5332,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-10-22T14:09:43+00:00"
+            "time": "2025-10-22T18:55:04+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
