@@ -56,7 +56,8 @@
       "Bash(xargs ls:*)",
       "Bash(curl:*)",
       "Bash(git reset:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "additionalDirectories": [
