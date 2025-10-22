@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4c92a2221487c86da1f010c9b4fba39",
+    "content-hash": "4d980f1d7bd5877d22a4ef2434eafd66",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -196,16 +196,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.356.43",
+            "version": "3.357.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5722f6ea95240ef28f1ded35448bedcccb0b0883"
+                "reference": "0325c653b022aedb38f397cf559ab4d0f7967901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5722f6ea95240ef28f1ded35448bedcccb0b0883",
-                "reference": "5722f6ea95240ef28f1ded35448bedcccb0b0883",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0325c653b022aedb38f397cf559ab4d0f7967901",
+                "reference": "0325c653b022aedb38f397cf559ab4d0f7967901",
                 "shasum": ""
             },
             "require": {
@@ -287,9 +287,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.356.43"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.357.0"
             },
-            "time": "2025-10-21T19:13:44+00:00"
+            "time": "2025-10-22T19:43:07+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -5227,12 +5227,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha31",
+            "version": "2.0.0-alpha32",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a02d2f77-ec6a-4b0c-b9c1-5925155f5b57/data-lens-2.0.0-alpha31.zip",
-                "reference": "5f42bf8cb481e540d11446d484f55c512f0397f0",
-                "shasum": "9216e649038c6dc53ce743ff270785ce9481619c"
+                "url": "https://data-lens.composer.sh/download/a02d5e04-29ea-44e0-abbe-b5accab893e2/data-lens-2.0.0-alpha32.zip",
+                "reference": "6c6e49247f689d2259425467cbdd8eca3355a772",
+                "shasum": "bc06e868e20b2f9f05a4630641e96708cd236292"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5332,7 +5332,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-10-22T18:55:04+00:00"
+            "time": "2025-10-22T21:05:14+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

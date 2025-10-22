@@ -21,7 +21,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.29",
-        "padmission/data-lens": "2.0-alpha31",
+        "padmission/data-lens": "2.0-alpha32",
         "spatie/laravel-flare": "^1.1",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
