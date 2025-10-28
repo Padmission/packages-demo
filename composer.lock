@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "580b6a7d6ceec9640d4be3dce2765dc0",
+    "content-hash": "b1466674a864de3c8bfcf3804617725f",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2835,16 +2835,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.35.1",
+            "version": "v12.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d6d6e3cb68238e2fb25b440f222442adef5a8a15"
+                "reference": "5247c8f4139e5266cd42bbe13de131604becd7e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d6d6e3cb68238e2fb25b440f222442adef5a8a15",
-                "reference": "d6d6e3cb68238e2fb25b440f222442adef5a8a15",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5247c8f4139e5266cd42bbe13de131604becd7e1",
+                "reference": "5247c8f4139e5266cd42bbe13de131604becd7e1",
                 "shasum": ""
             },
             "require": {
@@ -3050,7 +3050,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-10-23T15:25:03+00:00"
+            "time": "2025-10-28T15:13:16+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -5227,12 +5227,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha38",
+            "version": "2.0.0-alpha39",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a038f29b-c23c-4ee3-8432-1956bdc89509/data-lens-2.0.0-alpha38.zip",
-                "reference": "70e08260dd76cb3550dada45d79ea02c27db4c40",
-                "shasum": "f54f0fba56f648dd7fcbd74c7a328603dc6e2a47"
+                "url": "https://data-lens.composer.sh/download/a038ffee-6410-4369-a4ab-3f559aa87249/data-lens-2.0.0-alpha39.zip",
+                "reference": "db58ff78abc6e8a4fdcd4d624fa0e49812b0b2c9",
+                "shasum": "58d83651c8526bb9f67cb462ab819165fdb56a8f"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5332,7 +5332,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-10-28T15:14:50+00:00"
+            "time": "2025-10-28T15:52:05+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -11814,16 +11814,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.46.0",
+            "version": "v1.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "eb90c4f113c4a9637b8fdd16e24cfc64f2b0ae6e"
+                "reference": "9a11e822238167ad8b791e4ea51155d25cf4d8f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/eb90c4f113c4a9637b8fdd16e24cfc64f2b0ae6e",
-                "reference": "eb90c4f113c4a9637b8fdd16e24cfc64f2b0ae6e",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/9a11e822238167ad8b791e4ea51155d25cf4d8f2",
+                "reference": "9a11e822238167ad8b791e4ea51155d25cf4d8f2",
                 "shasum": ""
             },
             "require": {
@@ -11836,7 +11836,7 @@
             },
             "require-dev": {
                 "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
-                "phpstan/phpstan": "^1.10"
+                "phpstan/phpstan": "^2.0"
             },
             "bin": [
                 "bin/sail"
@@ -11873,7 +11873,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2025-09-23T13:44:39+00:00"
+            "time": "2025-10-28T13:55:29+00:00"
         },
         {
             "name": "mockery/mockery",

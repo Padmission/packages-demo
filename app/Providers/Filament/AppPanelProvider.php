@@ -61,10 +61,11 @@ class AppPanelProvider extends PanelProvider
                 isPersistent: true
             )
             ->plugins([
-                DataLensPlugin::make(),
+                DataLensPlugin::make()->hideReportInfoSection(),
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
             ])
-            ->viteTheme('resources/css/filament/app/theme.css');
+            ->viteTheme('resources/css/filament/app/theme.css')
+            ->sidebarCollapsibleOnDesktop();
     }
 }
