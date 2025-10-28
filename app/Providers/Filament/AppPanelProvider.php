@@ -65,7 +65,7 @@ class AppPanelProvider extends PanelProvider
             ->plugins([
                 DataLensPlugin::make()
                     ->slug('data-lens')
-                    ->hideReportInfoSection()
+//                    ->hideReportInfoSection()
                     ->schedulingEnabled()
                     ->modelDirectories([
                         app_path(),

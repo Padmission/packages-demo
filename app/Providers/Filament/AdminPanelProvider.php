@@ -68,7 +68,6 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
                     ->apiEnabled()
-                    ->hideReportInfoSection()
                     ->navigationGroup('Analytics')
                     ->navigationIcon('heroicon-o-chart-bar')
                     ->navigationSort(1000)
