@@ -65,6 +65,7 @@ class AppPanelProvider extends PanelProvider
             ->plugins([
                 DataLensPlugin::make()
                     ->slug('data-lens')
+                    ->hideReportInfoSection()
                     ->schedulingEnabled()
                     ->modelDirectories([
                         app_path(),
@@ -73,6 +74,7 @@ class AppPanelProvider extends PanelProvider
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
             ])
-            ->viteTheme('resources/css/filament/app/theme.css');
+            ->viteTheme('resources/css/filament/app/theme.css')
+            ->sidebarCollapsibleOnDesktop();
     }
 }

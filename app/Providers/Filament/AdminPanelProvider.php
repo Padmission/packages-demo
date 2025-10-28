@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->sidebarCollapsibleOnDesktop()
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -67,6 +68,7 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
                     ->apiEnabled()
+                    ->hideReportInfoSection()
                     ->navigationGroup('Analytics')
                     ->navigationIcon('heroicon-o-chart-bar')
                     ->navigationSort(1000)
