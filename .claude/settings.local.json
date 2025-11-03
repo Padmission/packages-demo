@@ -57,7 +57,11 @@
       "Bash(curl:*)",
       "Bash(git reset:*)",
       "Bash(git log:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(../../../.composer/vendor/bin/pint src/Resources/CustomReportResource/Schemas/SummaryForm.php)",
+      "Bash(npm run build:styles:*)"
     ],
     "deny": [],
     "additionalDirectories": [
