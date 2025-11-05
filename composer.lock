@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71882aa963da5e52a58976fda978e6fd",
+    "content-hash": "fded6c5223423ea1376784cfca28c7db",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -196,16 +196,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.359.3",
+            "version": "3.359.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757"
+                "reference": "a7cc29d1f021406adced498a2b6e00e25646c86b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a32e4c9522f0b61c947fafa1713d3a24b397a757",
-                "reference": "a32e4c9522f0b61c947fafa1713d3a24b397a757",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a7cc29d1f021406adced498a2b6e00e25646c86b",
+                "reference": "a7cc29d1f021406adced498a2b6e00e25646c86b",
                 "shasum": ""
             },
             "require": {
@@ -287,9 +287,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.359.5"
             },
-            "time": "2025-10-31T18:15:22+00:00"
+            "time": "2025-11-04T19:10:31+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -2881,16 +2881,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.36.1",
+            "version": "v12.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cad110d7685fbab990a6bb8184d0cfd847d7c4d8"
+                "reference": "3c3c4ad30f5b528b164a7c09aa4ad03118c4c125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cad110d7685fbab990a6bb8184d0cfd847d7c4d8",
-                "reference": "cad110d7685fbab990a6bb8184d0cfd847d7c4d8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3c3c4ad30f5b528b164a7c09aa4ad03118c4c125",
+                "reference": "3c3c4ad30f5b528b164a7c09aa4ad03118c4c125",
                 "shasum": ""
             },
             "require": {
@@ -3096,7 +3096,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-10-29T14:20:57+00:00"
+            "time": "2025-11-04T15:39:33+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -5276,12 +5276,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha41",
+            "version": "2.0.0-alpha43",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a044a9b4-82b2-4e83-bfec-53f4e1833b0e/data-lens-2.0.0-alpha41.zip",
-                "reference": "19f2db7ed56e3977fbc77668adce904d8555bbd0",
-                "shasum": "d08b7dd64ddc4dacaa85597aee477e1cbaa6ddc6"
+                "url": "https://data-lens.composer.sh/download/a048ae2e-9333-406c-b4ff-5b5950e83f28/data-lens-2.0.0-alpha43.zip",
+                "reference": "a561d3f59a88fce460e706aec5e29dde74746824",
+                "shasum": "4ecf96b1a07e6a85c4f71addf1746cc0aa5305c1"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5381,7 +5381,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-11-03T11:00:56+00:00"
+            "time": "2025-11-05T10:56:44+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -7664,16 +7664,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "11.17.2",
+            "version": "11.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "3e535836da341776b1616002eb9e2a5776fa9a4d"
+                "reference": "0a19683edb482622a672913ed96de4095f7cd5d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/3e535836da341776b1616002eb9e2a5776fa9a4d",
-                "reference": "3e535836da341776b1616002eb9e2a5776fa9a4d",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/0a19683edb482622a672913ed96de4095f7cd5d1",
+                "reference": "0a19683edb482622a672913ed96de4095f7cd5d1",
                 "shasum": ""
             },
             "require": {
@@ -7758,7 +7758,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.17.2"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/11.17.3"
             },
             "funding": [
                 {
@@ -7770,7 +7770,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-03T08:29:05+00:00"
+            "time": "2025-11-04T10:15:46+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
