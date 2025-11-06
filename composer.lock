@@ -5360,7 +5360,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "6f355c73708927edc6180730b4ad03a39bf38823"
+                "reference": "a561d3f59a88fce460e706aec5e29dde74746824"
             },
             "require": {
                 "filament/filament": "^4.0",
