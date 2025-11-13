@@ -63,7 +63,12 @@
       "Bash(../../../.composer/vendor/bin/pint src/Resources/CustomReportResource/Schemas/SummaryForm.php)",
       "Bash(npm run build:styles:*)",
       "Bash(git pull:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(gh api:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [],
     "additionalDirectories": [
