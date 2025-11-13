@@ -68,7 +68,8 @@
       "Bash(do)",
       "Bash(echo:*)",
       "Bash(gh api:*)",
-      "Bash(git fetch:*)"
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)"
     ],
     "deny": [],
     "additionalDirectories": [
