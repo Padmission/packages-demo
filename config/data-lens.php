@@ -55,6 +55,28 @@ return [
             // Enable/disable aggregate filters
             'filters_enabled' => true,
         ],
+
+        'sharing' => [
+            'user_sharing_enabled' => true,
+
+            'user_selection' => [
+                // Filter users through team pivot table (config:cache compatible)
+                'filter_query' => \App\DataLens\TeamUserFilter::class,
+
+                // Display user with role from team pivot (config:cache compatible)
+                'display_formatter' => \App\DataLens\TeamUserDisplayFormatter::class,
+
+                'searchable_columns' => ['name', 'email'],
+
+                // Skip auto tenant scope since filter_query handles it via pivot table
+                'skip_auto_tenant_scope' => true,
+            ],
+
+            'notifications' => [
+                'database' => true,
+                'email' => true,
+            ],
+        ],
     ],
 
     /*
