@@ -70,7 +70,8 @@
       "Bash(gh api:*)",
       "Bash(git fetch:*)",
       "Bash(git merge:*)",
-      "Bash(./vendor/bin/phpstan:*)"
+      "Bash(./vendor/bin/phpstan:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "additionalDirectories": [
