@@ -172,7 +172,7 @@ return [
         'formats' => ['csv', 'xlsx'],
         'default_format' => 'csv',
         'chunk_size' => 2000,
-        'should_queue' => false,
+        'should_queue' => true,
         'queue' => env('DATA_LENS_QUEUE'),
     ],
 
