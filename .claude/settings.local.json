@@ -72,7 +72,8 @@
       "Bash(git merge:*)",
       "Bash(./vendor/bin/phpstan:*)",
       "Bash(xargs:*)",
-      "Bash(xxd:*)"
+      "Bash(xxd:*)",
+      "mcp__herd__get_all_sites"
     ],
     "deny": [],
     "additionalDirectories": [
