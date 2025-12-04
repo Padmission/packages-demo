@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02c618abce2754bb628bf5045dfaf561",
+    "content-hash": "8e213c0f5ec9496e0a2686960b9f2cf5",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5286,12 +5286,12 @@
         },
         {
             "name": "padmission/data-lens",
-            "version": "2.0.0-alpha53",
+            "version": "2.0.5",
             "dist": {
                 "type": "zip",
-                "url": "https://data-lens.composer.sh/download/a07f7fef-8d3f-450b-a67c-6ceb3c80a4e9/data-lens-2.0.0-alpha53.zip",
-                "reference": "cdc03d71956ca229ae48fd4c79b63613373e6819",
-                "shasum": "589f9cb3df703b925777822d4f938ddca11a00a1"
+                "url": "https://data-lens.composer.sh/download/a082559f-9b22-4986-8a2b-f7329eda711d/data-lens-2.0.5.zip",
+                "reference": "415ad2729265c195853385cb1a28010c9b31bca4",
+                "shasum": "051b884b3094414ee6e0aeea1b899e308bd07513"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -5314,8 +5314,7 @@
                 "phpstan/extension-installer": "^1.4",
                 "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0",
-                "rector/rector": "^2.1",
-                "spatie/laravel-ray": "^1.26"
+                "rector/rector": "^2.1"
             },
             "type": "library",
             "extra": {
@@ -5391,7 +5390,7 @@
             "support": {
                 "issues": "https://datalens.padmission.com"
             },
-            "time": "2025-12-02T16:57:58+00:00"
+            "time": "2025-12-04T02:47:07+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
