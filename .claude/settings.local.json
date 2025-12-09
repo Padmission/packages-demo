@@ -73,7 +73,8 @@
       "Bash(./vendor/bin/phpstan:*)",
       "Bash(xargs:*)",
       "Bash(xxd:*)",
-      "mcp__herd__get_all_sites"
+      "mcp__herd__get_all_sites",
+      "Bash(git cherry-pick:*)"
     ],
     "deny": [],
     "additionalDirectories": [
