@@ -285,7 +285,7 @@ return [
 
     // Third-party integrations
     'integrations' => [
-        'custom_fields' => false,
+        'custom_fields' => true,
         'advanced_tables' => false,
     ],
 
