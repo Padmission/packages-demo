@@ -11,12 +11,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Relaticle\CustomFields\Models\Concerns\UsesCustomFields;
+use Relaticle\CustomFields\Models\Contracts\HasCustomFields;
 
-class Customer extends Model
+class Customer extends Model implements HasCustomFields
 {
     use BelongsToTeam;
     use HasFactory;
     use SoftDeletes;
+    use UsesCustomFields;
 
     /**
      * @var string

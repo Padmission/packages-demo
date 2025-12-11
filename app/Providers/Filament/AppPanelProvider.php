@@ -20,6 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
+use Relaticle\CustomFields\CustomFieldsPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -63,6 +64,7 @@ class AppPanelProvider extends PanelProvider
                 isPersistent: true
             )
             ->plugins([
+                CustomFieldsPlugin::make(),
                 DataLensPlugin::make()
                     ->slug('data-lens')
 //                    ->hideReportInfoSection()

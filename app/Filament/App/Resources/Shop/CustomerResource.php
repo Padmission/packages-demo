@@ -24,6 +24,7 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Relaticle\CustomFields\Facades\CustomFields;
 use Squire\Models\Country;
 use UnitEnum;
 
@@ -86,6 +87,8 @@ class CustomerResource extends Resource
                     ])
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Customer $record) => $record === null),
+
+                CustomFields::form()->build()->columnSpanFull()
             ])
             ->columns(3);
     }
@@ -106,6 +109,8 @@ class CustomerResource extends Resource
                 TextColumn::make('phone')
                     ->searchable()
                     ->sortable(),
+
+                ...CustomFields::table()->forModel($table->getModel())->columns()
             ])
             ->filters([
                 TrashedFilter::make(),

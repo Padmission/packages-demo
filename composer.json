@@ -24,6 +24,7 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "padmission/data-lens": "*",
         "phiki/phiki": "^1.1",
+        "relaticle/custom-fields": "^2.0",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
     },
