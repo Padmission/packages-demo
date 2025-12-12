@@ -74,7 +74,8 @@
       "Bash(xargs:*)",
       "Bash(xxd:*)",
       "mcp__herd__get_all_sites",
-      "Bash(git cherry-pick:*)"
+      "Bash(git cherry-pick:*)",
+      "Bash(vendor/bin/phpstan analyze:*)"
     ],
     "deny": [],
     "additionalDirectories": [
