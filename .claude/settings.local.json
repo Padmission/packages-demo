@@ -75,7 +75,11 @@
       "Bash(xxd:*)",
       "mcp__herd__get_all_sites",
       "Bash(git cherry-pick:*)",
-      "Bash(vendor/bin/phpstan analyze:*)"
+      "Bash(vendor/bin/phpstan analyze:*)",
+      "Bash(./vendor/bin/rector:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh pr diff:*)"
     ],
     "deny": [],
     "additionalDirectories": [
