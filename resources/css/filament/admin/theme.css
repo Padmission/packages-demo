@@ -1,6 +1,9 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/archilex/filament-filter-sets/resources/css/plugin.css';
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../vendor/padmission/data-lens';
 @source '../../../../vendor/relaticle/custom-fields/resources';
+@source '../../../../vendor/archilex/filament-filter-sets';
+

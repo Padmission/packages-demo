@@ -1,9 +1,11 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/archilex/filament-filter-sets/resources/css/plugin.css';
 
 @source '../../../../app/Filament/App/**/*';
 @source '../../../../resources/views/filament/app/**/*';
 @source '../../../../vendor/padmission/data-lens';
 @source '../../../../vendor/relaticle/custom-fields/resources';
+@source '../../../../vendor/archilex/filament-filter-sets';
 
 .h-9 {
     height: 2.25rem;
