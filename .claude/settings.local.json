@@ -79,7 +79,8 @@
       "Bash(./vendor/bin/rector:*)",
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
-      "Bash(gh pr diff:*)"
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)"
     ],
     "deny": [],
     "additionalDirectories": [
