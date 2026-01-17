@@ -88,7 +88,7 @@ class CustomerResource extends Resource
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Customer $record) => $record === null),
 
-                CustomFields::form()->build()->columnSpanFull()
+                CustomFields::form()->build()->columnSpanFull(),
             ])
             ->columns(3);
     }
@@ -110,7 +110,7 @@ class CustomerResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                ...CustomFields::table()->forModel($table->getModel())->columns()
+                ...CustomFields::table()->forModel($table->getModel())->columns(),
             ])
             ->filters([
                 TrashedFilter::make(),

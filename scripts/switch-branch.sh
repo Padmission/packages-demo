@@ -24,7 +24,7 @@ print_warning() {
 
 # Check if branch parameter is provided
 if [ -z "$1" ]; then
-    print_error "Please specify a branch (3.x or 4.x)"
+    print_error "Please specify a branch (3.x, 4.x, or 5.x)"
     echo "Usage: ./switch-branch.sh <branch>"
     exit 1
 fi
@@ -32,8 +32,8 @@ fi
 BRANCH=$1
 
 # Validate branch name
-if [ "$BRANCH" != "3.x" ] && [ "$BRANCH" != "4.x" ]; then
-    print_error "Invalid branch. Please use '3.x' or '4.x'"
+if [ "$BRANCH" != "3.x" ] && [ "$BRANCH" != "4.x" ] && [ "$BRANCH" != "5.x" ]; then
+    print_error "Invalid branch. Please use '3.x', '4.x', or '5.x'"
     exit 1
 fi
 

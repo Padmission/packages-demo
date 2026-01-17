@@ -18,7 +18,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 use Relaticle\CustomFields\CustomFieldsPlugin;
 
@@ -73,8 +72,6 @@ class AppPanelProvider extends PanelProvider
                         app_path(),
                         base_path('app-modules/Documentation'),
                     ]),
-                SpatieTranslatablePlugin::make()
-                    ->defaultLocales(['en', 'es', 'nl']),
             ])
             ->viteTheme('resources/css/filament/app/theme.css')
             ->sidebarCollapsibleOnDesktop();

@@ -30,13 +30,10 @@ use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 use UnitEnum;
 
 class LinkResource extends Resource
 {
-    use Translatable;
-
     protected static ?string $model = Link::class;
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-link';

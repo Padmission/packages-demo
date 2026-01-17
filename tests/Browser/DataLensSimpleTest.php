@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\Models\Shop\Product;
-use App\Models\Shop\Order;
 use App\Models\Shop\Customer;
+use App\Models\Shop\Order;
+use App\Models\Shop\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Padmission\DataLens\Models\CustomReport;
 
 describe('Data Lens Simple Tests', function () {
     beforeEach(function () {
@@ -99,7 +100,7 @@ describe('Data Lens Simple Tests', function () {
         $this->actingAs($this->user);
 
         // Create some reports first using the model directly
-        \Padmission\DataLens\Models\CustomReport::create([
+        CustomReport::create([
             'name' => 'First Report',
             'data_model' => 'App\\Models\\Shop\\Product',
             'columns' => [],
@@ -108,7 +109,7 @@ describe('Data Lens Simple Tests', function () {
             'team_id' => $this->user->team_id ?? 1,
         ]);
 
-        \Padmission\DataLens\Models\CustomReport::create([
+        CustomReport::create([
             'name' => 'Second Report',
             'data_model' => 'App\\Models\\Shop\\Order',
             'columns' => [],

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\DataLens\TeamUserDisplayFormatter;
+use App\DataLens\TeamUserFilter;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -61,10 +63,10 @@ return [
 
             'user_selection' => [
                 // Filter users through team pivot table (config:cache compatible)
-                'filter_query' => \App\DataLens\TeamUserFilter::class,
+                'filter_query' => TeamUserFilter::class,
 
                 // Display user with role from team pivot (config:cache compatible)
-                'display_formatter' => \App\DataLens\TeamUserDisplayFormatter::class,
+                'display_formatter' => TeamUserDisplayFormatter::class,
 
                 'searchable_columns' => ['name', 'email'],
 

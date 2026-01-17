@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
-use App\Models\Shop\Product;
-use App\Models\Shop\Order;
-use App\Models\Shop\Customer;
-use App\Models\Shop\Brand;
 use App\Models\Blog\Post;
+use App\Models\Shop\Brand;
+use App\Models\Shop\Customer;
+use App\Models\Shop\Order;
+use App\Models\Shop\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 describe('Data Lens Report Creation', function () {

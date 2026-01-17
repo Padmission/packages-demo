@@ -18,7 +18,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -64,8 +63,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                SpatieTranslatablePlugin::make()
-                    ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
                     ->apiEnabled()
                     ->navigationGroup('Analytics')
