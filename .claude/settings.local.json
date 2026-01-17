@@ -80,7 +80,8 @@
       "Bash(gh pr view:*)",
       "Bash(gh run view:*)",
       "Bash(gh pr diff:*)",
-      "Bash(gh pr checks:*)"
+      "Bash(gh pr checks:*)",
+      "Bash(gh pr create:*)"
     ],
     "deny": [],
     "additionalDirectories": [
