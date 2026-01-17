@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a5a7dc25ab7bea4434a4cb5f16e6479",
+    "content-hash": "4fc61340866b0631be272f5d30aab41b",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -5127,7 +5127,7 @@
             "dist": {
                 "type": "path",
                 "url": "../data-lens",
-                "reference": "f012ca98857a3a0c1993c1aba46be4e0b7a27c90"
+                "reference": "03310ca0e417468e893e1325bfe9b9efa3177d71"
             },
             "require": {
                 "filament/filament": "^4.0",
@@ -12697,6 +12697,28 @@
                 }
             ],
             "time": "2025-08-14T07:29:31+00:00"
+        },
+        {
+            "name": "filament/blueprint",
+            "version": "v1.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.filamentphp.com/composer/10/126/download"
+            },
+            "require": {
+                "filament/support": "^4.0",
+                "laravel/boost": "^1.8"
+            },
+            "type": "library",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Guidelines for AI agents to produce detailed Filament implementation plans.",
+            "homepage": "https://github.com/filamentphp/filament",
+            "support": {
+                "issues": "https://github.com/filamentphp/filament/issues",
+                "source": "https://github.com/filamentphp/filament"
+            }
         },
         {
             "name": "filp/whoops",
