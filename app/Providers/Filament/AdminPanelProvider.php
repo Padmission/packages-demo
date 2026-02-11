@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Dashboard;
 use App\Http\Middleware\Authenticate;
+use App\Models\User;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
@@ -20,6 +21,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
+use Padmission\DataLens\Models\CustomReport;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -68,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en', 'es', 'nl']),
                 DataLensPlugin::make()
                     ->apiEnabled()
+                    ->authorizeUsing('export', fn (User $user, CustomReport $report): bool => $user->email === 'admin@padmission.com' || $user->id === $report->getAttribute('creator_id'))
                     ->navigationGroup('Analytics')
                     ->navigationIcon('heroicon-o-chart-bar')
                     ->navigationSort(1000)
