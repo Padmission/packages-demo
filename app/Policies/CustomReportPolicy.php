@@ -10,8 +10,6 @@ class CustomReportPolicy
 {
     use HandlesAuthorization;
 
-    // TODO: Implement more granular permissions based on your application needs
-
     public function viewAny(User $user): bool
     {
         return true;
@@ -29,26 +27,48 @@ class CustomReportPolicy
 
     public function update(User $user, CustomReport $customReport): bool
     {
-        return true;
+        return $user->id === $customReport->getAttribute('creator_id');
     }
 
     public function delete(User $user, CustomReport $customReport): bool
     {
-        return true;
+        return $user->id === $customReport->getAttribute('creator_id');
     }
 
     public function manageApi(User $user, CustomReport $customReport): bool
     {
-        return true;
+        return $this->isTeamOwner($user);
     }
 
     public function manageSchedules(User $user, CustomReport $customReport): bool
     {
-        return true;
+        return $this->isTeamOwner($user);
     }
 
     public function export(User $user, CustomReport $customReport): bool
     {
         return true;
+    }
+
+    public function share(User $user, CustomReport $customReport): bool
+    {
+        return $this->isTeamOwner($user);
+    }
+
+    public function useAggregation(User $user, CustomReport $customReport): bool
+    {
+        return true;
+    }
+
+    public function createSummary(User $user, CustomReport $customReport): bool
+    {
+        return true;
+    }
+
+    private function isTeamOwner(User $user): bool
+    {
+        return $user->teams()
+            ->wherePivot('role', 'owner')
+            ->exists();
     }
 }

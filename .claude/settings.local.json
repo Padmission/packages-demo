@@ -69,7 +69,11 @@
       "Bash(echo:*)",
       "Bash(gh api:*)",
       "Bash(git fetch:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "mcp__clickup__clickup_get_task",
+      "Bash(ln:*)",
+      "Bash(vendor/bin/phpstan analyse:*)",
+      "Bash(vendor/bin/pint:*)"
     ],
     "deny": [],
     "additionalDirectories": [
@@ -77,6 +81,7 @@
       "/Users/manuk/Herd/data-lens"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost",
     "herd"
