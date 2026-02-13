@@ -189,6 +189,8 @@ if $IS_LARAVEL_APP; then
       TARGET_DB_PATH="database/database.sqlite"
       mkdir -p "$(dirname "$TARGET_DB_PATH")"
 
+      NEEDS_MIGRATION=false
+
       if [[ -f "$SOURCE_DB_PATH" ]]; then
         if cp "$SOURCE_DB_PATH" "$TARGET_DB_PATH"; then
           success "SQLite database copied"
@@ -197,8 +199,8 @@ if $IS_LARAVEL_APP; then
           FAILED=1
         fi
       else
-        # Create empty SQLite database
         touch "$TARGET_DB_PATH"
+        NEEDS_MIGRATION=true
         warn "Source SQLite not found at $SOURCE_DB_PATH, created empty database"
       fi
 
@@ -221,6 +223,7 @@ if $IS_LARAVEL_APP; then
       env_set DB_DATABASE "$NEW_DB_NAME"
     fi
     success ".env updated"
+
   else
     error ".env file missing, cannot update"
     FAILED=1
@@ -284,6 +287,21 @@ if [[ -f "package.json" ]]; then
     success "npm dependencies installed and built"
   else
     error "npm install/build failed"
+    FAILED=1
+  fi
+fi
+
+# ===========================================================================
+# POST-INSTALL: Run migrations for empty SQLite databases
+# ===========================================================================
+if $IS_LARAVEL_APP && [[ "${NEEDS_MIGRATION:-false}" == "true" ]]; then
+  info "Running migrations for empty SQLite database..."
+  if php artisan migrate --seed --no-interaction --force; then
+    success "Migrations and seeders completed"
+  elif php artisan migrate --no-interaction --force; then
+    success "Migrations completed (seeders skipped or failed)"
+  else
+    error "Failed to run migrations"
     FAILED=1
   fi
 fi
