@@ -173,6 +173,9 @@ The `data-lens` package is loaded from `../data-lens` directory:
 - Integrated with Filament admin panel
 - Configured in `config/data-lens.php`
 
+### Debugging Data Lens Errors
+When investigating errors related to the `data-lens` package in production, use the **Flare MCP server** — it provides direct access to production error reports, stack traces, and occurrence history. This is faster than reading log files and gives full context including request data and environment info.
+
 ### Code Comments Policy
 
 **NO DOCBLOCK COMMENTS**: Never add docblock comments explaining what code does. Method names, parameter names, and return types should be self-documenting.

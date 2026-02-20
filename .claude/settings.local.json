@@ -83,7 +83,8 @@
       "Bash(gh pr checks:*)",
       "Bash(gh pr create:*)",
       "Bash(vendor/bin/pint:*)",
-      "Bash(./vendor/bin/pest:*)"
+      "Bash(./vendor/bin/pest:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "additionalDirectories": [
@@ -92,8 +93,10 @@
       "/Users/manuk/Herd/demo"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost",
-    "herd"
+    "herd",
+    "flare"
   ]
 }
