@@ -80,7 +80,8 @@
             "@test:phpstan"
         ],
         "switch:3x": "./scripts/switch-branch.sh 3.x",
-        "switch:4x": "./scripts/switch-branch.sh 4.x"
+        "switch:4x": "./scripts/switch-branch.sh 4.x",
+        "switch:5x": "./scripts/switch-branch.sh 5.x"
     },
     "extra": {
         "laravel": {
