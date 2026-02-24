@@ -106,7 +106,7 @@
         },
         {
             "type": "path",
-            "url": "../5-x-packages/data-lens"
+            "url": "../data-lens"
         },
         {
             "type": "composer",
