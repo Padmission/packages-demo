@@ -5145,7 +5145,7 @@
             "version": "3.x-dev",
             "dist": {
                 "type": "path",
-                "url": "../data-lens",
+                "url": "../5-x-packages/data-lens",
                 "reference": "22e69a311a809d7c75c0c6064b70c4441cef0aa2"
             },
             "require": {

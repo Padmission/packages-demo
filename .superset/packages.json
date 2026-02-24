@@ -1,0 +1,10 @@
+{
+  "packages": [
+    {
+      "name": "data-lens",
+      "path": "/Users/manuk/.superset/worktrees/packages-demo.padmission/5-x-packages/data-lens",
+      "root_repo": "/Users/manuk/Herd/data-lens",
+      "scoped_branch": "5-x/fix/notification-tenant-url-generation"
+    }
+  ]
+}
