@@ -84,7 +84,8 @@
       "Bash(gh pr create:*)",
       "Bash(vendor/bin/pint:*)",
       "Bash(./vendor/bin/pest:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "mcp__claude_ai_ClickUp__clickup_get_task"
     ],
     "deny": [],
     "additionalDirectories": [
