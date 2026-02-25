@@ -12,26 +12,13 @@ class ReplenishDemoPool implements ShouldQueue
 {
     use Queueable;
 
-    /**
-     * The number of demo instances to create.
-     */
-    public int $count;
-
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(int $count = 1)
+    public function __construct(public int $count = 1)
     {
-        $this->count = $count;
         $this->onQueue(config('demo.queue', 'default'));
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        // Always check current pool size to avoid overshooting target
         $available = User::whereNull('email_verified_at')
             ->where('email', 'like', 'demo_%@demo.padmission.com')
             ->count();
@@ -39,7 +26,6 @@ class ReplenishDemoPool implements ShouldQueue
         $target = config('demo.pool_size', 50);
         $needed = max(0, $target - $available);
 
-        // Create only what's actually needed
         $toCreate = min($needed, $this->count);
 
         if ($toCreate > 0) {

@@ -133,7 +133,8 @@
       "Bash(agent-browser screenshot:*)",
       "Bash(agent-browser scroll:*)",
       "Bash(agent-browser fill:*)",
-      "Bash(agent-browser select_option:*)"
+      "Bash(agent-browser select_option:*)",
+      "Bash(vendor/bin/phpstan analyse:*)"
     ],
     "deny": [],
     "additionalDirectories": [

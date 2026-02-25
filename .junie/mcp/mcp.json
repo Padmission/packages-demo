@@ -1,15 +1,17 @@
 {
     "mcpServers": {
         "laravel-boost": {
-            "command": "/Users/manuk/Library/Application Support/Herd/bin/php83",
+            "command": "/Users/manuk/Library/Application",
             "args": [
+                "Support/Herd/bin/php84",
                 "/Users/manuk/Herd/packages-demo.padmission/artisan",
                 "boost:mcp"
             ]
         },
         "herd": {
-            "command": "/Users/manuk/Library/Application Support/Herd/bin/php83",
+            "command": "/Users/manuk/Library/Application",
             "args": [
+                "Support/Herd/bin/php84",
                 "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
             ],
             "env": {

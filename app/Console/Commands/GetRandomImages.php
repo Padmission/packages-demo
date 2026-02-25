@@ -9,29 +9,12 @@ use Illuminate\Support\Str;
 
 class GetRandomImages extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:get-random-images';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Get random images stored locally, so that the seed process can be fast.';
 
-    /**
-     * Execute the console command.
-     */
-    public function handle()
+    public function handle(): int
     {
-        // Use an empty string to get random images
-        // We could fine-tune with search terms, examples: 'nature', 'people', 'city', 'abstract', 'food', 'sports', 'technics', 'transport', 'animals'
-        // This needs some deeper research to get the best results
-
         $schemas = [
             ['amount' => 40, 'size' => LocalImages::SIZE_200x200, 'terms' => ['']],
             ['amount' => 40, 'size' => LocalImages::SIZE_1280x720, 'terms' => ['']],
@@ -44,9 +27,14 @@ class GetRandomImages extends Command
         foreach ($schemas as $schema) {
             $this->removeDuplicates($schema);
         }
+
+        return self::SUCCESS;
     }
 
-    protected function getRandomImages($schema)
+    /**
+     * @param  array{amount: int, size: string, terms: array<int, string>}  $schema
+     */
+    protected function getRandomImages(array $schema): void
     {
         ['amount' => $amount, 'size' => $size, 'terms' => $terms] = $schema;
 
@@ -80,7 +68,10 @@ class GetRandomImages extends Command
         $this->info('Done!');
     }
 
-    protected function removeDuplicates($schema)
+    /**
+     * @param  array{size: string}  $schema
+     */
+    protected function removeDuplicates(array $schema): void
     {
         ['size' => $size] = $schema;
 
