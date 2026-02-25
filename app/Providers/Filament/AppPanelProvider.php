@@ -19,7 +19,9 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Padmission\DataLens\DataLensPlugin;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensWidgetDataSource;
 use Relaticle\CustomFields\CustomFieldsPlugin;
+use Filament\CustomDashboardsPlugin\CustomDashboardsPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -28,6 +30,16 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('app')
+            ->plugins([
+                CustomDashboardsPlugin::make()
+                    ->discoverDataSources(
+                        in: app_path('Filament/Widgets/DataSources'),
+                        for: 'App\Filament\Widgets\DataSources'
+                    )
+                    ->widgetDataSources([
+                        DataLensWidgetDataSource::class,
+                    ]),
+            ])
             ->path('app')
             ->login(Login::class)
             ->passwordReset()
