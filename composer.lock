@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e5e37e73093adfdd1059bb79d7b7947",
+    "content-hash": "d4671788997dfc5ca5fd3c3d7e3afb88",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -1526,6 +1526,107 @@
                 "source": "https://github.com/filamentphp/filament"
             },
             "time": "2026-02-20T13:01:47+00:00"
+        },
+        {
+            "name": "filament/custom-dashboards-plugin",
+            "version": "v1.0.0-beta1",
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.filamentphp.com/composer/14/553/download"
+            },
+            "require": {
+                "filament/filament": "^4.3.1|^5.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.0",
+                "orchestra/testbench": "^9.0|^10.0",
+                "pestphp/pest": "^3.7",
+                "pestphp/pest-plugin-laravel": "^3.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^2.1",
+                "rector/rector": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Filament\\CustomDashboardsPlugin\\CustomDashboardsPluginServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Filament\\CustomDashboardsPlugin\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Filament\\CustomDashboardsPlugin\\Tests\\Database\\Factories\\": "tests/database/factories",
+                    "Filament\\CustomDashboardsPlugin\\Tests\\": "tests/src"
+                }
+            },
+            "scripts": {
+                "cs": [
+                    "rector",
+                    "pint",
+                    "npm run prettier"
+                ],
+                "pint": [
+                    "pint --config pint-strict-imports.json"
+                ],
+                "rector": [
+                    "rector"
+                ],
+                "test:pest": [
+                    "pest --parallel --exclude-group=commands"
+                ],
+                "test:sqlite": [
+                    "pest --configuration=phpunit.sqlite.xml --parallel --exclude-group=commands"
+                ],
+                "test:mysql": [
+                    "pest --configuration=phpunit.mysql.xml --parallel --exclude-group=commands"
+                ],
+                "test:pgsql": [
+                    "pest --configuration=phpunit.pgsql.xml --parallel --exclude-group=commands"
+                ],
+                "test:commands:sqlite": [
+                    "pest --configuration=phpunit.sqlite.xml --group=commands"
+                ],
+                "test:commands:mysql": [
+                    "pest --configuration=phpunit.mysql.xml --group=commands"
+                ],
+                "test:commands:pgsql": [
+                    "pest --configuration=phpunit.pgsql.xml --group=commands"
+                ],
+                "test:all-databases": [
+                    "@test:sqlite",
+                    "@test:mysql",
+                    "@test:pgsql"
+                ],
+                "test:phpstan": [
+                    "phpstan analyse"
+                ],
+                "test": [
+                    "@test:sqlite",
+                    "@test:commands:sqlite",
+                    "@test:phpstan",
+                    "@test:mysql",
+                    "@test:commands:mysql",
+                    "@test:pgsql",
+                    "@test:commands:pgsql"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "A Filament plugin allowing users to create data-driven dashboards without writing custom widget code.",
+            "homepage": "https://github.com/filamentphp/filament",
+            "support": {
+                "issues": "https://github.com/filamentphp/filament/issues",
+                "source": "https://github.com/filamentphp/filament"
+            }
         },
         {
             "name": "filament/filament",
@@ -16145,6 +16246,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "filament/custom-dashboards-plugin": 10,
         "filament/spatie-laravel-media-library-plugin": 10,
         "filament/spatie-laravel-settings-plugin": 10,
         "filament/spatie-laravel-tags-plugin": 10

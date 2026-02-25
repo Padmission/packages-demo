@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "archilex/filament-filter-sets": "^4.0",
         "fakerphp/faker": "^1.24",
+        "filament/custom-dashboards-plugin": "^1.0@beta",
         "filament/filament": "^5.0",
         "filament/spatie-laravel-media-library-plugin": "^5.0@beta",
         "filament/spatie-laravel-settings-plugin": "^5.0@beta",
@@ -25,7 +27,6 @@
         "phiki/phiki": "^1.1",
         "relaticle/custom-fields": "^3.0",
         "squirephp/countries-en": "^3.3",
-        "archilex/filament-filter-sets": "^4.0",
         "squirephp/currencies-en": "^3.3"
     },
     "require-dev": {
