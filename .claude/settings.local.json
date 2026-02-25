@@ -137,8 +137,7 @@
     "deny": [],
     "additionalDirectories": [
       "/Users/manuk/Herd/filament.padmission",
-      "/Users/manuk/Herd/data-lens",
-      "/Users/manuk/Herd/demo"
+      "/Users/manuk/Herd/data-lens"
     ]
   },
   "enableAllProjectMcpServers": true,
