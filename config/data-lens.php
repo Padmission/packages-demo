@@ -253,6 +253,7 @@ return [
         'custom_report_schedules' => 'custom_report_schedules',
         'custom_report_schedule_history' => 'custom_report_schedule_history',
         'custom_report_schedule_recipients' => 'custom_report_schedule_recipients',
+        'custom_report_summaries' => 'custom_report_summaries',
     ],
 
     'column_names' => [
