@@ -148,7 +148,10 @@
       "mcp__plugin_playwright_playwright__browser_network_requests",
       "mcp__plugin_playwright_playwright__browser_take_screenshot",
       "Bash(echo herd CLI not found:*)",
-      "Bash(herd restart:*)"
+      "Bash(herd restart:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(wait:*)",
+      "Bash(GH_CONFIG_DIR=~/.config/gh gh pr:*)"
     ],
     "deny": [],
     "additionalDirectories": [
