@@ -20,3 +20,4 @@ yarn-error.log
 tests/Browser/Screenshots
 auth.json
 .playwright-mcp/
+docs/demo/*.mp4
