@@ -245,7 +245,7 @@ class VideoDemoSeeder extends Seeder
                                 ],
                                 [
                                     'id' => 'total_revenue',
-                                    'source_column' => 'amount',
+                                    'source_column' => 'total_price',
                                     'function' => 'sum',
                                     'label' => 'Total Revenue',
                                     'type' => 'money',
@@ -254,7 +254,7 @@ class VideoDemoSeeder extends Seeder
                                 ],
                                 [
                                     'id' => 'avg_order',
-                                    'source_column' => 'amount',
+                                    'source_column' => 'total_price',
                                     'function' => 'avg',
                                     'label' => 'Avg Order Value',
                                     'type' => 'money',
