@@ -133,14 +133,30 @@
       "Bash(agent-browser screenshot:*)",
       "Bash(agent-browser scroll:*)",
       "Bash(agent-browser fill:*)",
-      "Bash(agent-browser select_option:*)",
-      "Bash(vendor/bin/phpstan analyse:*)"
+      "Bash(agent-browser console:*)",
+      "mcp__herd__start_debug_session",
+      "mcp__herd__stop_debug_session",
+      "Bash(agent-browser close 2>&1 && agent-browser open \"https://packages-demo.padmission.test/app/1/custom-dashboards/2\" 2>&1)",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "mcp__plugin_playwright_playwright__browser_type",
+      "mcp__plugin_playwright_playwright__browser_select_option",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "mcp__plugin_playwright_playwright__browser_wait_for",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_network_requests",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(echo herd CLI not found:*)",
+      "Bash(herd restart:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(wait:*)",
+      "Bash(GH_CONFIG_DIR=~/.config/gh gh pr:*)"
     ],
     "deny": [],
     "additionalDirectories": [
       "/Users/manuk/Herd/filament.padmission",
-      "/Users/manuk/Herd/data-lens",
-      "/Users/manuk/Herd/demo"
+      "/Users/manuk/Herd/data-lens"
     ]
   },
   "enableAllProjectMcpServers": true,
@@ -149,7 +165,7 @@
     "herd"
   ],
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "enabled": false,
+    "autoAllowBashIfSandboxed": false
   }
 }

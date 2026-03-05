@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 tests/Browser/Screenshots
 auth.json
+.playwright-mcp/
