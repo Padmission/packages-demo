@@ -43,6 +43,14 @@ class AppPanelProvider extends PanelProvider
                         DataLensChartWidget::class,
                         DataLensTableWidget::class,
                     ]),
+                CustomFieldsPlugin::make(),
+                DataLensPlugin::make()
+                    ->slug('data-lens')
+                    ->schedulingEnabled()
+                    ->modelDirectories([
+                        app_path(),
+                        base_path('app-modules/Documentation'),
+                    ]),
             ])
             ->path('app')
             ->login(Login::class)
@@ -78,17 +86,6 @@ class AppPanelProvider extends PanelProvider
                 ],
                 isPersistent: true
             )
-            ->plugins([
-                CustomFieldsPlugin::make(),
-                DataLensPlugin::make()
-                    ->slug('data-lens')
-//                    ->hideReportInfoSection()
-                    ->schedulingEnabled()
-                    ->modelDirectories([
-                        app_path(),
-                        base_path('app-modules/Documentation'),
-                    ]),
-            ])
             ->viteTheme('resources/css/filament/app/theme.css')
             ->sidebarCollapsibleOnDesktop();
     }
