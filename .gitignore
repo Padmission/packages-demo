@@ -21,3 +21,13 @@ tests/Browser/Screenshots
 auth.json
 .playwright-mcp/
 docs/demo/*.mp4
+/.claude
+.cursor/
+.gemini/
+.junie/
+.mcp.json
+.superset/
+opencode.json
+boost.json
+AGENTS.md
+GEMINI.md

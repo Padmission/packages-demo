@@ -17,7 +17,6 @@ use Filament\Tables\Columns\ColumnGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class PaymentsRelationManager extends RelationManager
 {
@@ -96,11 +95,9 @@ class PaymentsRelationManager extends RelationManager
                 ColumnGroup::make('Context')
                     ->columns([
                         TextColumn::make('provider')
-                            ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
 
                         TextColumn::make('method')
-                            ->formatStateUsing(fn ($state) => Str::headline($state))
                             ->sortable(),
                     ]),
             ])
