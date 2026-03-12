@@ -255,6 +255,7 @@ return [
     */
     'table_names' => [
         'custom_reports' => 'custom_reports',
+        'custom_report_summaries' => 'custom_report_summaries',
         'custom_report_user' => 'custom_report_user',
         'custom_report_schedules' => 'custom_report_schedules',
         'custom_report_schedule_history' => 'custom_report_schedule_history',
