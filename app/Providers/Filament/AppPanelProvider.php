@@ -6,6 +6,7 @@ use App\Filament\Pages\Auth\Login;
 use App\Http\Middleware\ApplyTenantScopes;
 use App\Http\Middleware\HandleMissingTenant;
 use App\Models\Team;
+use Filament\CustomDashboardsPlugin\CustomDashboardsPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -20,6 +21,9 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensChartWidget;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensStatsWidget;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensTableWidget;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -61,6 +65,16 @@ class AppPanelProvider extends PanelProvider
                 isPersistent: true
             )
             ->plugins([
+                CustomDashboardsPlugin::make()
+                    ->discoverDataSources(
+                        in: app_path('Filament/Widgets/DataSources'),
+                        for: 'App\Filament\Widgets\DataSources'
+                    )
+                    ->widgets([
+                        DataLensStatsWidget::class,
+                        DataLensChartWidget::class,
+                        DataLensTableWidget::class,
+                    ]),
                 DataLensPlugin::make()->hideReportInfoSection(),
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['en', 'es', 'nl']),
