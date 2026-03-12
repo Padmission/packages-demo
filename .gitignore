@@ -19,3 +19,15 @@ yarn-error.log
 /.vscode
 /.claude
 .claude/settings.local.json
+/.cursor
+/.gemini
+/.junie
+/.playwright-mcp
+/.superset
+/.github/copilot-instructions.md
+.mcp.json
+AGENTS.md
+GEMINI.md
+auth.json
+boost.json
+opencode.json

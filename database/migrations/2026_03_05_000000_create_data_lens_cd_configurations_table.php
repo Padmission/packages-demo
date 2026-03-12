@@ -10,6 +10,10 @@ return new class extends Migration
 {
     public function up(): void
     {
+        if (Schema::hasTable('data_lens_cd_widget_configurations')) {
+            return;
+        }
+
         Schema::create('data_lens_cd_widget_configurations', function (Blueprint $table): void {
             $table->id();
             $table->unsignedBigInteger('custom_report_id');
