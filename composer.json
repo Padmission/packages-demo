@@ -21,7 +21,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.29",
-        "padmission/data-lens": "v2.0.0-alpha58",
+        "filament/custom-dashboards-plugin": "^1.0",
+        "padmission/data-lens": "v2.0.0-alpha66",
         "spatie/laravel-flare": "^1.1",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
@@ -88,6 +89,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
+        {
+            "name": "filament",
+            "type": "composer",
+            "url": "https://packages.filamentphp.com/composer"
+        },
         {
             "type": "composer",
             "url": "https://data-lens.composer.sh/"
