@@ -1,8 +1,10 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/filament/custom-dashboards-plugin/resources/css/index.css';
 
 @source '../../../../app/Filament/App/**/*';
 @source '../../../../resources/views/filament/app/**/*';
 @source '../../../../vendor/padmission/data-lens';
+@source '../../../../vendor/filament/custom-dashboards-plugin/resources';
 
 .h-9 {
     height: 2.25rem;

@@ -1,5 +1,7 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/filament/custom-dashboards-plugin/resources/css/index.css';
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../vendor/padmission/data-lens';
+@source '../../../../vendor/filament/custom-dashboards-plugin/resources';
