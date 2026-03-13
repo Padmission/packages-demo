@@ -23,7 +23,8 @@ use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 use Padmission\DataLens\Widgets\CustomDashboards\DataLensChartWidget;
 use Padmission\DataLens\Widgets\CustomDashboards\DataLensStatsWidget;
-use Padmission\DataLens\Widgets\CustomDashboards\DataLensTableWidget;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensReportTableWidget;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensSummaryTableWidget;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -73,7 +74,8 @@ class AppPanelProvider extends PanelProvider
                     ->widgets([
                         DataLensStatsWidget::class,
                         DataLensChartWidget::class,
-                        DataLensTableWidget::class,
+                        DataLensSummaryTableWidget::class,
+                        DataLensReportTableWidget::class,
                     ]),
                 DataLensPlugin::make()->hideReportInfoSection(),
                 SpatieTranslatablePlugin::make()

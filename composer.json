@@ -22,7 +22,7 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.29",
         "filament/custom-dashboards-plugin": "^1.0",
-        "padmission/data-lens": "v2.0.0-alpha66",
+        "padmission/data-lens": "v2.0.0-alpha68",
         "spatie/laravel-flare": "^1.1",
         "squirephp/countries-en": "^3.3",
         "squirephp/currencies-en": "^3.3"
