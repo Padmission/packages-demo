@@ -151,7 +151,11 @@
       "Bash(herd restart:*)",
       "WebFetch(domain:api.github.com)",
       "Bash(wait:*)",
-      "Bash(GH_CONFIG_DIR=~/.config/gh gh pr:*)"
+      "Bash(GH_CONFIG_DIR=~/.config/gh gh pr:*)",
+      "mcp__claude_ai_ClickUp__clickup_get_task",
+      "Skill(investigate)",
+      "Bash(truncate -s 0 storage/logs/laravel.log)",
+      "Bash(agent-browser close:*)"
     ],
     "deny": [],
     "additionalDirectories": [
@@ -165,7 +169,7 @@
     "herd"
   ],
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "enabled": false,
+    "autoAllowBashIfSandboxed": false
   }
 }
