@@ -155,7 +155,9 @@
       "mcp__claude_ai_ClickUp__clickup_get_task",
       "Skill(investigate)",
       "Bash(truncate -s 0 storage/logs/laravel.log)",
-      "Bash(agent-browser close:*)"
+      "Bash(agent-browser close:*)",
+      "Bash(pkill -f \"php-fpm\")",
+      "Bash(gh pr:*)"
     ],
     "deny": [],
     "additionalDirectories": [
