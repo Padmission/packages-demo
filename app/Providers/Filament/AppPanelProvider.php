@@ -67,6 +67,7 @@ class AppPanelProvider extends PanelProvider
             )
             ->plugins([
                 CustomDashboardsPlugin::make()
+                    ->shareableModels([Team::class])
                     ->discoverDataSources(
                         in: app_path('Filament/Widgets/DataSources'),
                         for: 'App\Filament\Widgets\DataSources'
