@@ -10,6 +10,10 @@ return new class extends Migration
     {
         $tableName = config('data-lens.table_names.custom_report_summaries', 'custom_report_summaries');
 
+        if (Schema::hasTable($tableName)) {
+            return;
+        }
+
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->foreignId('custom_report_id')

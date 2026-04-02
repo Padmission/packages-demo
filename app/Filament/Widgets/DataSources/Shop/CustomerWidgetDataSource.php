@@ -14,7 +14,7 @@ class CustomerWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Customer::class;
 
-    protected string|UnitEnum|null $group = 'Shop';
+    protected string | UnitEnum | null $group = 'Shop';
 
     protected ?int $sort = 2;
 
