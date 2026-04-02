@@ -22,8 +22,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Padmission\DataLens\DataLensPlugin;
 use Padmission\DataLens\Widgets\CustomDashboards\DataLensChartWidget;
-use Padmission\DataLens\Widgets\CustomDashboards\DataLensStatsWidget;
 use Padmission\DataLens\Widgets\CustomDashboards\DataLensReportTableWidget;
+use Padmission\DataLens\Widgets\CustomDashboards\DataLensStatsWidget;
 use Padmission\DataLens\Widgets\CustomDashboards\DataLensSummaryTableWidget;
 
 class AppPanelProvider extends PanelProvider

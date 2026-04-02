@@ -14,7 +14,7 @@ class AuthorWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Author::class;
 
-    protected string|UnitEnum|null $group = 'Blog';
+    protected string | UnitEnum | null $group = 'Blog';
 
     protected ?int $sort = 2;
 

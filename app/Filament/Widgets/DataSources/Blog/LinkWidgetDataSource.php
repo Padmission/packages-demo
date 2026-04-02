@@ -14,7 +14,7 @@ class LinkWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Link::class;
 
-    protected string|UnitEnum|null $group = 'Blog';
+    protected string | UnitEnum | null $group = 'Blog';
 
     protected ?int $sort = 3;
 
