@@ -93,7 +93,7 @@ class LinkResource extends Resource
                 Stack::make([
                     ImageColumn::make('image')
                         ->imageHeight('100%')
-                        ->width('100%'),
+                        ->imageWidth('100%'),
                     Stack::make([
                         TextColumn::make('title')
                             ->weight(FontWeight::Bold),
