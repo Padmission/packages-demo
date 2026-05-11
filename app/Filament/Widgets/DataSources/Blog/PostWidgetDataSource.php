@@ -15,7 +15,7 @@ class PostWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Post::class;
 
-    protected string|UnitEnum|null $group = 'Blog';
+    protected string | UnitEnum | null $group = 'Blog';
 
     protected ?int $sort = 0;
 

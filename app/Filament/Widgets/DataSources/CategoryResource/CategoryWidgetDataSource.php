@@ -16,7 +16,7 @@ class CategoryWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Category::class;
 
-    protected string|UnitEnum|null $group = 'Shop';
+    protected string | UnitEnum | null $group = 'Shop';
 
     protected ?int $sort = 0;
 

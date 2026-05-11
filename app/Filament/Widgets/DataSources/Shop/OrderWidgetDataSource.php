@@ -16,7 +16,7 @@ class OrderWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Order::class;
 
-    protected string|UnitEnum|null $group = 'Shop';
+    protected string | UnitEnum | null $group = 'Shop';
 
     protected ?int $sort = 1;
 
