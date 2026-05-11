@@ -28,6 +28,7 @@
         "squirephp/currencies-en": "^3.3"
     },
     "require-dev": {
+        "filament/upgrade": "^5.0",
         "larastan/larastan": "^3.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
