@@ -1,0 +1,202 @@
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://jade-donkey.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 503 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 401 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 403 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 429 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 503 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] [vite] server connection lost. Polling for restart...
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[log] 0 H4 text-sm font-medium text-gray-950 dark:text-white truncate cursor-pointer hover:text-primary-600 dark:hover:text-primary-400 transition-colors
+[log] 1 DIV flex items-center gap-2
+[log] 2 DIV flex-1 min-w-0
+[log] 3 DIV flex items-center gap-2.5 flex-1 min-w-0
+[log] 4 DIV flex items-center justify-between gap-3
+[log] 5 DIV group bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-sm
+[log] 6 DIV field-grid space-y-2
+[log] 7 DIV p-4
+[log] 8 DIV border-t border-gray-200 dark:border-gray-700
+[log] 9 DIV enhanced-form-section bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://hungry-husky.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[log] Component id: TLy0jiXE6lcWFdAS6pXt
+[log] Component found: true
+[31m[error][0m Failed to load resource: the server responded with a status of 419 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[31m[error][0m Failed to load resource: the server responded with a status of 404 ()
+[31m[error][0m Livewire Entangle Error: Livewire property ['mountedActions.0.data.visibility_ui.conditions.0.single_value'] cannot be found on component: ['filaforms::manage-form-section']
+[log] 4 DIV attrs: @mouseenter=isHovered = true | @mouseleave=isHovered = false | @keydown.f2.window.prevent=if (!editing && isHovered) { startEditing(); } | @keydown.ctrl.enter.window.prevent=if (editing && isHovered) { await saveField(); } | @click.outside=if (editing) { cancelEditing(); }
+[log] 5 DIV attrs: @end.stop=
+                    const sectionId = '01KR9J09GFE0E0QDMZV4EJR0HW';
+            | @dragenter.prevent=dragCounter++; dropZoneActive = true | @dragleave.prevent=dragCounter--; if(dragCounter === 0) dropZoneActive = false | @drop.prevent=dragCounter = 0; dropZoneActive = false | @dragover.prevent=
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filament-demo.test/_boost/browser-logs
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://filaforms-app.test/_boost/browser-logs
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[31m[error][0m Livewire Entangle Error: Livewire property ['mountedActions.0.data.visibility_ui.conditions.0.single_value'] cannot be found on component: ['filaforms::manage-form-section']
+[31m[error][0m Failed to load resource: the server responded with a status of 500 ()
+[log] BEFORE clear, text: where are you from?
+[log] Direct clear call now
+[log] calling setText
+[log] [chatEditor.clear] BEFORE debug testlognow
+[log] [chatEditor.clear] AFTER 
+[log] [sendMessage] about to clear, localEditor= null context= undefined
+[log] [sendMessage] $root= JSHandle@node $el= JSHandle@node wrapper= null
+[log] [sendMessage] $root.tag= DIV $root.ctx= conversation $el.tag= DIV $el.ctx= conversation rootEqualsEl= true
+[log] [sendMessage] root has editor child? false el has editor child? false
+[log] [sendMessage] childrenCount= 2 innerHTML.length= 25263 isConnected= true
+[log] [sendMessage] global chatEditor count= 2 first parent matches root? false
+[31m[error][0m Failed to load resource: the server responded with a status of 403 ()
+[log] 🔍 Browser logger active (MCP server detected). Posting to: https://tapix.test/_boost/browser-logs
