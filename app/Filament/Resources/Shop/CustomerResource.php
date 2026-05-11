@@ -13,8 +13,8 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -76,13 +76,13 @@ class CustomerResource extends Resource
 
                 Section::make()
                     ->schema([
-                        Placeholder::make('created_at')
+                        TextEntry::make('created_at')
                             ->label('Created at')
-                            ->content(fn (Customer $record): ?string => $record->created_at?->diffForHumans()),
+                            ->state(fn (Customer $record): ?string => $record->created_at?->diffForHumans()),
 
-                        Placeholder::make('updated_at')
+                        TextEntry::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (Customer $record): ?string => $record->updated_at?->diffForHumans()),
+                            ->state(fn (Customer $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Customer $record) => $record === null),

@@ -13,9 +13,9 @@ use BackedEnum;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
@@ -77,13 +77,13 @@ class BrandResource extends Resource
                     ->columnSpan(['lg' => fn (?Brand $record) => $record === null ? 3 : 2]),
                 Section::make()
                     ->schema([
-                        Placeholder::make('created_at')
+                        TextEntry::make('created_at')
                             ->label('Created at')
-                            ->content(fn (Brand $record): ?string => $record->created_at?->diffForHumans()),
+                            ->state(fn (Brand $record): ?string => $record->created_at?->diffForHumans()),
 
-                        Placeholder::make('updated_at')
+                        TextEntry::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (Brand $record): ?string => $record->updated_at?->diffForHumans()),
+                            ->state(fn (Brand $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Brand $record) => $record === null),

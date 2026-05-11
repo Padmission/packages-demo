@@ -18,12 +18,12 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Component;
@@ -85,13 +85,13 @@ class OrderResource extends Resource
 
                 Section::make()
                     ->schema([
-                        Placeholder::make('created_at')
+                        TextEntry::make('created_at')
                             ->label('Created at')
-                            ->content(fn (Order $record): ?string => $record->created_at?->diffForHumans()),
+                            ->state(fn (Order $record): ?string => $record->created_at?->diffForHumans()),
 
-                        Placeholder::make('updated_at')
+                        TextEntry::make('updated_at')
                             ->label('Last modified at')
-                            ->content(fn (Order $record): ?string => $record->updated_at?->diffForHumans()),
+                            ->state(fn (Order $record): ?string => $record->updated_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Order $record) => $record === null),
