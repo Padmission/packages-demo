@@ -16,7 +16,7 @@ class BrandWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Brand::class;
 
-    protected string|UnitEnum|null $group = 'Shop';
+    protected string | UnitEnum | null $group = 'Shop';
 
     protected ?int $sort = 0;
 

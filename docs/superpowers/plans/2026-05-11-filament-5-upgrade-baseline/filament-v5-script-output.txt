@@ -1,0 +1,73 @@
+                         
+   [1mFilament v5[0m Upgrade   
+                         
+
+Welcome to the [1mFilament v5[0m upgrade process! 
+This script will attempt to handle breaking changes for you, and will guide you through any manual steps that may be required. 
+If you have any questions, please reach out to us on [4mDiscord[0m or [4mGitHub[0m.
+
+To begin, please ensure that you are using a version control system such as Git. 
+We will make changes directly to your files, and you will need to be able to revert them if something goes wrong. 
+[1mPlease commit any changes you have made to your project before continuing.[0m
+
+
+Checking PHP version compatibility with v5...
+
+
+Checking Laravel version compatibility with v5...
+
+
+Checking plugin compatibility with v5...
+
+
+Starting upgrade...
+
+
+Start processing [1m/app[0m to fix code affected by breaking changes.
+
+   0/162 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K  16/162 [▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░]   9%[1G[2K  32/162 [▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░]  19%[1G[2K  34/162 [▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░]  20%[1G[2K  50/162 [▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░]  30%[1G[2K  66/162 [▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░]  40%[1G[2K  82/162 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░]  50%[1G[2K  98/162 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░]  60%[1G[2K 114/162 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░]  70%[1G[2K 146/162 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░]  90%[1G[2K 162/162 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+                         
+Finished processing [1m/app[0m.
+
+
+Start processing [1m/database[0m to fix code affected by breaking changes.
+
+  0/80 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 16/80 [▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░]  20%[1G[2K 64/80 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░]  80%[1G[2K 80/80 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+                              
+Finished processing [1m/database[0m.
+
+
+Start processing [1m/config[0m to fix code affected by breaking changes.
+
+  0/20 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K  4/20 [▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░]  20%[1G[2K 20/20 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+                            
+Finished processing [1m/config[0m.
+
+
+Start processing [1m/tests[0m to fix code affected by breaking changes.
+
+ 0/3 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 3/3 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+                           
+Finished processing [1m/tests[0m.
+
+
+Start processing [1m/resources/views[0m to fix code affected by breaking changes.
+
+  0/10 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 10/10 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+                                     
+Finished processing [1m/resources/views[0m.
+
+Now you're ready to update your Composer dependencies!
+
+First require new versions of Filament packages: 
+[1mcomposer require filament/filament:"^5.0" -W --no-update[0m
+[1mcomposer require filament/spatie-laravel-media-library-plugin:"^5.0" -W --no-update[0m
+[1mcomposer require filament/spatie-laravel-settings-plugin:"^5.0" -W --no-update[0m
+[1mcomposer require filament/spatie-laravel-tags-plugin:"^5.0" -W --no-update[0m
+[1mcomposer require filament/custom-dashboards-plugin:"^5.0" -W --no-update
+composer require lara-zeus/spatie-translatable:"^2.0" -W --no-update[0m
+
+And then run: 
+[1mcomposer update[0m
+
+If you have any questions, please reach out to us on [4mDiscord[0m or [4mGitHub[0m.

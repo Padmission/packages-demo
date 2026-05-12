@@ -16,7 +16,7 @@ class ProductWidgetDataSource extends EloquentWidgetDataSource
 {
     protected ?string $model = Product::class;
 
-    protected string|UnitEnum|null $group = 'Shop';
+    protected string | UnitEnum | null $group = 'Shop';
 
     protected ?int $sort = 0;
 
