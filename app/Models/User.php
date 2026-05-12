@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use EslamRedaDiv\FilamentCopilot\Concerns\HasCopilotChat;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -16,6 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements FilamentUser, HasTenants, MustVerifyEmail
 {
     use HasApiTokens;
+    use HasCopilotChat;
     use HasFactory;
     use Notifiable;
 
