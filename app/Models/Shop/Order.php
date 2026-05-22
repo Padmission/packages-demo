@@ -9,11 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Padmission\DataLens\Concerns\HasDataLensMorphTargets;
 
 class Order extends Model
 {
     use BelongsToTeam;
+    use HasDataLensMorphTargets;
     use HasFactory;
     use SoftDeletes;
 
@@ -61,5 +64,21 @@ class Order extends Model
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
+    }
+
+    /** @return MorphTo<Brand|Customer,self> */
+    public function payeeable(): MorphTo
+    {
+        return $this->morphTo('payeeable');
+    }
+
+    public static function dataLensMorphTargets(): array
+    {
+        return [
+            'payeeable' => [
+                Customer::class,
+                Brand::class,
+            ],
+        ];
     }
 }
